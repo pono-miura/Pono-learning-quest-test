@@ -142,13 +142,45 @@ function mathUnitSelect(openGrade){
  }
  A.append(btn("← 今日の学習へ",child,"soft"));
 }
-function mathQ(){let n=MATHNODES[adaptive.node],q=n.qs[adaptive.qi];head(`③ 自分で｜${n.title}`,child);A.append(e("div","tiny",`在籍 小学${profile.grade}年｜学習開始の目安 小学${profile.startGrade||profile.grade}年`));A.append(e("div","card",`<h2>${fmtMath(q[0])}</h2>`));q[1].forEach((x,i)=>{let b=btn("",()=>mathAns(i===q[2]));b.innerHTML=fmtMath(x);A.append(b)});A.append(btn("💡 説明を見る",()=>mathLearn(adaptive.node),"soft"));A.append(btn("🌱 わからない・説明を見る",()=>{adaptive.h++;mathLearn(adaptive.node)},"soft"))}
-function mathAns(ok){if(ok){adaptive.ok++;new Audio("correct.wav").play().catch(()=>{});adaptive.qi++;if(adaptive.qi<MATHNODES[adaptive.node].qs.length){mathQ();return}mathJudge()}else{adaptive.h++;mathQ();A.prepend(e("div","feedback warn","🌱 もう一度考えてみよう。説明を見ても大丈夫です。"))}}
+function mathQuestionType(i,total){
+ const labels=["🔎 理解確認","✏️ 基本","💬 文章・場面","🌟 少し応用"];
+ if(total<=1)return labels[0];
+ if(total===2)return labels[Math.min(i,1)];
+ if(total===3)return [labels[0],labels[1],labels[2]][i]||labels[3];
+ let pos=i/(total-1);
+ return pos<.25?labels[0]:pos<.55?labels[1]:pos<.8?labels[2]:labels[3]
+}
+function mathErrorHint(node,q){
+ let t=String(q[0]);
+ if(/[こ個人本枚円cmkg時分]|どちら|同じ数ずつ|面積|体積|割合|グラフ/.test(t))
+   return {kind:"問題文・場面の確認",msg:"何を聞かれているか、分かっている数と求めるものを一緒に確認してみよう。"};
+ return {kind:"計算・考え方の確認",msg:"使う計算や考え方を一つ前から確認してみよう。"}
+}
+function mathQ(){
+ let n=MATHNODES[adaptive.node],q=n.qs[adaptive.qi];head(`③ 自分で｜${n.title}`,child);
+ adaptive.errorKinds=adaptive.errorKinds||{"問題文・場面の確認":0,"計算・考え方の確認":0};
+ A.append(e("div","tiny",`在籍 小学${profile.grade}年｜学習開始の目安 小学${profile.startGrade||profile.grade}年`));
+ A.append(e("div","question-kind",mathQuestionType(adaptive.qi,n.qs.length)));
+ A.append(e("div","card",`<h2>${fmtMath(q[0])}</h2>`));
+ q[1].forEach((x,i)=>{let b=btn("",()=>mathAns(i===q[2],q));b.innerHTML=fmtMath(x);A.append(b)});
+ A.append(btn("💡 説明を見る",()=>mathLearn(adaptive.node),"soft"));
+ A.append(btn("🌱 わからない・説明を見る",()=>{adaptive.h++;mathLearn(adaptive.node)},"soft"))
+}
+function mathAns(ok,q){
+ if(ok){
+   adaptive.ok++;new Audio("correct.wav").play().catch(()=>{});adaptive.qi++;
+   if(adaptive.qi<MATHNODES[adaptive.node].qs.length){mathQ();return}mathJudge()
+ }else{
+   adaptive.h++;
+   let eh=mathErrorHint(MATHNODES[adaptive.node],q);adaptive.errorKinds[eh.kind]=(adaptive.errorKinds[eh.kind]||0)+1;
+   mathQ();A.prepend(e("div","feedback warn",`🌱 ${eh.msg}<br><span class="tiny">${eh.kind}</span>`))
+ }
+}
 function mathJudge(){let n=MATHNODES[adaptive.node],rate=Math.round(adaptive.ok/n.qs.length*100);adaptive.history.push({node:adaptive.node,grade:n.grade,title:n.title,rate,hints:adaptive.h});if(rate<67&&n.pre){let from=adaptive.node;adaptive.returnTo=adaptive.returnTo||from;adaptive.node=n.pre;adaptive.qi=0;adaptive.ok=0;adaptive.h=0;head("🌱 必要なところを確認します",child);A.append(e("div","card",`<p><b>${n.title}</b>を進めるために、先に<b>${MATHNODES[n.pre].title}</b>を確認します。</p><p class="tiny">「学年が下がった」という表示ではなく、次につなげる確認として進めます。</p>`));A.append(btn("確認を始める",()=>mathEntry(adaptive.node),"primary"));return}
 if(adaptive.returnTo&&adaptive.node!==adaptive.returnTo){let target=adaptive.returnTo;adaptive.node=target;adaptive.returnTo=null;adaptive.qi=0;adaptive.ok=0;adaptive.h=0;head("✨ 元の学習へ戻ります",child);A.append(e("div","card",`<p>必要な内容を確認できました。</p><p><b>${MATHNODES[target].title}</b>へ戻って、もう一度やってみます。</p>`));A.append(btn("元の学習へ戻る",()=>mathEntry(adaptive.node),"primary"));return}
 let sec=Math.round((Date.now()-adaptive.start)/1000);let lastNode=adaptive.history.at(-1), nodeId=(lastNode&&lastNode.id)||adaptive.node||adaptive.origin, node=MATHNODES[nodeId]||MATHNODES[adaptive.origin];
 let nextText=rate>=90?"少し発展へ":"定着を確認", status=rate>=90?"自力でできた":rate>=67?"練習中":"基礎を確認";
-records.push({studentId:profile.id,date:new Date().toISOString(),subject:"算数",grade:node.grade,unit:node.title,content:node.title,rate,correct:lastNode&&lastNode.ok!=null?lastNode.ok:Math.round(rate*node.qs.length/100),total:node.qs.length,seconds:sec,hints:adaptive.history.reduce((a,x)=>a+x.hints,0),reads:0,unknown:0,next:nextText,status,process:"学年横断の確認ルート",explanationViews:adaptive.learned||0,togetherViews:adaptive.together||0,adaptivePath:adaptive.history});save();head("✨ 算数の学習経過",child);let path=adaptive.history.map(x=>`${x.title}（${x.rate}%）`).join(" → ");A.append(e("div","card",`<h2>取り組めました</h2><p><b>学習の道すじ</b><br>${path}</p><p>必要な内容を確認しながら、元の学習につなげました。</p><p class="tiny">この経過は保護者・先生の記録にも残ります。</p>`));A.append(btn("🌿 今日はここまで",child,"soft"))}
+records.push({studentId:profile.id,date:new Date().toISOString(),subject:"算数",grade:node.grade,unit:node.title,content:node.title,rate,correct:lastNode&&lastNode.ok!=null?lastNode.ok:Math.round(rate*node.qs.length/100),total:node.qs.length,seconds:sec,hints:adaptive.history.reduce((a,x)=>a+x.hints,0),reads:0,unknown:0,next:nextText,status,process:"学年横断の確認ルート",explanationViews:adaptive.learned||0,togetherViews:adaptive.together||0,adaptivePath:adaptive.history,errorKinds:adaptive.errorKinds||{},questionStructure:"理解確認・基本・文章/場面"});save();head("✨ 算数の学習経過",child);let path=adaptive.history.map(x=>`${x.title}（${x.rate}%）`).join(" → ");A.append(e("div","card",`<h2>取り組めました</h2><p><b>学習の道すじ</b><br>${path}</p><p>必要な内容を確認しながら、元の学習につなげました。</p><p class="tiny">この経過は保護者・先生の記録にも残ります。</p>`));A.append(btn("🌿 今日はここまで",child,"soft"))}
 
 function e(t,c,h){let x=document.createElement(t);if(c)x.className=c;if(h!==undefined)x.innerHTML=h;return x}
 function btn(t,f,c=""){let b=e("button",c,t);b.onclick=f;return b}
