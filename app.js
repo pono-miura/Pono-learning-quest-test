@@ -108,8 +108,25 @@ function mathLessonData(id,n){
  let q=n.qs[0],ans=q[1][q[2]];
  return [`「${n.title}」では、ことば・単位・図や式の意味を確かめながら考えます。答えだけでなく「どうしてそうなるか」を一つずつ見ていきます。`,`たとえば「${q[0]}」は、問題で分かっていることと、求めることを確認します。答えは「${ans}」です。`]
 }
+function mathSpeechText(text){
+ let t=String(text);
+ // Read simple fractions in natural Japanese: 2/3 -> 3分の2.
+ t=t.replace(/(\d+)\s*\/\s*(\d+)/g,(m,num,den)=>`${den}分の${num}`);
+ return t
+   .replaceAll("×","かける")
+   .replaceAll("÷","わる")
+   .replaceAll("＝","イコール")
+   .replaceAll("=","イコール")
+   .replaceAll("cm²","平方センチメートル")
+   .replaceAll("cm³","立方センチメートル")
+   .replaceAll("cm","センチメートル")
+   .replaceAll("kg","キログラム")
+   .replaceAll("g","グラム")
+   .replaceAll("L","リットル");
+}
 function speakLesson(text){
- let u=new SpeechSynthesisUtterance(String(text).replaceAll("×","かける").replaceAll("÷","わる").replaceAll("cm²","平方センチメートル").replaceAll("cm³","立方センチメートル"));u.lang="ja-JP";u.rate=.86;speechSynthesis.cancel();speechSynthesis.speak(u)
+ let u=new SpeechSynthesisUtterance(mathSpeechText(text));
+ u.lang="ja-JP";u.rate=.86;speechSynthesis.cancel();speechSynthesis.speak(u)
 }
 function mathLearn(nodeId){
  let n=MATHNODES[nodeId];adaptive.learned=(adaptive.learned||0)+1;head(`① まなぶ｜${n.title}`,child);
@@ -119,7 +136,17 @@ function mathLearn(nodeId){
  if(nodeId==="g5_volume") formula="<div class='formula-card'><b>直方体の体積</b><br>たて × よこ × 高さ ＝ 体積<br><span class='tiny'>「たて かける よこ かける たかさ ＝ たいせき」</span></div>";
  if(nodeId==="g6_area") formula="<div class='formula-card'><b>円の面積</b><br>半径 × 半径 × 円周率<br><span class='tiny'>「はんけい かける はんけい かける えんしゅうりつ」</span></div>";
  let terms=["g5_frac","g6_fracmul","g6_fracdiv"].includes(nodeId)?fractionWords():"";
- let c=e("div","card lesson",`<h2>📖 まず知っておこう</h2><p>${fmtMath(meaning)}</p>${formula}${terms}<h3>👀 具体例</h3><p>${fmtMath(example)}</p><p class="tiny">一度で覚えなくて大丈夫です。必要な時にここへ戻れます。</p>`);
+ let fractionCalc="";
+ if(nodeId==="g6_fracmul") fractionCalc=`<div class="formula-card fraction-steps"><b>約分しながら考える例</b>
+ <div class="math-step">${fmtMath("2/3")} × ${fmtMath("3/4")}</div>
+ <div class="step-arrow">↓ 分子どうし・分母どうしをかける</div>
+ <div class="math-step"><span class="frac"><span class="top">2 × <span class="cancel">3</span></span><span class="bottom"><span class="cancel">3</span> × 4</span></span></div>
+ <div class="step-arrow">↓ 上と下の3を、同じ3でわって約分</div>
+ <div class="math-step"><span class="frac"><span class="top">2 × 1</span><span class="bottom">1 × 4</span></span></div>
+ <div class="step-arrow">↓</div><div class="math-step">${fmtMath("1/2")}</div>
+ <span class="tiny">読み方：3分の2 かける 4分の3。答えは2分の1。</span></div>`;
+ if(nodeId==="g6_fracdiv") fractionCalc=`<div class="formula-card fraction-steps"><b>分数でわる例</b><div class="math-step">${fmtMath("1/2 ÷ 1/4")}</div><div class="step-arrow">↓ わる数を逆数にして、かけ算にする</div><div class="math-step">${fmtMath("1/2 × 4/1")}</div><div class="step-arrow">↓</div><div class="math-step">2</div><span class="tiny">読み方：2分の1 わる 4分の1。</span></div>`;
+ let c=e("div","card lesson",`<h2>📖 まず知っておこう</h2><p>${fmtMath(meaning)}</p>${formula}${terms}${fractionCalc}<h3>👀 具体例</h3><p>${fmtMath(example)}</p><p class="tiny">一度で覚えなくて大丈夫です。必要な時にここへ戻れます。</p>`);
  A.append(c);
  A.append(btn("🔊 説明をきく",()=>speakLesson(meaning+" "+example),"soft"));
  A.append(btn("② 一緒にやってみる",()=>mathTogether(nodeId),"primary"));

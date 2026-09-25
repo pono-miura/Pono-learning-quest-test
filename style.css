@@ -27,3 +27,10 @@ details.card summary{cursor:pointer;padding:4px 0}
 .formula-card,.answer-box{margin:14px 0;padding:14px;border-radius:14px;background:#f7f7f7;line-height:1.8}.lesson h3{margin-top:18px}
 
 .question-kind{display:inline-block;margin:8px 0 10px;padding:7px 11px;border-radius:999px;background:#f2f2f2;font-size:.9rem;font-weight:700}
+
+.fraction-steps{text-align:center}
+.math-step{font-size:1.35rem;font-weight:700;margin:12px 0;line-height:2}
+.step-arrow{font-size:.9rem;margin:6px 0;line-height:1.6}
+
+.cancel{text-decoration:line-through;text-decoration-thickness:2px}
+.fraction-steps .frac{font-size:1.15em}
