@@ -109,5 +109,39 @@ let old=saved[d], initial=old&&Array.isArray(old.items)?old.items:(old&&old.s?[{
 function addSlot(v={s:"国語",u:"おすすめ単元"}){let row=e("div","soft");row.style.padding="10px";row.style.margin="8px 0";let ss=e("select");subs.forEach(x=>{let o=e("option","",x);o.value=x;ss.append(o)});ss.value=v.s||"国語";let u=e("input");u.placeholder="単元・内容";u.value=v.u||"";let del=btn("－ この予定を削除",()=>row.remove());row.append(ss,u,del);area.append(row)}
 initial.forEach(addSlot);c.append(btn("＋ 科目を追加",()=>addSlot(),"soft"));off.onchange=()=>{area.style.opacity=off.checked?".35":"1";area.style.pointerEvents=off.checked?"none":"auto"};off.onchange();A.append(c)});
 A.append(btn("✓ 今週の予定を保存",()=>{let p={};document.querySelectorAll("[data-d]").forEach(c=>{let d=c.dataset.d,off=c.querySelector(".off").checked;if(off){p[d]={off:true,items:[]};return}let items=[];c.querySelectorAll(".slots>div").forEach(r=>{let ss=r.querySelector("select"),u=r.querySelector("input");items.push({s:ss.value,u:u.value||"おすすめ単元"})});p[d]={off:false,items}});localStorage.setItem(PK,JSON.stringify(p));alert("今週の予定を保存しました")},"primary"))}
-function report(){head("📄 学校提出用",teacher);let rr=myRecords().slice(-20);A.append(e("div","card",`<b>${profile.name}</b>｜在籍 小学${profile.grade}年<br><span class="tiny">記録から下書きを作ります。</span>`));A.append(btn("✨ 下書きを自動作成",()=>{let mins=Math.round(rr.reduce((a,r)=>a+r.seconds,0)/60),subs2=[...new Set(rr.map(r=>r.subject))].join("・")||"―",back=rr.some(r=>r.next.includes("既習"));let d=e("div","card generated");d.innerHTML=`<h2>学習経過・学校共有用</h2><p>取組 ${rr.length}回／約${mins}分　教科：${subs2}</p>`;let ta=e("textarea");ta.value=rr.length?`本人の理解状況に合わせて学習に取り組んだ。${back?"必要に応じて既習内容を確認し、基礎を整理してから現在の学習につなげている。":"現在の理解を確認しながら、自力で取り組める範囲を広げている。"} 説明や読み上げも必要に応じて活用し、分からない時に確認して再挑戦する過程がみられた。予定は目安として、その日の理解状況に応じて定着・既習内容の確認・発展へ柔軟に進めている。`:"期間内の学習記録はまだありません。";d.append(ta);let s=e("select");["継続して取り組む","既習内容を確認しながら進める","理解が安定してきている","読み上げ等を活用すると理解しやすい"].forEach(x=>s.append(e("option","",x)));d.append(s,btn("🖨️ この生徒だけ印刷 / PDF",()=>window.print(),"primary noPrint"));A.append(d)},"primary"))}
+function report(){
+ head("📄 学校共有用・学習報告",teacher);
+ let rr=myRecords().slice().reverse();
+ A.append(e("div","card",`<b>${profile.name}</b>｜在籍 小学${profile.grade}年<br><span class="tiny">実際の学習記録を、日時・単元ごとに確認できます。</span>`));
+ if(!rr.length){A.append(e("div","card","まだ学習記録がありません。学習するとここに自動で記録されます。"));return}
+ let total=Math.round(rr.reduce((a,r)=>a+(Number(r.seconds)||0),0)/60);
+ let sum=e("div","card");
+ sum.innerHTML=`<h2>学習のまとめ</h2><p><b>取組 ${rr.length}回／約${total}分</b></p><p class="tiny">単元ごとの詳しい記録は下に表示されます。</p>`;
+ A.append(sum);
+ rr.forEach((r,i)=>{
+   let dt=r.date||"日時記録なし", mins=Math.max(1,Math.round((Number(r.seconds)||0)/60));
+   let unit=r.unit||r.nodeTitle||r.title||r.next||"学習内容";
+   let correct=(r.correct!=null?r.correct:(r.score!=null?r.score:"―"));
+   let totalq=(r.total!=null?r.total:"―");
+   let status=r.status||((r.result==="ok"||r.ok===true)?"自力でできた":"練習中");
+   let supports=[];
+   if(Number(r.explain)>0) supports.push(`説明 ${r.explain}回`);
+   if(Number(r.together)>0) supports.push(`一緒に ${r.together}回`);
+   if(Number(r.hints)>0) supports.push(`ヒント ${r.hints}回`);
+   if(Number(r.reads)>0) supports.push(`読み上げ ${r.reads}回`);
+   let c=e("div","card learning-detail");
+   c.innerHTML=`<h3>${dt}</h3>
+   <p><b>${r.subject||"学習"}｜${r.grade?`${r.grade}年相当｜`:""}${unit}</b></p>
+   <p>学習時間：約${mins}分</p>
+   <p>理解の記録：${totalq!=="―"?`${correct}/${totalq}`:(r.result==="ok"?"正答":"記録あり")}　／　現在：${status}</p>
+   <p>学習方法：${supports.length?supports.join("・"):"自分で取り組み"}</p>
+   ${r.next?`<p>次の学習：${r.next}</p>`:""}`;
+   A.append(c);
+ });
+ let note=e("div","card generated");
+ note.innerHTML="<h2>学校共有用コメント</h2><p class='tiny'>必要な場合だけ追記できます。</p>";
+ let ta=e("textarea");ta.placeholder="学習の様子、理解の変化、次の学習計画など";
+ note.append(ta,btn("🖨️ この生徒だけ印刷 / PDF",()=>window.print(),"primary noPrint"));
+ A.append(note);
+}
 home();

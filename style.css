@@ -11,3 +11,6 @@ ruby rt{font-size:.55em;font-weight:500}
 .word-help summary{font-weight:700;cursor:pointer}
 .word-grid p{margin:10px 0}
 .fraction-example{font-size:1.25rem;text-align:center}
+
+.learning-detail h3{margin:0 0 8px;font-size:1rem}.learning-detail p{margin:7px 0}
+@media print{.noPrint,header,.back{display:none!important}.card{break-inside:avoid;box-shadow:none}}
