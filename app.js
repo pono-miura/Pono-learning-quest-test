@@ -144,10 +144,16 @@ function report(){
  let subjects=[...new Set(rr.map(r=>r.subject).filter(Boolean))].join("・")||"各教科";
  let independent=rr.filter(r=>r.result==="ok"||r.ok===true||r.status==="自力でできた").length;
  let support=rr.some(r=>Number(r.explain)>0||Number(r.together)>0||Number(r.hints)>0||Number(r.reads)>0);
- let review=rr.some(r=>(r.next||"").includes("既習")||(r.adaptivePath||"").includes("既習"));
- ta.value=`${subjects}の学習に取り組み、記録期間内に${rr.length}回、約${total}分の学習を行いました。理解状況を確認しながら、${independent?`自力で取り組めた学習が${independent}回みられました。`:"現在の理解に合わせて学習を進めています。"}${support?"必要に応じて説明・ヒント・読み上げ等を活用し、確認しながら取り組んでいます。":""}${review?"また、必要な既習内容を確認した上で現在の単元につなげています。":""}今後も学習内容の定着を確認しながら次の単元へ進めます。`;
- ta.placeholder="学習の様子、理解の変化、次の学習計画など";
- note.append(ta,e("p","tiny","※記録から自動作成した下書きです。内容を確認し、自由に編集してから学校へ共有できます。"),btn("🖨️ この生徒だけ印刷 / PDF",()=>window.print(),"primary noPrint"));
+ let review=rr.some(r=>String(r.next||"").includes("既習")||String(r.adaptivePath||"").includes("既習"));
+ let units=[...new Set(rr.map(r=>r.unit||r.nodeTitle||r.title).filter(Boolean))].slice(0,4);
+ let unitText=units.length?`主に「${units.join("」「")}」に取り組みました。`:"";
+ let draft=`${subjects}の学習に取り組み、記録期間内に${rr.length}回、約${total}分の学習を行いました。${unitText}理解状況を確認しながら、${independent?`自力で取り組めた学習が${independent}回みられました。`:"現在の理解に合わせて学習を進めています。"}${support?"必要に応じて説明・ヒント・読み上げ等を活用し、確認しながら取り組んでいます。":""}${review?"必要な既習内容も確認し、現在の単元につなげています。":""}今後も定着を確認しながら次の学習へ進めます。`;
+ ta.defaultValue=draft;
+ ta.value=draft;
+ ta.textContent=draft;
+ ta.rows=8;
+ ta.placeholder="";
+ note.append(ta,e("p","tiny","※学習記録から自動作成した下書きです。文章をタップして自由に編集できます。"),btn("🖨️ この生徒だけ印刷 / PDF",()=>window.print(),"primary noPrint"));
  A.append(note);
 }
 home();
