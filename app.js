@@ -186,6 +186,35 @@ function mathAns(ok,q){
    mathQ();A.prepend(e("div","feedback warn",`🌱 ${eh.msg}<br><span class="tiny">${eh.kind}</span>`))
  }
 }
+function retentionDue(){
+ const now=Date.now(), minAge=2*24*60*60*1000, maxAge=14*24*60*60*1000;
+ let candidates=records.filter(r=>r.studentId===profile.id&&r.subject==="算数"&&r.unit&&r.rate>=90&&r.status!=="定着確認済み"&&now-new Date(r.date).getTime()>=minAge&&now-new Date(r.date).getTime()<=maxAge);
+ return candidates.sort((a,b)=>new Date(a.date)-new Date(b.date))[0]||null
+}
+let retention=null;
+function startRetention(r){
+ let entry=Object.entries(MATHNODES).find(([id,n])=>n.title===r.unit);if(!entry)return mathStart();
+ let [id,n]=entry, picks=n.qs.length>=3?[n.qs[0],n.qs[Math.floor(n.qs.length/2)],n.qs[n.qs.length-1]]:n.qs.slice();
+ retention={sourceDate:r.date,node:id,unit:n.title,grade:n.grade,qs:picks,qi:0,ok:0,start:Date.now()};retentionQ()
+}
+function retentionQ(){
+ let q=retention.qs[retention.qi];head(`🔁 定着確認｜${retention.unit}`,child);
+ A.append(e("div","card good",`<h2>少し時間をあけて確認</h2><p>前に学んだことを、もう一度だけ確かめてみよう。</p><p class="tiny">全部覚えていなくても大丈夫です。今の状態を確認するための3問です。</p>`));
+ A.append(e("div","tiny",`${retention.qi+1}/${retention.qs.length}`));A.append(e("div","card",`<h2>${fmtMath(q[0])}</h2>`));
+ q[1].forEach((x,i)=>{let b=btn("",()=>retentionAns(i===q[2]));b.innerHTML=fmtMath(x);A.append(b)});
+ A.append(btn("🌱 今はわからない",()=>retentionAns(false),"soft"))
+}
+function retentionAns(ok){
+ if(ok){retention.ok++;new Audio("correct.wav").play().catch(()=>{})}
+ retention.qi++;if(retention.qi<retention.qs.length){retentionQ();return}
+ let rate=Math.round(retention.ok/retention.qs.length*100),sec=Math.round((Date.now()-retention.start)/1000),passed=rate>=67;
+ if(passed){
+   records.filter(r=>r.studentId===profile.id&&r.subject==="算数"&&r.unit===retention.unit&&r.date===retention.sourceDate).forEach(r=>r.status="定着確認済み")
+ }
+ records.push({studentId:profile.id,date:new Date().toISOString(),subject:"算数",grade:retention.grade,unit:retention.unit,content:"後日の定着確認",rate,correct:retention.ok,total:retention.qs.length,seconds:sec,hints:0,reads:0,unknown:0,next:passed?"次の学習へ":"もう一度確認",status:passed?"定着確認済み":"定着をもう一度確認",process:"時間をあけた再確認",retention:true,sourceDate:retention.sourceDate});save();
+ head("🔁 定着確認の記録",child);A.append(e("div","card",`<h2>${passed?"✨ 定着を確認できました":"🌱 もう一度確認してみよう"}</h2><p>${retention.unit}　${retention.ok}/${retention.qs.length}</p><p>${passed?"時間をあけても思い出して取り組めました。":"今は思い出しにくいところがありました。説明を見直してから、また確認できます。"}</p></div>`));
+ if(!passed)A.append(btn("📖 説明を見直す",()=>beginMathUnit(retention.node),"primary"));A.append(btn("🌿 今日の学習へ",child,"soft"))
+}
 function mathJudge(){let n=MATHNODES[adaptive.node],rate=Math.round(adaptive.ok/n.qs.length*100);adaptive.history.push({node:adaptive.node,grade:n.grade,title:n.title,rate,hints:adaptive.h});if(rate<67&&n.pre){let from=adaptive.node;adaptive.returnTo=adaptive.returnTo||from;adaptive.node=n.pre;adaptive.qi=0;adaptive.ok=0;adaptive.h=0;head("🌱 必要なところを確認します",child);A.append(e("div","card",`<p><b>${n.title}</b>を進めるために、先に<b>${MATHNODES[n.pre].title}</b>を確認します。</p><p class="tiny">「学年が下がった」という表示ではなく、次につなげる確認として進めます。</p>`));A.append(btn("確認を始める",()=>mathEntry(adaptive.node),"primary"));return}
 if(adaptive.returnTo&&adaptive.node!==adaptive.returnTo){let target=adaptive.returnTo;adaptive.node=target;adaptive.returnTo=null;adaptive.qi=0;adaptive.ok=0;adaptive.h=0;head("✨ 元の学習へ戻ります",child);A.append(e("div","card",`<p>必要な内容を確認できました。</p><p><b>${MATHNODES[target].title}</b>へ戻って、もう一度やってみます。</p>`));A.append(btn("元の学習へ戻る",()=>mathEntry(adaptive.node),"primary"));return}
 let sec=Math.round((Date.now()-adaptive.start)/1000);let lastNode=adaptive.history.at(-1), nodeId=(lastNode&&lastNode.id)||adaptive.node||adaptive.origin, node=MATHNODES[nodeId]||MATHNODES[adaptive.origin];
@@ -198,6 +227,7 @@ function head(t,b){A.innerHTML="";let d=e("div","top");if(b)d.append(btn("← �
 function save(){localStorage.setItem(RK,JSON.stringify(records))}
 function home(){head("🌱 Pono Learning Quest");A.append(e("p","sub","在籍学年を目安にスタートし、理解に合わせて必要なところを確認します。"));A.append(btn("🧒 子ども　今日の学習",child,"primary"));A.append(btn("🏠 保護者　自分の子の学び",parent));A.append(btn("📝 先生・Pono　時間割・提出用",teacher))}
 function child(){head("🧒 今日の学習",home);let c=e("div","card",`<h2>${profile.name}</h2><p><b>在籍学年</b></p>`),sel=e("select");for(let g=1;g<=6;g++){let o=e("option","",`小学${g}年`);o.value=g;sel.append(o)}sel.value=profile.grade;sel.onchange=()=>{profile.grade=+sel.value;if(!profile.startGrade)profile.startGrade=profile.grade;localStorage.setItem(SK,JSON.stringify(profile));};c.append(sel);let lab=e("p","",`<b>🌱 学習を始める目安</b>`),sg=e("select");for(let g=1;g<=6;g++){let o=e("option","",`小学${g}年`);o.value=g;sg.append(o)}sg.value=profile.startGrade||profile.grade;sg.onchange=()=>{profile.startGrade=+sg.value;localStorage.setItem(SK,JSON.stringify(profile));};c.append(lab,sg,e("p","tiny","※ここは学力を表すものではありません。最初にどこから確認するかの目安で、あとからいつでも変更できます。"));A.append(c);
+let due=retentionDue();if(due){let rc=e("div","card good",`<h2>🔁 そろそろ定着確認</h2><p><b>${due.unit}</b></p><p>前に学んだ内容を、3問だけ確認してみよう。</p><p class="tiny">時間をあけて思い出せるかを見る確認です。できなくても大丈夫です。</p>`);rc.append(btn("3問だけやってみる",()=>startRetention(due),"primary"));A.append(rc)}
 let plan=JSON.parse(localStorage.getItem(PK)||"{}"), days=["日","月","火","水","木","金","土"], today=days[new Date().getDay()], tp=plan[today];
 if(tp&&tp.off){A.append(e("div","card soft","<h2>🌿 今日はお休み</h2><p>予定は入っていません。やりたい時は下から自由に学習できます。</p>"))}
 else if(tp){let items=Array.isArray(tp.items)?tp.items:(tp.s?[{s:tp.s,u:tp.u||"おすすめ単元"}]:[]);if(items.length){let pc=e("div","card good","<h2>🌟 今日のおすすめ</h2><p class='tiny'>予定は目安です。全部やらなくても、予定より進んでも大丈夫です。</p>");items.forEach((it,i)=>pc.append(btn(`▶ ${i+1}. ${it.s}｜${it.u||"おすすめ単元"}`,()=>it.s==="算数"?mathStart():start(it.s),"primary")));A.append(pc)}}
