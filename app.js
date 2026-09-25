@@ -388,10 +388,17 @@ function mathLearn(nodeId){
  <div class="step-arrow">↓</div><div class="math-step">${fmtMath("1/2")}</div>
  <span class="tiny">読み方：さんぶんのに かける よんぶんのさん。答えは にぶんのいち。</span></div>`;
  if(nodeId==="g6_fracdiv") fractionCalc=`<div class="formula-card fraction-steps"><b>分数でわる例</b><div class="math-step">${fmtMath("1/2 ÷ 1/4")}</div><div class="step-arrow">↓ わる数を逆数にして、かけ算にする</div><div class="math-step">${fmtMath("1/2 × 4/1")}</div><div class="step-arrow">↓</div><div class="math-step">2</div><span class="tiny">読み方：にぶんのいち わる よんぶんのいち。</span></div>`;
- let c=e("div","card lesson",`<h2>📖 まず知っておこう</h2><p>${fmtMath(meaning)}</p>${formula}${terms}${fractionCalc}<h3>👀 具体例</h3><p>${fmtMath(example)}</p><p class="tiny">一度で覚えなくて大丈夫です。必要な時にここへ戻れます。</p>`);
+ let intro=e("div","card",`<h2>① まなぶ</h2><p>自分に合う方法で説明を確認できます。</p><p class="tiny">読んでも、聞いても、両方使っても大丈夫です。</p>`);
+ A.append(intro);
+ let readBtn=btn("📖 説明を読む",()=>{
+   const area=document.getElementById("mathReadArea");
+   area.style.display=area.style.display==="none"?"block":"none";
+ },"primary");
+ A.append(readBtn);
+ A.append(btn("🔊 説明を聞く",()=>speakLesson(meaning+" "+example),"soft"));
+ let c=e("div","card lesson",`<div id="mathReadArea" style="display:none"><h2>📖 まず知っておこう</h2><p>${fmtMath(meaning)}</p>${formula}${terms}${fractionCalc}<h3>👀 具体例</h3><p>${fmtMath(example)}</p><p class="tiny">一度で覚えなくて大丈夫です。必要な時にここへ戻れます。</p></div>`);
  A.append(c);
- A.append(btn("🔊 説明をきく",()=>speakLesson(meaning+" "+example),"soft"));
- A.append(btn("② 一緒にやってみる",()=>mathTogether(nodeId),"primary"));
+ A.append(btn("➡️ ② 一緒にやってみる",()=>mathTogether(nodeId),"primary"));
  A.append(btn("もう分かった → ③ 自分でやる",mathQ,"soft"));
 }
 function mathTogether(nodeId){
