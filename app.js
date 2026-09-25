@@ -60,11 +60,46 @@ function teacherHome(){
  <button id="print">🖨️ 印刷 / PDF保存</button><button id="back">入口へもどる</button></div>`);
  document.querySelector("#print").onclick=()=>window.print();document.querySelector("#back").onclick=roleHome
 }
-function speechText(t){return String(t).replace(/÷/g," わる ").replace(/×/g," かける ").replace(/＝|=/g," は ").replace(/\+/g," たす ").replace(/−|-/g," ひく ")}
+function speechText(t){
+ return String(t)
+  .replace(/6×4/g,"ろく かける よん")
+  .replace(/3×4/g,"さん かける よん")
+  .replace(/5×4/g,"ご かける よん")
+  .replace(/6×3/g,"ろく かける さん")
+  .replace(/12÷3/g,"じゅうに わる さん")
+  .replace(/15÷5/g,"じゅうご わる ご")
+  .replace(/18÷3/g,"じゅうはち わる さん")
+  .replace(/20÷5/g,"にじゅう わる ご")
+  .replace(/16÷4/g,"じゅうろく わる よん")
+  .replace(/27÷3/g,"にじゅうなな わる さん")
+  .replace(/÷/g," わる ")
+  .replace(/×/g," かける ")
+  .replace(/＝|=/g," は ")
+  .replace(/\+/g," たす ")
+  .replace(/−|-/g," ひく ")
+  .replace(/(\d+)こ/g,"$1こ、")
+  .replace(/(\d+)本/g,"$1ほん、")
+  .replace(/(\d+)枚/g,"$1まい、")
+  .replace(/(\d+)人/g,"$1にん、")
+  .replace(/。/g,"。 ")
+  .replace(/？/g,"？ ")
+}
+function chooseJaVoice(){
+ const vs=speechSynthesis.getVoices();
+ return vs.find(v=>v.lang==="ja-JP" && /Google|Kyoko|O-ren|Japanese/i.test(v.name))
+     || vs.find(v=>v.lang==="ja-JP")
+     || vs.find(v=>v.lang&&v.lang.toLowerCase().startsWith("ja"));
+}
 function speak(t){
  if(!("speechSynthesis" in window)){alert("この端末では読み上げを利用できません。");return}
- speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(speechText(t));u.lang="ja-JP";u.rate=.9;u.pitch=1.02;
- const ja=speechSynthesis.getVoices().find(v=>v.lang&&v.lang.toLowerCase().startsWith("ja"));if(ja)u.voice=ja;speechSynthesis.speak(u)
+ speechSynthesis.cancel();
+ const u=new SpeechSynthesisUtterance(speechText(t));
+ u.lang="ja-JP";
+ u.rate=.86;
+ u.pitch=1.0;
+ u.volume=1;
+ const ja=chooseJaVoice();if(ja)u.voice=ja;
+ setTimeout(()=>speechSynthesis.speak(u),80);
 }
 function ping(){const a=new Audio("correct.wav");a.volume=.8;a.play().catch(()=>{})}
 function home(){
