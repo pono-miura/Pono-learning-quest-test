@@ -127,7 +127,7 @@ function weeklyShare(rr,monday,sunday){
  });
 }
 function growth(rr){if(!rr.length)return"これからの小さな変化をここに残していきます。";let l=rr.at(-1);if(l.rate>=90&&l.hints<=1)return`${l.subject}では、自力で確認できる内容が増えています。次は定着を確かめながら少し先へ進みます。`;if(l.hints>0)return`${l.subject}では、説明を使いながらもう一度挑戦することができています。自力でできる範囲につなげていきます。`;return`${l.subject}に取り組み、自分のペースで学習を続けています。`}
-function teacher(){head("📝 先生・Pono",home);A.append(btn("📅 今週の時間割を作る",plan,"primary"));A.append(btn("👥 生徒の現在地・達成状況",()=>{head("👥 生徒の現在地",teacher);let r=myRecords(),l=r.at(-1);A.append(e("div","card",`<b>${profile.name}</b>｜在籍 小学${profile.grade}年<br><span class="pill">${!l?"未確認":l.rate>=90&&l.hints<=1?"自力でできた":l.hints?"練習中":"取り組み中"}</span><p>${l?`${l.subject}：${l.process}<br>次：${l.next}`:"記録はまだありません。"}</p>`))}));A.append(btn("📄 学校提出用を自動作成",report));A.append(e("p","tiny","試作版はこの端末のブラウザ内保存です。本番では子ども・保護者・先生の認証と権限を分けます。"))}
+function teacher(){head("📝 先生・Pono",home);A.append(btn("📅 今週の時間割を作る",plan,"primary"));A.append(btn("👥 生徒の現在地・達成状況",()=>{head("👥 生徒の現在地",teacher);let r=myRecords(),l=r.at(-1);A.append(e("div","card",`<b>${profile.name}</b>｜在籍 小学${profile.grade}年<br><span class="pill">${!l?"未確認":l.rate>=90&&l.hints<=1?"自力でできた":l.hints?"練習中":"取り組み中"}</span><p>${l?`${l.subject}：${l.process}<br>次：${l.next}`:"記録はまだありません。"}</p>`))}));A.append(btn("📄 月間学習報告書を作る",monthlyReport,"primary"));A.append(btn("🗂️ 日々の詳細記録を見る",report));A.append(e("p","tiny","試作版はこの端末のブラウザ内保存です。本番では子ども・保護者・先生の認証と権限を分けます。"))}
 function plan(){head("📅 今週の時間割",teacher);let saved=JSON.parse(localStorage.getItem(PK)||"{}"),days=["月","火","水","木","金"];
 days.forEach((d,di)=>{let c=e("div","card");c.dataset.d=d;c.append(e("h2","",d+"曜日"));
 let offLabel=e("label","",`<input type="checkbox" class="off" style="width:auto;margin-right:8px"> 🌿 お休みにする`);let off=offLabel.querySelector("input");off.checked=!!(saved[d]&&saved[d].off);c.append(offLabel);
@@ -136,6 +136,45 @@ let old=saved[d], initial=old&&Array.isArray(old.items)?old.items:(old&&old.s?[{
 function addSlot(v={s:"国語",u:"おすすめ単元"}){let row=e("div","soft");row.style.padding="10px";row.style.margin="8px 0";let ss=e("select");subs.forEach(x=>{let o=e("option","",x);o.value=x;ss.append(o)});ss.value=v.s||"国語";let u=e("input");u.placeholder="単元・内容";u.value=v.u||"";let del=btn("－ この予定を削除",()=>row.remove());row.append(ss,u,del);area.append(row)}
 initial.forEach(addSlot);c.append(btn("＋ 科目を追加",()=>addSlot(),"soft"));off.onchange=()=>{area.style.opacity=off.checked?".35":"1";area.style.pointerEvents=off.checked?"none":"auto"};off.onchange();A.append(c)});
 A.append(btn("✓ 今週の予定を保存",()=>{let p={};document.querySelectorAll("[data-d]").forEach(c=>{let d=c.dataset.d,off=c.querySelector(".off").checked;if(off){p[d]={off:true,items:[]};return}let items=[];c.querySelectorAll(".slots>div").forEach(r=>{let ss=r.querySelector("select"),u=r.querySelector("input");items.push({s:ss.value,u:u.value||"おすすめ単元"})});p[d]={off:false,items}});localStorage.setItem(PK,JSON.stringify(p));alert("今週の予定を保存しました")},"primary"))}
+
+function monthKeyJST(v){
+ let d=new Date(v); if(isNaN(d))return "";
+ return new Intl.DateTimeFormat("ja-JP",{timeZone:"Asia/Tokyo",year:"numeric",month:"2-digit"}).format(d).replace("/","-");
+}
+function monthlyReport(selected){
+ let all=myRecords(), now=new Date();
+ let current=selected||new Intl.DateTimeFormat("ja-JP",{timeZone:"Asia/Tokyo",year:"numeric",month:"2-digit"}).format(now).replace("/","-");
+ head("📄 月間学習報告書",teacher);
+ let chooser=e("input");chooser.type="month";chooser.value=current;chooser.onchange=()=>monthlyReport(chooser.value);A.append(chooser);
+ let rr=all.filter(r=>monthKeyJST(r.date)===current);
+ let [yy,mm]=current.split("-"), secs=rr.reduce((a,r)=>a+(Number(r.seconds)||0),0), mins=Math.round(secs/60);
+ let dates=new Set(rr.map(r=>{let d=new Date(r.date);return isNaN(d)?"":d.toLocaleDateString("ja-JP",{timeZone:"Asia/Tokyo"})}).filter(Boolean));
+ let subjects=[...new Set(rr.map(r=>r.subject).filter(Boolean))];
+ let units=[...new Set(rr.map(r=>r.unit||r.nodeTitle||r.title).filter(Boolean))];
+ let completed=[...new Set(rr.filter(r=>r.status==="定着確認済み"||r.result==="ok"||r.ok===true).map(r=>r.unit||r.nodeTitle||r.title).filter(Boolean))];
+ let practicing=[...new Set(rr.filter(r=>!(r.status==="定着確認済み"||r.result==="ok"||r.ok===true)).map(r=>r.unit||r.nodeTitle||r.title).filter(Boolean))];
+ A.append(e("div","card monthly-head",`<h2>${yy}年${Number(mm)}月 学習報告書</h2><p><b>${profile.name}</b>　｜　在籍 小学${profile.grade}年</p><p>学習日数：<b>${dates.size}日</b>　取組記録：<b>${rr.length}回</b>　総学習時間：<b>約${mins}分</b></p><p>教科：${subjects.join("・")||"―"}</p>`));
+ if(!rr.length){A.append(e("div","card","この月の学習記録はまだありません。"));return}
+ A.append(e("div","card",`<h2>📚 今月の単元</h2><p><b>定着・終了を確認：</b>${completed.join("・")||"―"}</p><p><b>学習中：</b>${practicing.join("・")||"―"}</p><p class="tiny">過去の試作記録で単元名が保存されていないものは、この一覧には推測で追加しません。</p>`));
+ let rows=rr.slice().sort((a,b)=>new Date(a.date)-new Date(b.date)).map(r=>{
+   let d=new Date(r.date),date=isNaN(d)?"―":d.toLocaleDateString("ja-JP",{timeZone:"Asia/Tokyo",month:"numeric",day:"numeric"});
+   let unit=r.unit||r.nodeTitle||r.title||"単元名の記録なし";
+   let m=Math.max(1,Math.round((Number(r.seconds)||0)/60));
+   let status=r.status||((r.result==="ok"||r.ok===true)?"自力でできた":"練習中");
+   return `<tr><td>${date}</td><td>${r.subject||"学習"}</td><td>${unit}</td><td>${m}分</td><td>${status}</td></tr>`;
+ }).join("");
+ A.append(e("div","card tablewrap",`<h2>🗓️ 学習記録一覧</h2><table><thead><tr><th>日付</th><th>教科</th><th>単元</th><th>時間</th><th>状況</th></tr></thead><tbody>${rows}</tbody></table>`));
+ let hints=rr.reduce((a,r)=>a+(Number(r.hints)||0),0), reads=rr.reduce((a,r)=>a+(Number(r.reads)||0),0), explains=rr.reduce((a,r)=>a+(Number(r.explain)||0),0);
+ let draft=`${yy}年${Number(mm)}月は、${subjects.join("・")||"各教科"}の学習に${dates.size}日取り組み、合計約${mins}分の学習記録があります。`;
+ if(units.length) draft+=` 主な学習単元は「${units.join("」「")}」です。`;
+ draft+=` 理解状況を確認しながら、その時の理解に合わせて学習を進めています。`;
+ if(hints||reads||explains) draft+=` 必要に応じて${[explains?"説明":"",hints?"ヒント":"",reads?"読み上げ":""].filter(Boolean).join("・")}を活用しました。`;
+ draft+=` 今後も定着を確認しながら次の学習へつなげます。`;
+ A.append(e("div","card",`<h2>✏️ 学校共有用コメント</h2><p class="tiny">学習記録から自動作成しています。Ponoで確認し、自由に編集できます。</p>`));
+ let ta=e("textarea");ta.rows=8;ta.value=draft;ta.defaultValue=draft;A.append(ta);
+ A.append(btn("🖨️ この月間報告書を印刷・PDF",()=>window.print(),"primary"));
+ A.append(e("p","tiny","※これは学習状況を学校と共有するための報告書です。出席扱いの申請・報告書とは別です。"));
+}
 function jpDateTime(v){
  if(!v)return "日時記録なし";
  let d=new Date(v);

@@ -16,3 +16,6 @@ ruby rt{font-size:.55em;font-weight:500}
 @media print{.noPrint,header,.back{display:none!important}.card{break-inside:avoid;box-shadow:none}}
 
 .school-share{border:2px solid #e3dcc9}.weekly-item p{margin:8px 0 0}
+
+.tablewrap{overflow-x:auto} table{width:100%;border-collapse:collapse;font-size:14px} th,td{border-bottom:1px solid #ddd;padding:8px 5px;text-align:left;vertical-align:top}
+@media print{button,input[type=month],header,.no-print{display:none!important}.card{box-shadow:none;break-inside:avoid}body{background:#fff}.tablewrap{overflow:visible}textarea{border:1px solid #aaa;min-height:150px}}
