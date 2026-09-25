@@ -81,24 +81,48 @@ function mathEntry(nodeId){
   A.append(btn("📖 説明からはじめる",()=>mathLearn(nodeId),"primary"));
   A.append(btn("🚀 問題からやってみる",mathQ,"soft"));
 }
+function mathLessonData(id,n){
+ const special={
+  g1_num:["数は、ものの数や順番を表します。10より大きい数も「10といくつ」と考えると分かりやすくなります。","14は「10と4」。17は「10と7」なので、17のほうが大きいです。"],
+  g1_add:["たし算は「合わせる・増える」、ひき算は「残り・ちがい」を考える時に使います。","3こあって2こ増えると、3＋2＝5。7こから3ことると、7－3＝4です。"],
+  g2_mult:["かけ算は「同じ数がいくつ分」をまとめて表します。","3こずつが4組なら、3×4＝12。「3かける4は12」と読みます。"],
+  g3_div:["わり算は「同じ数ずつ分ける」「何人分・何組分か」を考える時に使います。","12こを3人で同じ数ずつ分けると、12÷3＝4。「12わる3は4」と読みます。"],
+  g4_area:["面積は、どれくらいの広さかを数で表したものです。1cm²は、1辺が1cmの正方形1こ分の広さです。","長方形は、1cm²の正方形が「たてに何こ、よこに何こ」並ぶか考えます。だから「たて×よこ＝面積」です。"],
+  g5_volume:["体積は、ものが空間をどれくらい占めるかを表します。1cm³は、1辺1cmの立方体1こ分です。","直方体は「たて×よこ×高さ＝体積」。2cm×3cm×4cmなら24cm³です。"],
+  g5_frac:["分数では、下の数を分母、上の数を分子といいます。分母は何等分したか、分子はいくつ分かを表します。","1/2＋1/4では、まず分母をそろえて考えます。1/2＝2/4なので、2/4＋1/4＝3/4です。"],
+  g5_ratio:["割合は「もとにする量に対して、くらべる量がどれくらいか」を表します。百分率では100%を全体と考えます。","100人の20%は、100×0.2＝20人です。「100の20パーセント」と読みます。"],
+  g6_fracmul:["分数のかけ算は、基本的に分子どうし、分母どうしをかけます。計算の途中で約分できる時は整理できます。","2/3×3/4は、2×3 / 3×4。3を約分すると1/2になります。"],
+  g6_fracdiv:["分数でわる時は、わる数の分子と分母を入れかえて、かけ算にして考えます。","1/2÷1/4は、1/2×4/1＝2です。"],
+  g6_area:["円の面積は「半径×半径×円周率」で求めます。円周率は小学校では3.14を使うことがあります。","半径3cmなら、3×3×3.14。式を先に作ってから計算します。"]
+ };
+ if(special[id]) return special[id];
+ let q=n.qs[0],ans=q[1][q[2]];
+ return [`「${n.title}」では、ことば・単位・図や式の意味を確かめながら考えます。答えだけでなく「どうしてそうなるか」を一つずつ見ていきます。`,`たとえば「${q[0]}」は、問題で分かっていることと、求めることを確認します。答えは「${ans}」です。`]
+}
+function speakLesson(text){
+ let u=new SpeechSynthesisUtterance(String(text).replaceAll("×","かける").replaceAll("÷","わる").replaceAll("cm²","平方センチメートル").replaceAll("cm³","立方センチメートル"));u.lang="ja-JP";u.rate=.86;speechSynthesis.cancel();speechSynthesis.speak(u)
+}
 function mathLearn(nodeId){
  let n=MATHNODES[nodeId];adaptive.learned=(adaptive.learned||0)+1;head(`① まなぶ｜${n.title}`,child);
- let msg={
- g1_add:"たし算は、いくつかの数を合わせて全部でいくつになるかを考えます。",
- g2_mult:"かけ算は、同じ数がいくつ分あるかをまとめて考える方法です。",
- g3_div:"わり算は、同じ数ずつ分けたり、いくつ分あるかを考えたりするときに使います。",
- g4_divcalc:"大きな数のわり算も、九九や位ごとの考え方を使うと整理できます。",
- g5_frac:"分数は、1つのものを同じ大きさに分けたうちのいくつ分かを表します。分母は何等分か、分子はいくつ分かを表します。",
- g6_fracmul:"分数のかけ算は、分子どうし・分母どうしをかけて考えます。約分できるときは整理します。"
- }[nodeId];
- A.append(e("div","card lesson",`<h2>📖 ミニ授業</h2><p>${msg}</p>${["g5_frac","g6_fracmul"].includes(nodeId)?fractionWords():""}<p class="tiny">分からないところは、何度見直しても大丈夫です。</p>`));
+ let [meaning,example]=mathLessonData(nodeId,n);
+ let formula="";
+ if(nodeId==="g4_area") formula="<div class='formula-card'><b>長方形の面積</b><br>たて × よこ ＝ 面積<br><span class='tiny'>「たて かける よこ ＝ めんせき」</span></div>";
+ if(nodeId==="g5_volume") formula="<div class='formula-card'><b>直方体の体積</b><br>たて × よこ × 高さ ＝ 体積<br><span class='tiny'>「たて かける よこ かける たかさ ＝ たいせき」</span></div>";
+ if(nodeId==="g6_area") formula="<div class='formula-card'><b>円の面積</b><br>半径 × 半径 × 円周率<br><span class='tiny'>「はんけい かける はんけい かける えんしゅうりつ」</span></div>";
+ let terms=["g5_frac","g6_fracmul","g6_fracdiv"].includes(nodeId)?fractionWords():"";
+ let c=e("div","card lesson",`<h2>📖 まず知っておこう</h2><p>${fmtMath(meaning)}</p>${formula}${terms}<h3>👀 具体例</h3><p>${fmtMath(example)}</p><p class="tiny">一度で覚えなくて大丈夫です。必要な時にここへ戻れます。</p>`);
+ A.append(c);
+ A.append(btn("🔊 説明をきく",()=>speakLesson(meaning+" "+example),"soft"));
  A.append(btn("② 一緒にやってみる",()=>mathTogether(nodeId),"primary"));
  A.append(btn("もう分かった → ③ 自分でやる",mathQ,"soft"));
 }
 function mathTogether(nodeId){
- adaptive.together=(adaptive.together||0)+1;let n=MATHNODES[nodeId],q=n.qs[0];head(`② 一緒に｜${n.title}`,child);
- A.append(e("div","card lesson",`<h2>${fmtMath(q[0])}</h2><p>まず、何を求める問題かを確認します。式の意味を見ながら、一緒に答えを確かめてみよう。</p><p><b>答え：</b> ${fmtMath(q[1][q[2]])}</p>`));
+ adaptive.together=(adaptive.together||0)+1;let n=MATHNODES[nodeId],q=n.qs[0],ans=q[1][q[2]];head(`② 一緒に｜${n.title}`,child);
+ let [,example]=mathLessonData(nodeId,n);
+ A.append(e("div","card lesson",`<h2>一緒に考えてみよう</h2><p class="tiny">① 何を聞かれているか確認</p><p><b>${fmtMath(q[0])}</b></p><p class="tiny">② 使う考え方を確認</p><p>${fmtMath(example)}</p><p class="tiny">③ 答えを確認</p><p class="answer-box"><b>${fmtMath(ans)}</b></p><p>答えだけでなく、考え方を確認できたらOKです。</p>`));
+ A.append(btn("🔊 一緒に読む",()=>speakLesson(q[0]+" "+example+" 答えは "+ans),"soft"));
  A.append(btn("③ 自分でやってみる",mathQ,"primary"));
+ A.append(btn("← ①まなぶに戻る",()=>mathLearn(nodeId),"soft"));
 }
 
 function mathStart(){mathUnitSelect(profile.startGrade||profile.grade)}
