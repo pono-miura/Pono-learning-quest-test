@@ -32,6 +32,34 @@ const diag=[
 ];
 let stage="diagnostic",i=0,correct=0,hints=0,reads=0,start=0,log=[];
 const shell=x=>A.innerHTML=`<div class="wrap">${x}</div>`;
+const progressKey="ponoV5Progress";
+function getProgress(){return JSON.parse(localStorage.getItem(progressKey)||'{"records":[]}')}
+function addRecord(kind,result,next){const d=getProgress();d.records.push({date:new Date().toLocaleString("ja-JP"),kind,result,next,hints,reads});localStorage.setItem(progressKey,JSON.stringify(d))}
+function roleHome(){
+ shell(`<div class="card hero"><h1>🌱 Pono Learning Quest</h1><p>使う画面を選んでください</p></div>
+ <button id="child" class="role"><b>🧒 子ども</b><small>今日の学習・5教科・続きから</small></button>
+ <button id="parent" class="role"><b>🏠 保護者</b><small>今の学習・できたこと・次の学習</small></button>
+ <button id="teacher" class="role"><b>📝 先生・Pono</b><small>学習経過・学校共有・印刷/PDF</small></button>`);
+ document.querySelector("#child").onclick=home;document.querySelector("#parent").onclick=parentHome;document.querySelector("#teacher").onclick=teacherHome
+}
+function parentHome(){
+ const d=getProgress(),r=d.records[d.records.length-1];
+ shell(`<div class="card"><h1>🏠 保護者画面</h1><p><b>${student.name}</b>｜小学${student.grade}年</p>
+ <div class="box"><b>今取り組んでいること</b><p>算数「わり算」</p></div>
+ <div class="box"><b>最近のできたこと</b><p>${r?r.kind+"： "+r.result:"これから学習記録が表示されます。"}</p></div>
+ <div class="box"><b>次に取り組むこと</b><p>${r?r.next:"最初の理解度確認から始めます。"}</p></div>
+ <p class="muted">点数だけでなく、どんな方法で学べたかも大切にして表示していきます。</p><button id="back">入口へもどる</button></div>`);
+ document.querySelector("#back").onclick=roleHome
+}
+function teacherHome(){
+ const d=getProgress(),rows=d.records.slice().reverse().map(r=>`<tr><td>${r.date}</td><td>${r.kind}</td><td>${r.result}</td><td>${r.hints}</td><td>${r.reads}</td><td>${r.next}</td></tr>`).join("");
+ shell(`<div class="card"><h1>📝 先生・Pono画面</h1><p>${student.name}｜在籍 小学${student.grade}年</p>
+ <div class="box"><b>学校の現在単元</b><p contenteditable="true">ここをタップして入力</p></div>
+ <div class="table-wrap"><table><tr><th>日時</th><th>内容</th><th>結果</th><th>ヒント</th><th>読上</th><th>次</th></tr>${rows||'<tr><td colspan="6">これから学習記録が表示されます。</td></tr>'}</table></div>
+ <div class="box"><b>Pono所見・学校との共有事項</b><p contenteditable="true">ここをタップして入力できます。</p></div>
+ <button id="print">🖨️ 印刷 / PDF保存</button><button id="back">入口へもどる</button></div>`);
+ document.querySelector("#print").onclick=()=>window.print();document.querySelector("#back").onclick=roleHome
+}
 function speechText(t){return String(t).replace(/÷/g," わる ").replace(/×/g," かける ").replace(/＝|=/g," は ").replace(/\+/g," たす ").replace(/−|-/g," ひく ")}
 function speak(t){
  if(!("speechSynthesis" in window)){alert("この端末では読み上げを利用できません。");return}
@@ -60,28 +88,14 @@ function renderQ(title,q,total){
  q[1].forEach((x,n)=>{const b=document.createElement("button");b.className="choice";b.textContent=x;b.onclick=()=>answer(n,q[2],q[3]||null);document.querySelector("#choices").appendChild(b)});
  document.querySelector("#speak").onclick=()=>{reads++;speak(q[0])};document.querySelector("#hint").onclick=()=>{hints++;alert("式やまとまりを小さく分けて考えてみよう。")}
 }
-function answer(n,a,tag){
- const ok=n===a;log.push({tag,ok});
- if(ok){
-  correct++;
-  ping();
-  setTimeout(()=>{
-   alert("できた！");
-   i++;
-   stage==="diagnostic"?diagnostic():lessonQ();
-  },650);
- }else{
-  alert("もう一度確認する場所が見つかりました。");
-  i++;
-  stage==="diagnostic"?diagnostic():lessonQ();
- }
-}
+function answer(n,a,tag){const ok=n===a;log.push({tag,ok});if(ok){correct++;ping();alert("できた！")}else alert("もう一度確認する場所が見つかりました。");i++;stage==="diagnostic"?diagnostic():lessonQ()}
 function diagnosticResult(){
  const weak=log.filter(x=>!x.ok).map(x=>x.tag),route=weak.includes("九九")?"pre":weak.includes("意味")||weak.includes("計算")?"basic":weak.includes("文章題")?"word":"mini";
  const labels={pre:"九九・かけ算から確認",basic:"わり算の意味から",word:"文章題から",mini:"ミニテストへ"};
+ addRecord("理解度確認",`${correct}/${diag.length}`,labels[route]);
  shell(`<div class="card"><h2>🌱 今の学習位置</h2><p><b>${labels[route]}</b></p><p class="muted">どの内容を確認すると次につながるかを見ています。</p><button id="next">ここから学ぶ</button></div>`);document.querySelector("#next").onclick=()=>begin(route)
 }
 function begin(s){reset(s);if(s==="mini")return lessonQ();const x=math[s];shell(`<div class="card"><span class="pill">${x.title}</span><h2>① まなぶ</h2><p>${x.learn}</p><button id="ls">🔊 説明をきく</button><button id="go" class="primary">② 一緒に・自分でやる</button></div>`);document.querySelector("#ls").onclick=()=>{reads++;speak(x.learn)};document.querySelector("#go").onclick=lessonQ}
 function lessonQ(){const x=math[stage],arr=x.q;if(i>=arr.length)return result();renderQ(x.title,arr[i],arr.length)}
-function result(){const total=math[stage].q.length,rate=correct/total;let route=stage==="pre"?(rate>=.8?"basic":"pre"):stage==="basic"?(rate>=.8?"word":"pre"):stage==="word"?(rate>=.8?"mini":"basic"):"done";const label={pre:"九九・かけ算をもう一度",basic:"わり算の意味へ",word:"文章題へ",mini:"単元ミニテストへ",done:"今回の学習完了"}[route];shell(`<div class="card"><h2>🌱 ${math[stage].title} 結果</h2><p><b>${correct}/${total}</b></p><p>次：<b>${label}</b></p><p class="small">ヒント ${hints}回／読み上げ ${reads}回</p><button id="next">${route==="done"?"5教科へもどる":"次へ"}</button></div>`);document.querySelector("#next").onclick=()=>route==="done"?home():begin(route)}
-home();
+function result(){const total=math[stage].q.length,rate=correct/total;let route=stage==="pre"?(rate>=.8?"basic":"pre"):stage==="basic"?(rate>=.8?"word":"pre"):stage==="word"?(rate>=.8?"mini":"basic"):"done";const label={pre:"九九・かけ算をもう一度",basic:"わり算の意味へ",word:"文章題へ",mini:"単元ミニテストへ",done:"今回の学習完了"}[route];addRecord(math[stage].title,`${correct}/${total}`,label);shell(`<div class="card"><h2>🌱 ${math[stage].title} 結果</h2><p><b>${correct}/${total}</b></p><p>次：<b>${label}</b></p><p class="small">ヒント ${hints}回／読み上げ ${reads}回</p><button id="next">${route==="done"?"5教科へもどる":"次へ"}</button></div>`);document.querySelector("#next").onclick=()=>route==="done"?home():begin(route)}
+roleHome();
