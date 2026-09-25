@@ -371,12 +371,19 @@ function speakLesson(text){
  u.lang="ja-JP";u.rate=.86;speechSynthesis.cancel();speechSynthesis.speak(u)
 }
 function mathLearn(nodeId){
- let n=MATHNODES[nodeId];adaptive.learned=(adaptive.learned||0)+1;head(`① まなぶ｜${n.title}`,child);
- let [meaning,example]=mathLessonData(nodeId,n);
+ let n=MATHNODES[nodeId];
+ adaptive.node=nodeId;
+ adaptive.learned=(adaptive.learned||0)+1;
+ head(`① まなぶ｜${n.title}`,child);
+
+ let lesson=mathLessonData(nodeId,n);
+ let meaning=lesson[0], example=lesson[1];
+
  let formula="";
  if(nodeId==="g4_area") formula="<div class='formula-card'><b>長方形の面積</b><br>たて × よこ ＝ 面積<br><span class='tiny'>「たて かける よこ ＝ めんせき」</span></div>";
  if(nodeId==="g5_volume") formula="<div class='formula-card'><b>直方体の体積</b><br>たて × よこ × 高さ ＝ 体積<br><span class='tiny'>「たて かける よこ かける たかさ ＝ たいせき」</span></div>";
  if(nodeId==="g6_area") formula="<div class='formula-card'><b>円の面積</b><br>半径 × 半径 × 円周率<br><span class='tiny'>「はんけい かける はんけい かける えんしゅうりつ」</span></div>";
+
  let terms=["g5_frac","g6_fracmul","g6_fracdiv"].includes(nodeId)?fractionWords():"";
  let fractionCalc="";
  if(nodeId==="g6_fracmul") fractionCalc=`<div class="formula-card fraction-steps"><b>約分しながら考える例</b>
@@ -385,21 +392,21 @@ function mathLearn(nodeId){
  <div class="math-step"><span class="frac"><span class="top">2 × <span class="cancel">3</span></span><span class="bottom"><span class="cancel">3</span> × 4</span></span></div>
  <div class="step-arrow">↓ 上と下の3を、同じ3でわって約分</div>
  <div class="math-step"><span class="frac"><span class="top">2 × 1</span><span class="bottom">1 × 4</span></span></div>
- <div class="step-arrow">↓</div><div class="math-step">${fmtMath("1/2")}</div>
- <span class="tiny">読み方：さんぶんのに かける よんぶんのさん。答えは にぶんのいち。</span></div>`;
- if(nodeId==="g6_fracdiv") fractionCalc=`<div class="formula-card fraction-steps"><b>分数でわる例</b><div class="math-step">${fmtMath("1/2 ÷ 1/4")}</div><div class="step-arrow">↓ わる数を逆数にして、かけ算にする</div><div class="math-step">${fmtMath("1/2 × 4/1")}</div><div class="step-arrow">↓</div><div class="math-step">2</div><span class="tiny">読み方：にぶんのいち わる よんぶんのいち。</span></div>`;
- let intro=e("div","card",`<h2>① まなぶ</h2><p>自分に合う方法で説明を確認できます。</p><p class="tiny">読んでも、聞いても、両方使っても大丈夫です。</p>`);
+ <div class="step-arrow">↓</div><div class="math-step">${fmtMath("1/2")}</div></div>`;
+
+ let intro=e("div","card",`<h2>自分に合う方法で確認しよう</h2><p class="tiny">読んでも、聞いても、両方使っても大丈夫です。</p>`);
  A.append(intro);
- let readBtn=btn("📖 説明を読む",()=>{
-   const area=document.getElementById("mathReadArea");
-   area.style.display=area.style.display==="none"?"block":"none";
- },"primary");
- A.append(readBtn);
+
+ let readArea=e("div","card lesson",`<h2>📖 説明</h2><p>${fmtMath(meaning)}</p>${formula}${terms}${fractionCalc}<h3>👀 具体例</h3><p>${fmtMath(example)}</p><p class="tiny">一度で覚えなくて大丈夫。必要な時にまた戻れます。</p>`);
+ readArea.style.display="none";
+
+ A.append(btn("📖 説明を読む",()=>{
+   readArea.style.display=(readArea.style.display==="none")?"block":"none";
+ },"primary"));
  A.append(btn("🔊 説明を聞く",()=>speakLesson(meaning+" "+example),"soft"));
- let c=e("div","card lesson",`<div id="mathReadArea" style="display:none"><h2>📖 まず知っておこう</h2><p>${fmtMath(meaning)}</p>${formula}${terms}${fractionCalc}<h3>👀 具体例</h3><p>${fmtMath(example)}</p><p class="tiny">一度で覚えなくて大丈夫です。必要な時にここへ戻れます。</p></div>`);
- A.append(c);
+ A.append(readArea);
  A.append(btn("➡️ ② 一緒にやってみる",()=>mathTogether(nodeId),"primary"));
- A.append(btn("もう分かった → ③ 自分でやる",mathQ,"soft"));
+ A.append(btn("もう分かった → ③ 自分でやる",()=>{adaptive.node=nodeId;mathQ();},"soft"));
 }
 function mathTogether(nodeId){
  adaptive.together=(adaptive.together||0)+1;let n=MATHNODES[nodeId],q=n.qs[0],ans=q[1][q[2]];head(`② 一緒に｜${n.title}`,child);
