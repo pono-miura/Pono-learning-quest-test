@@ -19,3 +19,7 @@ ruby rt{font-size:.55em;font-weight:500}
 
 .tablewrap{overflow-x:auto} table{width:100%;border-collapse:collapse;font-size:14px} th,td{border-bottom:1px solid #ddd;padding:8px 5px;text-align:left;vertical-align:top}
 @media print{button,input[type=month],header,.no-print{display:none!important}.card{box-shadow:none;break-inside:avoid}body{background:#fff}.tablewrap{overflow:visible}textarea{border:1px solid #aaa;min-height:150px}}
+
+.unit-pick{margin:10px 0;padding:14px;border:1px solid #ddd;border-radius:14px;background:#fff;cursor:pointer;line-height:1.55}
+.unit-pick:active{transform:scale(.99)}
+details.card summary{cursor:pointer;padding:4px 0}
