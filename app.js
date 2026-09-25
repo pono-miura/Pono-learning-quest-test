@@ -1,152 +1,38 @@
-const A=document.querySelector("#app");
+
 const student={id:"PONO001",name:"はるさん",grade:3};
 const subjects=[
- {id:"japanese",icon:"📖",name:"国語",desc:"漢字・ことば・読解"},
- {id:"math",icon:"➗",name:"算数",desc:"数・計算・図形・文章題"},
- {id:"science",icon:"🔬",name:"理科",desc:"自然・植物・こん虫・光"},
- {id:"social",icon:"🗾",name:"社会",desc:"地域・地図・くらし"},
- {id:"english",icon:"🌎",name:"英語",desc:"ことば・聞く・選ぶ"}
+{id:"japanese",icon:"📖",name:"国語",desc:"漢字・ことば・読解"},
+{id:"math",icon:"➗",name:"算数",desc:"数・計算・文章題"},
+{id:"science",icon:"🔬",name:"理科",desc:"自然を見て考える"},
+{id:"social",icon:"🗾",name:"社会",desc:"まち・くらし・仕事"},
+{id:"english",icon:"🌎",name:"外国語活動",desc:"聞く・話す・ことば"}
 ];
-const math={
- pre:{title:"九九・かけ算の確認",learn:"わり算では、九九を使います。たとえば 3×4＝12 が分かると、12÷3＝4 と考えられます。",q:[
- ["3×4 は？",["7","12","34"],1],["5×4 は？",["9","20","54"],1],["6×3 は？",["9","18","63"],1]]},
- basic:{title:"わり算の意味",learn:"12このあめを3人に同じ数ずつ分けると、1人4こです。これを 12÷3＝4 と表します。",q:[
- ["12このあめを3人に同じ数ずつ分けます。1人何こ？",["3こ","4こ","9こ"],1],
- ["15このいちごを5人に同じ数ずつ分けます。1人何こ？",["3こ","5こ","10こ"],0],
- ["18÷3 は？",["5","6","9"],1],["20÷5 は？",["4","5","15"],0]]},
- word:{title:"わり算の文章題",learn:"文章題では、全部でいくつ、何人に分ける、1人分はいくつ、を見つけます。",q:[
- ["24本のえんぴつを6人に同じ数ずつ分けます。1人何本？",["4本","6本","18本"],0],
- ["21このボールを3人に同じ数ずつ分けます。1人何こ？",["6こ","7こ","18こ"],1],
- ["32枚のカードを4人に同じ数ずつ分けます。1人何枚？",["6枚","8枚","28枚"],1]]},
- mini:{title:"単元ミニテスト",q:[
- ["16÷4 は？",["3","4","12"],1],["27÷3 は？",["8","9","24"],1],
- ["20このクッキーを4人に同じ数ずつ分けます。1人何こ？",["4こ","5こ","16こ"],1],
- ["35本の花を5人に同じ数ずつ分けます。1人何本？",["5本","7本","30本"],1],
- ["18このおはじきを、1人に3こずつ配ります。何人に配れますか？",["6人","9人","15人"],0]]}
-};
-const diag=[
- ["九九を確認します。6×4 は？",["10","24","64"],1,"九九"],
- ["同じ数ずつ分けます。12こを3人に分けると1人何こ？",["3こ","4こ","9こ"],1,"意味"],
- ["18÷3 は？",["5","6","9"],1,"計算"],
- ["24本を6人に同じ数ずつ分けます。1人何本？",["4本","6本","18本"],0,"文章題"]
-];
-let stage="diagnostic",i=0,correct=0,hints=0,reads=0,start=0,log=[];
-const shell=x=>A.innerHTML=`<div class="wrap">${x}</div>`;
-const progressKey="ponoV5Progress";
-function getProgress(){return JSON.parse(localStorage.getItem(progressKey)||'{"records":[]}')}
-function addRecord(kind,result,next){const d=getProgress();d.records.push({date:new Date().toLocaleString("ja-JP"),kind,result,next,hints,reads});localStorage.setItem(progressKey,JSON.stringify(d))}
-function roleHome(){
- shell(`<div class="card hero"><h1>🌱 Pono Learning Quest</h1><p>使う画面を選んでください</p></div>
- <button id="child" class="role"><b>🧒 子ども</b><small>今日の学習・5教科・続きから</small></button>
- <button id="parent" class="role"><b>🏠 保護者</b><small>今の学習・できたこと・次の学習</small></button>
- <button id="teacher" class="role"><b>📝 先生・Pono</b><small>学習経過・学校共有・印刷/PDF</small></button>`);
- document.querySelector("#child").onclick=home;document.querySelector("#parent").onclick=parentHome;document.querySelector("#teacher").onclick=teacherHome
+const BANK={"japanese": [["漢字・読み", "「深い」の読み方は？", ["ふかい", "あさい", "ながい"], 0, "「深い」は「ふかい」と読みます。"], ["漢字・意味", "「始める」と反対に近い言葉は？", ["続ける", "終える", "集める"], 1, "「始める」に対して「終える」が反対に近い言葉です。"], ["ことば", "「様子」といちばん近い意味は？", ["ものの状態", "ものの数", "ものの名前"], 0, "「様子」は、そのときの状態やありさまを表します。"], ["主語", "「小鳥が木の上で鳴いています。」だれ・何が鳴いていますか？", ["木", "小鳥", "上"], 1, "「小鳥が」が、動作をしているものです。"], ["順序", "「朝ごはんを食べてから、歯をみがきました。」先にしたことは？", ["歯をみがく", "朝ごはんを食べる", "ねる"], 1, "「〜てから」の前が先です。"], ["理由", "雨が強くなったので、傘をさしました。傘をさした理由は？", ["雨が強くなったから", "晴れたから", "風が止んだから"], 0, "「〜ので」の前に理由があります。"], ["気持ち", "大切に育てた花が咲きました。『やった！』と言いました。近い気持ちは？", ["うれしい", "かなしい", "こわい"], 0, "言葉や出来事から気持ちを考えます。"], ["指示語", "「赤いかさと青いかさがあります。わたしはそれを選びました。」『それ』が指すものを考えるとき、何を見る？", ["前の文", "文字の大きさ", "ページ番号"], 0, "指示語は、前後の文とのつながりを見て考えます。"], ["読解", "「公園には大きな木があります。夏には木かげで休む人がいます。」夏に人が休む場所は？", ["木かげ", "池の中", "道路"], 0, "文に書かれている情報を見つけます。"], ["要点", "「アリは食べ物を巣へ運びます。仲間と力を合わせることもあります。」中心に書かれていることは？", ["アリの行動", "空の色", "魚の泳ぎ方"], 0, "何について説明している文章かを考えます。"]], "math": [["かけ算", "6×4 は？", ["20", "24", "28"], 1, "6が4こ分で24です。"], ["わり算", "12÷3 は？", ["3", "4", "6"], 1, "12を3つに同じ数ずつ分けると4です。"], ["わり算", "18このあめを3人に同じ数ずつ分けます。1人分は？", ["5こ", "6こ", "9こ"], 1, "18÷3=6です。"], ["たし算", "368+125 は？", ["483", "493", "503"], 1, "くらいをそろえて計算します。"], ["ひき算", "500-236 は？", ["264", "274", "336"], 0, "500から236をひくと264です。"], ["数", "1000を3こ、100を4こ合わせた数は？", ["3040", "3400", "4300"], 1, "3000+400=3400です。"], ["長さ", "1km は何m？", ["100m", "1000m", "10000m"], 1, "1km=1000mです。"], ["時こく", "9時20分の40分後は？", ["9時50分", "10時00分", "10時20分"], 1, "20分から40分進むと10時ちょうどです。"], ["分数", "1こを4つに同じ大きさに分けた1つ分は？", ["4分の1", "3分の1", "2分の1"], 0, "4等分した1つ分は4分の1です。"], ["文章題", "24本のえんぴつを6人に同じ数ずつ分けます。1人何本？", ["3本", "4本", "6本"], 1, "24÷6=4です。"]], "science": [["植物", "植物のたねが育つとき、まず観察したいものは？", ["芽や葉の変化", "机の色", "時計の形"], 0, "育ち方を比べるには、芽や葉などの変化を見ます。"], ["こん虫", "こん虫の体は、おもにいくつの部分に分かれる？", ["2つ", "3つ", "5つ"], 1, "頭・むね・はらの3つです。"], ["こん虫", "こん虫のあしは、どこについている？", ["頭", "むね", "はら"], 1, "こん虫の6本のあしは、むねについています。"], ["太陽", "晴れた日にできるかげは、何と反対側にできる？", ["太陽", "地面", "風"], 0, "光がさえぎられ、太陽と反対側にかげができます。"], ["かげ", "時間がたつとかげの向きが変わるのは、何の見える位置が変わるから？", ["月", "太陽", "星"], 1, "太陽の見える位置の変化とかげを関係づけます。"], ["光", "鏡ではね返した日光を重ねると、明るさはどうなる？", ["明るくなる", "必ず暗くなる", "なくなる"], 0, "光を重ねると、より明るくなります。"], ["風", "風の強さを調べるとき、比べるとよいものは？", ["物の動き方", "名前の長さ", "紙の色"], 0, "風による物の動き方を比べます。"], ["音", "音が出ている物にそっとふれると、どう感じることがある？", ["ふるえている", "必ず冷たい", "動かない"], 0, "音が出るとき、物が振動していることがあります。"], ["じしゃく", "じしゃくにつきやすいものは？", ["鉄のクリップ", "木のえんぴつ", "紙"], 0, "鉄は磁石につく性質があります。"], ["電気", "かん電池と豆電球をつないで明かりをつけるには？", ["電気の通り道をつなげる", "片方だけつなぐ", "紙で包む"], 0, "電気が通る一続きの回路を作ります。"]], "social": [["まち", "自分たちのまちの様子を調べるとき役立つものは？", ["地図", "体温計", "楽譜"], 0, "地図は場所や広がりを調べるのに役立ちます。"], ["方位", "地図で上を北にしたとき、右はどの方位？", ["西", "東", "南"], 1, "北を上にすると右は東です。"], ["土地利用", "住宅が多く集まっている場所を調べるとき、何を見るとよい？", ["土地の使われ方", "空の色", "人の名前"], 0, "土地がどのように使われているかを見ます。"], ["店", "お店の人が品物を並べ方を工夫する理由として考えやすいのは？", ["買う人が選びやすくするため", "時計を止めるため", "道路を短くするため"], 0, "販売の工夫を、買う人との関係から考えます。"], ["買い物", "家の人が買い物する店を選ぶ理由を調べる方法は？", ["聞き取りをする", "空だけを見る", "じゃんけんする"], 0, "実際に聞くことで理由を調べられます。"], ["農業", "地域で作られる農作物を調べるとき大切なのは？", ["土地や気候との関係", "教室の席順", "鉛筆の本数"], 0, "生産と地域の環境との関わりを考えます。"], ["工場", "工場で働く人の工夫を調べるとき見るとよいものは？", ["仕事の手順や道具", "雲の形だけ", "靴の色だけ"], 0, "仕事の進め方や設備に工夫が表れます。"], ["消防", "火事からくらしを守るために働く人は？", ["消防士", "駅員", "図書館員"], 0, "消防は火災から地域を守る仕事です。"], ["警察", "交通事故を減らすための設備として近いものは？", ["信号機", "黒板", "冷蔵庫"], 0, "信号機などが安全な交通を支えています。"], ["地域", "昔から今へのまちの変化を調べる資料として役立つものは？", ["昔の写真や地図", "今日の給食だけ", "消しゴム"], 0, "時期の違う写真や地図を比べると変化が分かります。"]], "english": [["あいさつ", "朝のあいさつとして合うのは？", ["Good morning.", "Good night.", "Goodbye."], 0, "Good morning. は朝のあいさつです。"], ["気分", "How are you? と聞かれたときの答えとして合うのは？", ["I'm fine.", "Blue.", "Seven."], 0, "気分をたずねる表現への答えです。"], ["数", "英語で「3」は？", ["two", "three", "five"], 1, "3 は three です。"], ["色", "「赤」に合う英語は？", ["red", "blue", "green"], 0, "red は赤です。"], ["色", "「青」に合う英語は？", ["yellow", "blue", "pink"], 1, "blue は青です。"], ["好き", "「りんごが好きです」に近いのは？", ["I like apples.", "I'm ten.", "Good night."], 0, "I like ... で好きなものを伝えられます。"], ["たずねる", "好きなものをたずねる表現に近いのは？", ["What do you like?", "How old are you?", "Good morning."], 0, "What do you like? は好きなものをたずねる表現です。"], ["形", "「丸」に合う英語は？", ["circle", "triangle", "square"], 0, "circle は丸です。"], ["動物", "「ねこ」に合う英語は？", ["dog", "cat", "bird"], 1, "cat はねこです。"], ["やりとり", "友だちに名前をたずねる表現は？", ["What's your name?", "Thank you.", "See you."], 0, "What's your name? で名前をたずねられます。"]]};
+const KEY="ponoV6Progress";
+let state={subject:null,i:0,correct:0,hints:0,reads:0,start:null,answers:[]};
+const app=document.getElementById("app");
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function btn(label,fn,cls=""){const b=document.createElement("button");b.className="btn "+cls;b.textContent=label;b.onclick=fn;return b}
+function speechText(t){return String(t).replace(/÷/g," わる ").replace(/×/g," かける ").replace(/＝|=/g," は ").replace(/\+/g," たす ").replace(/−|-/g," ひく ").replace(/。/g,"。 ").replace(/？/g,"？ ")}
+function chooseJaVoice(){const v=speechSynthesis.getVoices();return v.find(x=>x.lang==="ja-JP"&&/Google|Kyoko|O-ren|Japanese/i.test(x.name))||v.find(x=>x.lang==="ja-JP")||v.find(x=>x.lang&&x.lang.toLowerCase().startsWith("ja"))}
+function speak(t,lang="ja-JP"){if(!("speechSynthesis" in window))return; speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(lang==="ja-JP"?speechText(t):t);u.lang=lang;u.rate=lang==="ja-JP"?.86:.78;u.pitch=1;const v=lang==="ja-JP"?chooseJaVoice():speechSynthesis.getVoices().find(x=>x.lang&&x.lang.toLowerCase().startsWith("en"));if(v)u.voice=v;setTimeout(()=>speechSynthesis.speak(u),60)}
+function ping(){const a=new Audio("correct.wav");a.volume=.7;a.play().catch(()=>{})}
+function records(){try{return JSON.parse(localStorage.getItem(KEY)||"[]")}catch(e){return[]}}
+function save(r){const x=records();x.unshift(r);localStorage.setItem(KEY,JSON.stringify(x.slice(0,100)))}
+function shell(title,sub=""){app.innerHTML=`<header><h1>🌱 ${title}</h1>${sub?`<p>${esc(sub)}</p>`:""}</header><section id="view"></section>`;return document.getElementById("view")}
+function home(){const v=shell("Pono Learning Quest","自分に合うところから、少しずつ学べます。");v.append(btn("🧒 子ども　今日の学習・5分野","", "role"));v.lastChild.onclick=studentHome;v.append(btn("🏠 保護者　今の学習・できたこと","", "role"));v.lastChild.onclick=parentHome;v.append(btn("📝 先生・Pono　学習経過・学校共有","", "role"));v.lastChild.onclick=teacherHome}
+function studentHome(){const v=shell("まなぶ",`${student.name}｜在籍 小学${student.grade}年`);subjects.forEach(s=>{const b=btn(`${s.icon} ${s.name}　${s.desc}`,()=>startSubject(s.id),"subject");v.append(b)});v.append(btn("← もどる",home,"sub"))}
+function startSubject(id){state={subject:id,i:0,correct:0,hints:0,reads:0,start:Date.now(),answers:[]};question()}
+function question(){const s=subjects.find(x=>x.id===state.subject), qs=BANK[state.subject], q=qs[state.i];const v=shell(`${s.icon} ${s.name}`,`小学3年｜${state.i+1} / ${qs.length}｜${q[0]}`);
+ const card=document.createElement("div");card.className="card";card.innerHTML=`<div class="step">③ 自分でやる</div><h2>${esc(q[1])}</h2>`;v.append(card);
+ const listen=btn("🔊 問題をきく",()=>{state.reads++;speak(q[1],state.subject==="english"&&/^[A-Za-z]/.test(q[1])?"en-US":"ja-JP")},"listen");v.append(listen);
+ q[2].forEach((c,n)=>v.append(btn(c,()=>answer(n,q[3],q[4]),"choice")));
+ v.append(btn("💡 ヒント・説明を見る",()=>{state.hints++;showHint(q[4])},"hint"));
+ v.append(btn("🌱 わからない・説明を見る",()=>{state.hints++;showHint(q[4])},"sub"));
 }
-function parentHome(){
- const d=getProgress(),r=d.records[d.records.length-1];
- shell(`<div class="card"><h1>🏠 保護者画面</h1><p><b>${student.name}</b>｜小学${student.grade}年</p>
- <div class="box"><b>今取り組んでいること</b><p>算数「わり算」</p></div>
- <div class="box"><b>最近のできたこと</b><p>${r?r.kind+"： "+r.result:"これから学習記録が表示されます。"}</p></div>
- <div class="box"><b>次に取り組むこと</b><p>${r?r.next:"最初の理解度確認から始めます。"}</p></div>
- <p class="muted">点数だけでなく、どんな方法で学べたかも大切にして表示していきます。</p><button id="back">入口へもどる</button></div>`);
- document.querySelector("#back").onclick=roleHome
-}
-function teacherHome(){
- const d=getProgress(),rows=d.records.slice().reverse().map(r=>`<tr><td>${r.date}</td><td>${r.kind}</td><td>${r.result}</td><td>${r.hints}</td><td>${r.reads}</td><td>${r.next}</td></tr>`).join("");
- shell(`<div class="card"><h1>📝 先生・Pono画面</h1><p>${student.name}｜在籍 小学${student.grade}年</p>
- <div class="box"><b>学校の現在単元</b><p contenteditable="true">ここをタップして入力</p></div>
- <div class="table-wrap"><table><tr><th>日時</th><th>内容</th><th>結果</th><th>ヒント</th><th>読上</th><th>次</th></tr>${rows||'<tr><td colspan="6">これから学習記録が表示されます。</td></tr>'}</table></div>
- <div class="box"><b>Pono所見・学校との共有事項</b><p contenteditable="true">ここをタップして入力できます。</p></div>
- <button id="print">🖨️ 印刷 / PDF保存</button><button id="back">入口へもどる</button></div>`);
- document.querySelector("#print").onclick=()=>window.print();document.querySelector("#back").onclick=roleHome
-}
-function speechText(t){
- return String(t)
-  .replace(/6×4/g,"ろく かける よん")
-  .replace(/3×4/g,"さん かける よん")
-  .replace(/5×4/g,"ご かける よん")
-  .replace(/6×3/g,"ろく かける さん")
-  .replace(/12÷3/g,"じゅうに わる さん")
-  .replace(/15÷5/g,"じゅうご わる ご")
-  .replace(/18÷3/g,"じゅうはち わる さん")
-  .replace(/20÷5/g,"にじゅう わる ご")
-  .replace(/16÷4/g,"じゅうろく わる よん")
-  .replace(/27÷3/g,"にじゅうなな わる さん")
-  .replace(/÷/g," わる ")
-  .replace(/×/g," かける ")
-  .replace(/＝|=/g," は ")
-  .replace(/\+/g," たす ")
-  .replace(/−|-/g," ひく ")
-  .replace(/(\d+)こ/g,"$1こ、")
-  .replace(/(\d+)本/g,"$1ほん、")
-  .replace(/(\d+)枚/g,"$1まい、")
-  .replace(/(\d+)人/g,"$1にん、")
-  .replace(/。/g,"。 ")
-  .replace(/？/g,"？ ")
-}
-function chooseJaVoice(){
- const vs=speechSynthesis.getVoices();
- return vs.find(v=>v.lang==="ja-JP" && /Google|Kyoko|O-ren|Japanese/i.test(v.name))
-     || vs.find(v=>v.lang==="ja-JP")
-     || vs.find(v=>v.lang&&v.lang.toLowerCase().startsWith("ja"));
-}
-function speak(t){
- if(!("speechSynthesis" in window)){alert("この端末では読み上げを利用できません。");return}
- speechSynthesis.cancel();
- const u=new SpeechSynthesisUtterance(speechText(t));
- u.lang="ja-JP";
- u.rate=.86;
- u.pitch=1.0;
- u.volume=1;
- const ja=chooseJaVoice();if(ja)u.voice=ja;
- setTimeout(()=>speechSynthesis.speak(u),80);
-}
-function ping(){const a=new Audio("correct.wav");a.volume=.8;a.play().catch(()=>{})}
-function home(){
- shell(`<div class="card hero"><h1>🌱 Pono Learning Quest</h1><p>${student.name}｜在籍 小学${student.grade}年</p><p class="muted">自分に合うところから、少しずつ学べます。</p></div>
- <h2>今日の学習を選ぶ</h2><div class="subject-grid">${subjects.map(s=>`<button class="subject" data-id="${s.id}"><b>${s.icon} ${s.name}</b><small>${s.desc}</small></button>`).join("")}</div>
- <div class="card"><b>今回の確認版</b><p>算数「わり算」は実際に学習できます。ほかの4教科は入口画面を確認できます。</p></div>`);
- document.querySelectorAll(".subject").forEach(b=>b.addEventListener("click",()=>openSubject(b.dataset.id)));
-}
-function openSubject(id){
- const s=subjects.find(x=>x.id===id);
- if(id!=="math"){shell(`<div class="card"><h1>${s.icon} ${s.name}</h1><div class="box"><b>3年生 ${s.name}クエスト</b><p>${s.desc}</p></div><p>この教科は次の段階で、単元と問題を入れていきます。</p><button id="back">5教科へもどる</button></div>`);document.querySelector("#back").onclick=home;return}
- shell(`<div class="card"><h1>➗ 3年生 算数</h1><div class="box"><b>わり算</b><p>最初に今の理解を確認して、ちょうどよいところから始めます。</p></div><button id="go" class="primary">今の理解を確認する</button><button id="back" class="secondary">5教科へもどる</button></div>`);
- document.querySelector("#go").onclick=beginDiagnostic;document.querySelector("#back").onclick=home;
-}
-function reset(s){stage=s;i=0;correct=0;hints=0;reads=0;start=Date.now();log=[]}
-function beginDiagnostic(){reset("diagnostic");diagnostic()}
-function diagnostic(){if(i>=diag.length)return diagnosticResult();renderQ("最初の理解度確認",diag[i],diag.length)}
-function renderQ(title,q,total){
- shell(`<div class="card"><span class="pill">${title}</span><p>${i+1}/${total}</p><div class="bar"><i style="width:${100*i/total}%"></i></div><h2 id="qt"></h2><button id="speak">🔊 問題をきく</button><div id="choices"></div><button id="hint" class="secondary">💡 ヒント</button></div>`);
- document.querySelector("#qt").textContent=q[0];
- q[1].forEach((x,n)=>{const b=document.createElement("button");b.className="choice";b.textContent=x;b.onclick=()=>answer(n,q[2],q[3]||null);document.querySelector("#choices").appendChild(b)});
- document.querySelector("#speak").onclick=()=>{reads++;speak(q[0])};document.querySelector("#hint").onclick=()=>{hints++;alert("式やまとまりを小さく分けて考えてみよう。")}
-}
-function feedback(message,kind,next,delay){
- const old=document.querySelector(".feedback");if(old)old.remove();
- const box=document.createElement("div");box.className="feedback "+kind;box.textContent=message;
- document.querySelector(".card").appendChild(box);
- document.querySelectorAll("button").forEach(b=>b.disabled=true);
- setTimeout(next,delay);
-}
-function answer(n,a,tag){
- const ok=n===a;log.push({tag,ok});
- if(ok){
-  correct++;
-  ping();
-  feedback("✨ できた！","good",()=>{i++;stage==="diagnostic"?diagnostic():lessonQ()},950);
- }else{
-  feedback("🌱 もう一度確認してみよう","retry",()=>{i++;stage==="diagnostic"?diagnostic():lessonQ()},1100);
- }
-}
-function diagnosticResult(){
- const weak=log.filter(x=>!x.ok).map(x=>x.tag),route=weak.includes("九九")?"pre":weak.includes("意味")||weak.includes("計算")?"basic":weak.includes("文章題")?"word":"mini";
- const labels={pre:"九九・かけ算から確認",basic:"わり算の意味から",word:"文章題から",mini:"ミニテストへ"};
- addRecord("理解度確認",`${correct}/${diag.length}`,labels[route]);
- shell(`<div class="card"><h2>🌱 今の学習位置</h2><p><b>${labels[route]}</b></p><p class="muted">どの内容を確認すると次につながるかを見ています。</p><button id="next">ここから学ぶ</button></div>`);document.querySelector("#next").onclick=()=>begin(route)
-}
-function begin(s){reset(s);if(s==="mini")return lessonQ();const x=math[s];shell(`<div class="card"><span class="pill">${x.title}</span><h2>① まなぶ</h2><p>${x.learn}</p><button id="ls">🔊 説明をきく</button><button id="go" class="primary">② 一緒に・自分でやる</button></div>`);document.querySelector("#ls").onclick=()=>{reads++;speak(x.learn)};document.querySelector("#go").onclick=lessonQ}
-function lessonQ(){const x=math[stage],arr=x.q;if(i>=arr.length)return result();renderQ(x.title,arr[i],arr.length)}
-function result(){const total=math[stage].q.length,rate=correct/total;let route=stage==="pre"?(rate>=.8?"basic":"pre"):stage==="basic"?(rate>=.8?"word":"pre"):stage==="word"?(rate>=.8?"mini":"basic"):"done";const label={pre:"九九・かけ算をもう一度",basic:"わり算の意味へ",word:"文章題へ",mini:"単元ミニテストへ",done:"今回の学習完了"}[route];addRecord(math[stage].title,`${correct}/${total}`,label);shell(`<div class="card"><h2>🌱 ${math[stage].title} 結果</h2><p><b>${correct}/${total}</b></p><p>次：<b>${label}</b></p><p class="small">ヒント ${hints}回／読み上げ ${reads}回</p><button id="next">${route==="done"?"5教科へもどる":"次へ"}</button></div>`);document.querySelector("#next").onclick=()=>route==="done"?home():begin(route)}
-roleHome();
+function showHint(t){let box=document.getElementById("hintbox");if(!box){box=document.createElement("div");box.id="hintbox";box.className="hintbox";document.getElementById("view").append(box)}box.innerHTML=`<b>一緒に確認しよう</b><p>${esc(t)}</p>`}
+function answer(n,a,explain){const ok=n===a;state.answers.push(ok);if(ok)ping();document.querySelectorAll(".choice").forEach(b=>b.disabled=true);const f=document.createElement("div");f.className="feedback "+(ok?"good":"retry");f.textContent=ok?"✨ できた！":"🌱 一緒に確認して次へ";document.getElementById("view").append(f);if(ok)state.correct++;setTimeout(()=>{state.i++;state.i<BANK[state.subject].length?question():finish()},ok?800:1050)}
+function finish(){const s=subjects.find(x=>x.id===state.subject),sec=Math.max(1,Math.round((Date.now()-state.start)/1000));save({date:new Date().toLocaleDateString("ja-JP"),subject:s.name,result:`${state.correct}/10`,hints:state.hints,reads:state.reads,seconds:sec});const v=shell("できたこと",`${s.icon} ${s.name}`);v.innerHTML=`<div class="card"><h2>${state.correct} / 10</h2><p>ヒント・説明：${state.hints}回</p><p>読み上げ：${state.reads}回</p><p>学習時間：約${Math.ceil(sec/60)}分</p><p>点数だけでなく、どんな方法なら学びやすいかも大切な記録です。</p></div>`;v.append(btn("5分野にもどる",studentHome));}
+function parentHome(){const rs=records(),v=shell("保護者",`${student.name}｜小学${student.grade}年`);v.innerHTML=`<div class="card"><h2>できたこと</h2>${rs.length?`<p>最新：${esc(rs[0].date)}　${esc(rs[0].subject)}　${esc(rs[0].result)}</p><p>ヒント ${rs[0].hints}回／読み上げ ${rs[0].reads}回</p>`:"<p>まだ学習記録はありません。</p>"}<p>正答だけでなく、説明・読み上げなど「学びやすかった方法」も見ていきます。</p></div>`;v.append(btn("← もどる",home,"sub"))}
+function teacherHome(){const rs=records(),v=shell("先生・Pono","学習経過・学校共有（試作）");let rows=rs.slice(0,12).map(r=>`<tr><td>${esc(r.date)}</td><td>${esc(r.subject)}</td><td>${esc(r.result)}</td><td>${r.hints}</td><td>${r.reads}</td></tr>`).join("");v.innerHTML=`<div class="card"><label>学校で今取り組んでいる単元</label><input id="schoolunit" placeholder="例：わり算"><h3>最近の学習</h3><div class="tablewrap"><table><tr><th>日付</th><th>分野</th><th>確認</th><th>説明</th><th>読み</th></tr>${rows||"<tr><td colspan=5>記録なし</td></tr>"}</table></div><label>Ponoメモ・学校共有</label><textarea id="note" rows="5"></textarea><button class="btn" onclick="window.print()">🖨️ 印刷 / PDF</button></div>`;v.append(btn("← もどる",home,"sub"))}
+home();
