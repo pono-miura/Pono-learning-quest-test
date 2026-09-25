@@ -445,6 +445,7 @@ function mathLessonData(node){
 
 function mathSpeechText(text){
  let t=String(text);
+ t=t.replaceAll("時刻","じこく");
 
  // 数字を日本語の読みへ。TTSが「2分」を「にふん」と読むのを避けるため、
  // 分数は「にぶんのいち」のようなひらがなへ先に変換する。
