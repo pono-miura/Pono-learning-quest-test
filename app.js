@@ -110,17 +110,29 @@ function mathLessonData(id,n){
 }
 function mathSpeechText(text){
  let t=String(text);
- // Fractions: numerator/denominator -> denominator分のnumerator
- t=t.replace(/(\d+)\s*\/\s*(\d+)/g,(m,num,den)=>`${den}分の${num}`);
- // Any remaining slash is never spoken as "slash" in math explanations.
- t=t.replace(/\s*\/\s*/g," 分の ");
+
+ // 数字を日本語の読みへ。TTSが「2分」を「にふん」と読むのを避けるため、
+ // 分数は「にぶんのいち」のようなひらがなへ先に変換する。
+ const nums={
+   "0":"れい","1":"いち","2":"に","3":"さん","4":"よん","5":"ご",
+   "6":"ろく","7":"なな","8":"はち","9":"きゅう","10":"じゅう"
+ };
+ function nread(x){ return nums[String(x)] || String(x); }
+
+ t=t.replace(/(\d+)\s*\/\s*(\d+)/g,(m,num,den)=>{
+   return `${nread(den)}ぶんの${nread(num)}`;
+ });
+
+ // 万一 / が残った場合も「スラッシュ」と発音させない。
+ t=t.replace(/\s*\/\s*/g," ぶんの ");
+
  return t
-   .replaceAll("×","かける")
-   .replaceAll("÷","わる")
-   .replaceAll("＝","イコール")
-   .replaceAll("=","イコール")
-   .replaceAll("cm²","平方センチメートル")
-   .replaceAll("cm³","立方センチメートル")
+   .replaceAll("×"," かける ")
+   .replaceAll("÷"," わる ")
+   .replaceAll("＝"," イコール ")
+   .replaceAll("="," イコール ")
+   .replaceAll("cm²","へいほうセンチメートル")
+   .replaceAll("cm³","りっぽうセンチメートル")
    .replaceAll("cm","センチメートル")
    .replaceAll("kg","キログラム")
    .replaceAll("g","グラム")
@@ -146,8 +158,8 @@ function mathLearn(nodeId){
  <div class="step-arrow">↓ 上と下の3を、同じ3でわって約分</div>
  <div class="math-step"><span class="frac"><span class="top">2 × 1</span><span class="bottom">1 × 4</span></span></div>
  <div class="step-arrow">↓</div><div class="math-step">${fmtMath("1/2")}</div>
- <span class="tiny">読み方：3分の2 かける 4分の3。答えは2分の1。</span></div>`;
- if(nodeId==="g6_fracdiv") fractionCalc=`<div class="formula-card fraction-steps"><b>分数でわる例</b><div class="math-step">${fmtMath("1/2 ÷ 1/4")}</div><div class="step-arrow">↓ わる数を逆数にして、かけ算にする</div><div class="math-step">${fmtMath("1/2 × 4/1")}</div><div class="step-arrow">↓</div><div class="math-step">2</div><span class="tiny">読み方：2分の1 わる 4分の1。</span></div>`;
+ <span class="tiny">読み方：さんぶんのに かける よんぶんのさん。答えは にぶんのいち。</span></div>`;
+ if(nodeId==="g6_fracdiv") fractionCalc=`<div class="formula-card fraction-steps"><b>分数でわる例</b><div class="math-step">${fmtMath("1/2 ÷ 1/4")}</div><div class="step-arrow">↓ わる数を逆数にして、かけ算にする</div><div class="math-step">${fmtMath("1/2 × 4/1")}</div><div class="step-arrow">↓</div><div class="math-step">2</div><span class="tiny">読み方：にぶんのいち わる よんぶんのいち。</span></div>`;
  let c=e("div","card lesson",`<h2>📖 まず知っておこう</h2><p>${fmtMath(meaning)}</p>${formula}${terms}${fractionCalc}<h3>👀 具体例</h3><p>${fmtMath(example)}</p><p class="tiny">一度で覚えなくて大丈夫です。必要な時にここへ戻れます。</p>`);
  A.append(c);
  A.append(btn("🔊 説明をきく",()=>speakLesson(meaning+" "+example),"soft"));
