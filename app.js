@@ -9,6 +9,23 @@ const B={
 "理科":[["昆虫のあしは？",["4本","6本","8本"],1,"昆虫の体を確認します。"],["植物の育ちに大切なのは？",["光や水","石だけ","音だけ"],0,"植物の育ちを確認します。"],["磁石につきやすいのは？",["鉄","紙","木"],0,"磁石の性質です。"],["音が出る物で感じることがあるのは？",["ふるえ","色だけ","重さだけ"],0,"音と振動を結びつけます。"],["豆電球が光るには？",["回路がつながる","紙を置く","水につける"],0,"電気の通り道です。"]],
 "社会":[["地図で方位を知るものは？",["方位記号","温度計","ものさしだけ"],0,"地図の基本です。"],["上が北なら右は？",["東","西","南"],0,"方位を確認します。"],["店の工夫を知るには？",["見学や聞き取り","想像だけ","何も見ない"],0,"地域調査の方法です。"],["火事の時に活動するのは？",["消防","図書館","美術館"],0,"地域の安全を守る仕組みです。"],["昔と今を比べる資料は？",["古い写真や地図","白紙","未来だけ"],0,"地域の変化を調べます。"]],
 "外国語活動":[["Hello. は？",["こんにちは","さようなら","おやすみ"],0,"基本のあいさつです。"],["three は？",["2","3","4"],1,"数の表現です。"],["red は？",["赤","青","緑"],0,"色の表現です。"],["dog は？",["犬","猫","鳥"],0,"動物の表現です。"],["My name is Ken. は？",["私の名前はケンです","3歳です","犬が好きです"],0,"名前を伝える表現です。"]]};
+
+const MATHNODES={
+ g1_add:{grade:1,title:"たし算の意味",pre:null,qs:[["3+2は？",["4","5","6"],1],["5+4は？",["8","9","10"],1],["7+2は？",["8","9","10"],1]]},
+ g2_mult:{grade:2,title:"かけ算・九九",pre:"g1_add",qs:[["3×4は？",["7","12","14"],1],["6×5は？",["25","30","35"],1],["8×4は？",["24","32","36"],1]]},
+ g3_div:{grade:3,title:"わり算の意味",pre:"g2_mult",qs:[["12÷3は？",["3","4","6"],1],["20÷5は？",["4","5","10"],0],["18個を3人で同じ数ずつ分けると？",["5個","6個","9個"],1]]},
+ g4_divcalc:{grade:4,title:"わり算の計算",pre:"g3_div",qs:[["84÷4は？",["21","24","28"],0],["96÷3は？",["22","32","36"],1],["120÷6は？",["20","24","30"],0]]},
+ g5_frac:{grade:5,title:"分数の意味と計算",pre:"g4_divcalc",qs:[["1/2+1/4は？",["2/6","3/4","1/6"],1],["3/5-1/5は？",["2/5","2/10","4/5"],0],["2÷3を分数で表すと？",["3/2","2/3","2/1"],1]]},
+ g6_fracmul:{grade:6,title:"分数のかけ算",pre:"g5_frac",qs:[["1/2×3は？",["3/2","1/6","2/3"],0],["2/3×3/4は？",["1/2","5/7","6/7"],0],["3/5×10は？",["6","2","5"],0]]}
+};
+let adaptive=null;
+function mathStart(){let id={1:"g1_add",2:"g2_mult",3:"g3_div",4:"g4_divcalc",5:"g5_frac",6:"g6_fracmul"}[profile.grade];adaptive={origin:id,node:id,history:[],returnTo:null,qi:0,ok:0,h:0,start:Date.now()};mathQ()}
+function mathQ(){let n=MATHNODES[adaptive.node],q=n.qs[adaptive.qi];head(`算数｜${n.title}`,child);A.append(e("div","tiny",`在籍 小学${profile.grade}年｜今は必要な内容を確認中`));A.append(e("div","card",`<h2>${q[0]}</h2>`));q[1].forEach((x,i)=>A.append(btn(x,()=>mathAns(i===q[2]))));A.append(btn("💡 説明を見て確認する",()=>{adaptive.h++;A.append(e("div","feedback","分からない時は、前の内容を確認してから戻って大丈夫です。"))},"soft"))}
+function mathAns(ok){if(ok){adaptive.ok++;new Audio("correct.wav").play().catch(()=>{});adaptive.qi++;if(adaptive.qi<MATHNODES[adaptive.node].qs.length){mathQ();return}mathJudge()}else{adaptive.h++;A.append(e("div","feedback warn","🌱 もう一度考えてみよう。必要なら前の内容も確認できます。"))}}
+function mathJudge(){let n=MATHNODES[adaptive.node],rate=Math.round(adaptive.ok/n.qs.length*100);adaptive.history.push({node:adaptive.node,grade:n.grade,title:n.title,rate,hints:adaptive.h});if(rate<67&&n.pre){let from=adaptive.node;adaptive.returnTo=adaptive.returnTo||from;adaptive.node=n.pre;adaptive.qi=0;adaptive.ok=0;adaptive.h=0;head("🌱 必要なところを確認します",child);A.append(e("div","card",`<p><b>${n.title}</b>を進めるために、先に<b>${MATHNODES[n.pre].title}</b>を確認します。</p><p class="tiny">「学年が下がった」という表示ではなく、次につなげる確認として進めます。</p>`));A.append(btn("確認を始める",mathQ,"primary"));return}
+if(adaptive.returnTo&&adaptive.node!==adaptive.returnTo){let target=adaptive.returnTo;adaptive.node=target;adaptive.returnTo=null;adaptive.qi=0;adaptive.ok=0;adaptive.h=0;head("✨ 元の学習へ戻ります",child);A.append(e("div","card",`<p>必要な内容を確認できました。</p><p><b>${MATHNODES[target].title}</b>へ戻って、もう一度やってみます。</p>`));A.append(btn("元の学習へ戻る",mathQ,"primary"));return}
+let sec=Math.round((Date.now()-adaptive.start)/1000);records.push({studentId:profile.id,date:new Date().toISOString(),subject:"算数",grade:profile.grade,rate,seconds:sec,hints:adaptive.history.reduce((a,x)=>a+x.hints,0),reads:0,unknown:0,next:rate>=90?"少し発展へ":"定着を確認",process:"学年横断の確認ルート",adaptivePath:adaptive.history});save();head("✨ 算数の学習経過",child);let path=adaptive.history.map(x=>`${x.title}（${x.rate}%）`).join(" → ");A.append(e("div","card",`<h2>取り組めました</h2><p><b>学習の道すじ</b><br>${path}</p><p>必要な内容を確認しながら、元の学習につなげました。</p><p class="tiny">この経過は保護者・先生の記録にも残ります。</p>`));A.append(btn("🌿 今日はここまで",child,"soft"))}
+
 function e(t,c,h){let x=document.createElement(t);if(c)x.className=c;if(h!==undefined)x.innerHTML=h;return x}
 function btn(t,f,c=""){let b=e("button",c,t);b.onclick=f;return b}
 function head(t,b){A.innerHTML="";let d=e("div","top");if(b)d.append(btn("← 戻る",b,"back"));d.append(e("h1","",t));A.append(d)}
@@ -17,8 +34,8 @@ function home(){head("🌱 Pono Learning Quest");A.append(e("p","sub","在籍学
 function child(){head("🧒 今日の学習",home);let c=e("div","card",`<h2>${profile.name}</h2><p>在籍学年を学習開始の目安にします。</p>`),sel=e("select");for(let g=1;g<=6;g++){let o=e("option","",`小学${g}年`);o.value=g;sel.append(o)}sel.value=profile.grade;sel.onchange=()=>{profile.grade=+sel.value;localStorage.setItem(SK,JSON.stringify(profile));};c.append(sel,e("p","tiny","※学年はスタートの目安です。必要なら前の内容を確認し、理解できたら元の学習へ戻ります。"));A.append(c);
 let plan=JSON.parse(localStorage.getItem(PK)||"{}"), days=["日","月","火","水","木","金","土"], today=days[new Date().getDay()], tp=plan[today];
 if(tp&&tp.off){A.append(e("div","card soft","<h2>🌿 今日はお休み</h2><p>予定は入っていません。やりたい時は下から自由に学習できます。</p>"))}
-else if(tp){let items=Array.isArray(tp.items)?tp.items:(tp.s?[{s:tp.s,u:tp.u||"おすすめ単元"}]:[]);if(items.length){let pc=e("div","card good","<h2>🌟 今日のおすすめ</h2><p class='tiny'>予定は目安です。全部やらなくても、予定より進んでも大丈夫です。</p>");items.forEach((it,i)=>pc.append(btn(`▶ ${i+1}. ${it.s}｜${it.u||"おすすめ単元"}`,()=>start(it.s),"primary")));A.append(pc)}}
-let g=e("div","grid");subs.forEach(s=>g.append(btn(s,()=>start(s))));A.append(g)}
+else if(tp){let items=Array.isArray(tp.items)?tp.items:(tp.s?[{s:tp.s,u:tp.u||"おすすめ単元"}]:[]);if(items.length){let pc=e("div","card good","<h2>🌟 今日のおすすめ</h2><p class='tiny'>予定は目安です。全部やらなくても、予定より進んでも大丈夫です。</p>");items.forEach((it,i)=>pc.append(btn(`▶ ${i+1}. ${it.s}｜${it.u||"おすすめ単元"}`,()=>it.s==="算数"?mathStart():start(it.s),"primary")));A.append(pc)}}
+let g=e("div","grid");subs.forEach(s=>g.append(btn(s,()=>s==="算数"?mathStart():start(s))));A.append(g)}
 function start(s){subject=s;qi=0;S={ok:0,h:0,r:0,u:0,start:Date.now(),startGrade:profile.grade,route:[]};question()}
 function question(){head(`${subject}｜確認`,child);let q=B[subject][qi];if(!q)return finish();A.append(e("div","tiny",`${qi+1}/${B[subject].length}　開始目安：小学${S.startGrade}年`));A.append(e("div","card",`<h2>${q[0]}</h2>`));A.append(btn("🔊 問題をきく",()=>{S.r++;let u=new SpeechSynthesisUtterance(q[0].replaceAll("÷","わる").replaceAll("×","かける"));u.lang="ja-JP";u.rate=.86;speechSynthesis.cancel();speechSynthesis.speak(u)},"soft"));q[1].forEach((x,i)=>A.append(btn(x,()=>answer(i===q[2],q[3]))));A.append(btn("💡 ヒント・説明を見る",()=>help(q[3],false),"soft"));A.append(btn("🌱 わからない・説明を見る",()=>help(q[3],true),"soft"))}
 function help(x,unk){S.h++;if(unk)S.u++;document.querySelectorAll(".feedback").forEach(x=>x.remove());A.append(e("div","feedback",`<b>一緒に確認</b><br>${x}<br><span class="tiny">確認してから、もう一度挑戦して大丈夫です。</span>`))}
@@ -27,7 +44,7 @@ function finish(){let n=B[subject].length,rate=Math.round(S.ok/n*100),sec=Math.r
 function myRecords(){return records.filter(r=>r.studentId===profile.id)}
 function parent(){head("🏠 自分の子の学び",home);let rr=myRecords().slice(-7),last=rr.at(-1),mins=Math.round(rr.reduce((a,r)=>a+r.seconds,0)/60),advanced=rr.filter(r=>r.progress==="予定より先へ進める状態").length,review=rr.filter(r=>r.progress==="基礎確認を優先").length;
 A.append(e("div","card",`<h2>${profile.name}の今週</h2><span class="pill">${rr.length}回取り組み</span><span class="pill">約${mins}分</span><p>${!last?"まだ記録はありません。":last.hints?`${last.subject}では、必要な説明を確認しながら再挑戦できました。`:`${last.subject}に自分で取り組めました。`}</p>`));
-A.append(e("div","card",`<h2>🌱 どんなふうに学べている？</h2><p>${!last?"学習を始めると、ここに学び方の変化が表示されます。":`${last.process} → ${last.next}`}</p><p class="tiny">説明を見る・読み上げを使う・「わからない」と伝える・再挑戦することも、大切な学びの過程として記録します。</p>`));
+let route=last&&last.adaptivePath?last.adaptivePath.map(x=>x.title).join(" → "):"";A.append(e("div","card",`<h2>🌱 どんなふうに学べている？</h2><p>${!last?"学習を始めると、ここに学び方の変化が表示されます。":route?`必要な内容を確認しながら学習しました：${route}`:`${last.process} → ${last.next}`}</p><p class="tiny">説明を見る・読み上げを使う・「わからない」と伝える・再挑戦することも、大切な学びの過程として記録します。</p>`));
 let movement=!rr.length?"まだ学習記録はありません。":advanced?`おすすめの内容に加えて、さらに進める状態が ${advanced}回ありました。理解できた時は予定で止めず、次の学習へつなげます。`:review?`必要な内容を確認する学習が ${review}回ありました。前の内容に戻ることも、次へつなげるための学びとして記録しています。`:"今の内容を自分のペースで確認しながら進めています。";
 A.append(e("div","card",`<h2>✨ 予定からの広がり</h2><p>${movement}</p><p class="tiny">予定どおりかどうかではなく、その日の理解に合わせて「進む・定着する・確認する」を見ています。</p>`));
 A.append(e("div","card",`<h2>できるようになってきたこと</h2><p>${growth(rr)}</p>`));
