@@ -29,20 +29,46 @@ const db=()=>JSON.parse(localStorage.getItem("ponoWariV3")||'{"records":[],"rete
 const save=d=>localStorage.setItem("ponoWariV3",JSON.stringify(d));
 const shell=x=>A.innerHTML=`<div class="wrap">${x}</div>`;
 
+function speechText(t){
+ return String(t)
+  .replace(/÷/g," わる ")
+  .replace(/×/g," かける ")
+  .replace(/＝|=/g," は ")
+  .replace(/\+/g," たす ")
+  .replace(/−|-/g," ひく ")
+  .replace(/\?/g,"？");
+}
 function speak(t){
  if(!("speechSynthesis" in window)){alert("この端末では読み上げを利用できません。");return;}
  window.speechSynthesis.cancel();
- const u=new SpeechSynthesisUtterance(t);
- u.lang="ja-JP"; u.rate=.82;
+ const u=new SpeechSynthesisUtterance(speechText(t));
+ u.lang="ja-JP";
+ u.rate=.9;
+ u.pitch=1.02;
+ u.volume=1;
+ const voices=window.speechSynthesis.getVoices();
+ const ja=voices.find(v=>v.lang&&v.lang.toLowerCase().startsWith("ja"));
+ if(ja)u.voice=ja;
  window.speechSynthesis.speak(u);
 }
 function ping(){
  try{
   const C=window.AudioContext||window.webkitAudioContext;
   if(!C)return;
-  const c=new C(),o=c.createOscillator(),g=c.createGain();
-  o.frequency.value=880; g.gain.value=.04; o.connect(g); g.connect(c.destination);
-  o.start(); o.stop(c.currentTime+.13);
+  const c=new C();
+  const tone=(freq,when,dur)=>{
+   const o=c.createOscillator(),g=c.createGain();
+   o.type="sine"; o.frequency.value=freq;
+   g.gain.setValueAtTime(0.0001,when);
+   g.gain.exponentialRampToValueAtTime(0.12,when+0.015);
+   g.gain.exponentialRampToValueAtTime(0.0001,when+dur);
+   o.connect(g); g.connect(c.destination);
+   o.start(when); o.stop(when+dur+.02);
+  };
+  const now=c.currentTime;
+  tone(880,now,.16);
+  tone(1174.66,now+.18,.28);
+  setTimeout(()=>c.close(),700);
  }catch(e){}
 }
 function home(){
