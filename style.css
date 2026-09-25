@@ -3,3 +3,11 @@
 .frac>span:first-child{border-bottom:1.8px solid currentColor;padding:0 .18em .08em}
 .frac>span:last-child{padding:.08em .18em 0}
 .lesson{font-size:1.05rem;line-height:1.9}
+
+.access-box{background:#f7faf5;border:1px solid #dce6d6;border-radius:18px;padding:12px 15px;margin:10px 0 16px}
+.access-box label{display:block;margin-top:8px}
+ruby rt{font-size:.55em;font-weight:500}
+.word-help{background:#faf8ef;border:1px solid #e6dfc9;border-radius:14px;padding:10px 13px;margin:14px 0}
+.word-help summary{font-weight:700;cursor:pointer}
+.word-grid p{margin:10px 0}
+.fraction-example{font-size:1.25rem;text-align:center}

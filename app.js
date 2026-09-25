@@ -20,6 +20,23 @@ const MATHNODES={
 };
 let adaptive=null;
 
+
+function furiganaOn(){return localStorage.getItem("ponoFurigana")!=="off"}
+function setFurigana(v){localStorage.setItem("ponoFurigana",v?"on":"off")}
+function ruby(word,reading){return furiganaOn()?`<ruby>${word}<rt>${reading}</rt></ruby>`:word}
+function accessibilityBox(){
+ let c=e("div","access-box",`<b>読みやすさ</b><br><span class="tiny">自分に合う表示を選べます。</span>`),lab=e("label","",`<input type="checkbox" style="width:auto;margin-right:7px"> ふりがな`),ck=lab.querySelector("input");ck.checked=furiganaOn();ck.onchange=()=>{setFurigana(ck.checked);};c.append(lab);return c
+}
+function fractionWords(){
+ return `<details class="word-help"><summary>📘 ことばの確認</summary>
+ <div class="word-grid">
+ <p><b>${ruby("分子","ぶんし")}</b>：分数の上の数。「いくつ分」かを表します。</p>
+ <p><b>${ruby("分母","ぶんぼ")}</b>：分数の下の数。「いくつに同じ大きさで分けたか」を表します。</p>
+ <p><b>${ruby("約分","やくぶん")}</b>：上と下を同じ数でわって、分数をかんたんな形にすること。</p>
+ <p class="fraction-example">${fmtMath("2/4")} ＝ ${fmtMath("1/2")}</p>
+ </div></details>`;
+}
+
 function fmtMath(t){
   t=String(t);
   return t.replace(/(\d+)\/(\d+)/g,'<span class="frac"><span>$1</span><span>$2</span></span>');
@@ -27,7 +44,7 @@ function fmtMath(t){
 function mathEntry(nodeId){
   adaptive=adaptive||{origin:nodeId,node:nodeId,history:[],returnTo:null,qi:0,ok:0,h:0,start:Date.now(),learned:0,together:0};
   adaptive.node=nodeId;adaptive.qi=0;adaptive.ok=0;adaptive.h=0;
-  let n=MATHNODES[nodeId];head(`算数｜${n.title}`,child);
+  let n=MATHNODES[nodeId];head(`算数｜${n.title}`,child);A.append(accessibilityBox());
   A.append(e("div","card",`<h2>どこから始める？</h2><p>説明を見てからでも、問題からでも大丈夫です。</p>`));
   A.append(btn("📖 説明からはじめる",()=>mathLearn(nodeId),"primary"));
   A.append(btn("🚀 問題からやってみる",mathQ,"soft"));
@@ -42,7 +59,7 @@ function mathLearn(nodeId){
  g5_frac:"分数は、1つのものを同じ大きさに分けたうちのいくつ分かを表します。分母は何等分か、分子はいくつ分かを表します。",
  g6_fracmul:"分数のかけ算は、分子どうし・分母どうしをかけて考えます。約分できるときは整理します。"
  }[nodeId];
- A.append(e("div","card lesson",`<h2>📖 ミニ授業</h2><p>${msg}</p><p class="tiny">分からないところは、何度見直しても大丈夫です。</p>`));
+ A.append(e("div","card lesson",`<h2>📖 ミニ授業</h2><p>${msg}</p>${["g5_frac","g6_fracmul"].includes(nodeId)?fractionWords():""}<p class="tiny">分からないところは、何度見直しても大丈夫です。</p>`));
  A.append(btn("② 一緒にやってみる",()=>mathTogether(nodeId),"primary"));
  A.append(btn("もう分かった → ③ 自分でやる",mathQ,"soft"));
 }
