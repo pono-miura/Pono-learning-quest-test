@@ -88,7 +88,23 @@ function renderQ(title,q,total){
  q[1].forEach((x,n)=>{const b=document.createElement("button");b.className="choice";b.textContent=x;b.onclick=()=>answer(n,q[2],q[3]||null);document.querySelector("#choices").appendChild(b)});
  document.querySelector("#speak").onclick=()=>{reads++;speak(q[0])};document.querySelector("#hint").onclick=()=>{hints++;alert("式やまとまりを小さく分けて考えてみよう。")}
 }
-function answer(n,a,tag){const ok=n===a;log.push({tag,ok});if(ok){correct++;ping();alert("できた！")}else alert("もう一度確認する場所が見つかりました。");i++;stage==="diagnostic"?diagnostic():lessonQ()}
+function feedback(message,kind,next,delay){
+ const old=document.querySelector(".feedback");if(old)old.remove();
+ const box=document.createElement("div");box.className="feedback "+kind;box.textContent=message;
+ document.querySelector(".card").appendChild(box);
+ document.querySelectorAll("button").forEach(b=>b.disabled=true);
+ setTimeout(next,delay);
+}
+function answer(n,a,tag){
+ const ok=n===a;log.push({tag,ok});
+ if(ok){
+  correct++;
+  ping();
+  feedback("✨ できた！","good",()=>{i++;stage==="diagnostic"?diagnostic():lessonQ()},950);
+ }else{
+  feedback("🌱 もう一度確認してみよう","retry",()=>{i++;stage==="diagnostic"?diagnostic():lessonQ()},1100);
+ }
+}
 function diagnosticResult(){
  const weak=log.filter(x=>!x.ok).map(x=>x.tag),route=weak.includes("九九")?"pre":weak.includes("意味")||weak.includes("計算")?"basic":weak.includes("文章題")?"word":"mini";
  const labels={pre:"九九・かけ算から確認",basic:"わり算の意味から",word:"文章題から",mini:"ミニテストへ"};
