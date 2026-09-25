@@ -1,1 +1,14 @@
-*{box-sizing:border-box}body{margin:0;background:#f7f6f1;color:#30352f;font-family:-apple-system,BlinkMacSystemFont,"Noto Sans JP",sans-serif}.wrap{max-width:760px;margin:auto;padding:18px}.card{background:#fff;border-radius:18px;padding:20px;margin:12px 0;box-shadow:0 2px 12px #0001}h1{font-size:25px}h2{font-size:20px}button{width:100%;padding:15px;margin:6px 0;border:0;border-radius:14px;background:#e7efe3;color:#243024;font:inherit;font-size:16px;font-weight:700}.choice{text-align:left;background:#f7f7f4}.primary{background:#cadfc4}.secondary{background:#f1eee5}.muted{color:#687268}.pill{display:inline-block;background:#eef4ec;border-radius:999px;padding:6px 10px;margin:3px}.box{padding:12px;border-radius:13px;background:#f4f6f1;margin:10px 0}.good{background:#eef6eb}.bar{height:10px;background:#eee;border-radius:9px;overflow:hidden}.bar i{display:block;height:100%;background:#cadfc4}.small{font-size:13px}table{border-collapse:collapse;font-size:13px}td,th{vertical-align:top}@media print{button{display:none!important}.card{box-shadow:none}.wrap{max-width:none}}
+*{box-sizing:border-box}
+body{margin:0;background:#f7f6f1;color:#30352f;font-family:-apple-system,BlinkMacSystemFont,"Noto Sans JP",sans-serif}
+.wrap{max-width:760px;margin:auto;padding:18px}
+.card{background:#fff;border-radius:18px;padding:20px;margin:12px 0;box-shadow:0 2px 12px #0001}
+h1{font-size:25px} h2{font-size:20px}
+button{width:100%;padding:15px;margin:6px 0;border:0;border-radius:14px;background:#e7efe3;color:#243024;font:inherit;font-size:16px;font-weight:700;touch-action:manipulation}
+button:active{transform:scale(.99)}
+.choice{text-align:left;background:#f7f7f4}
+.primary{background:#cadfc4}.secondary{background:#f1eee5}
+.muted{color:#687268}.pill{display:inline-block;background:#eef4ec;border-radius:999px;padding:6px 10px;margin:3px}
+.box{padding:12px;border-radius:13px;background:#f4f6f1;margin:10px 0}
+.bar{height:10px;background:#eee;border-radius:9px;overflow:hidden}.bar i{display:block;height:100%;background:#cadfc4}
+.small{font-size:13px} table{border-collapse:collapse;font-size:13px} td,th{vertical-align:top}
+@media print{button{display:none!important}.card{box-shadow:none}.wrap{max-width:none}}
