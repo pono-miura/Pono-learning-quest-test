@@ -14,3 +14,5 @@ ruby rt{font-size:.55em;font-weight:500}
 
 .learning-detail h3{margin:0 0 8px;font-size:1rem}.learning-detail p{margin:7px 0}
 @media print{.noPrint,header,.back{display:none!important}.card{break-inside:avoid;box-shadow:none}}
+
+.school-share{border:2px solid #e3dcc9}.weekly-item p{margin:8px 0 0}

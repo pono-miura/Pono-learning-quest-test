@@ -92,13 +92,40 @@ function help(x,unk){S.h++;if(unk)S.u++;document.querySelectorAll(".feedback").f
 function answer(ok,x){if(ok){S.ok++;new Audio("correct.wav").play().catch(()=>{});A.append(e("div","feedback","✨ できた！"));setTimeout(()=>{qi++;question()},650)}else{S.h++;A.append(e("div","feedback warn",`🌱 ここを確認してみよう<br><span class="tiny">${x}</span>`))}}
 function finish(){let n=B[subject].length,rate=Math.round(S.ok/n*100),sec=Math.round((Date.now()-S.start)/1000);let next=rate>=90&&S.h<=1?"現在の学年を目安に少し発展":rate>=60?"今の内容をもう一度確認":"必要な既習内容を確認してから戻る";let process=S.h? "説明・確認を使って再挑戦":"自力で取り組み";let planned=(()=>{let p=JSON.parse(localStorage.getItem(PK)||"{}"),days=["日","月","火","水","木","金","土"],x=p[days[new Date().getDay()]];if(!x||x.off)return false;let a=Array.isArray(x.items)?x.items:(x.s?[{s:x.s}]:[]);return a.some(it=>it.s===subject)})();records.push({studentId:profile.id,date:new Date().toISOString(),subject,grade:profile.grade,rate,hints:S.h,reads:S.r,unknown:S.u,seconds:sec,next,process,planned:!!planned,progress:rate>=90?"予定より先へ進める状態":rate>=60?"予定内容を定着中":"基礎確認を優先"});save();head("✨ 学習記録",child);let c=e("div","card",`<h2>取り組めました</h2><p>${subject} ${n}問</p><p>${process}</p><p><b>次：</b>${next}</p><p class="tiny">予定は目安です。その日の理解に合わせて進む・確認するを選べます。</p>`);A.append(c);if(rate>=90){A.append(btn("🚀 もう少し進む",()=>start(subject),"primary"));A.append(btn("🌿 今日はここまで",child,"soft"))}else if(rate>=60){A.append(btn("🔁 もう一度やって定着する",()=>start(subject),"primary"));A.append(btn("🌿 今日はここまで",child,"soft"))}else{A.append(btn("🌱 基礎を確認してからもう一度",()=>start(subject),"primary"));A.append(btn("🌿 今日はここまで",child,"soft"))}}
 function myRecords(){return records.filter(r=>r.studentId===profile.id)}
-function parent(){head("🏠 自分の子の学び",home);let rr=myRecords().slice(-7),last=rr.at(-1),mins=Math.round(rr.reduce((a,r)=>a+r.seconds,0)/60),advanced=rr.filter(r=>r.progress==="予定より先へ進める状態").length,review=rr.filter(r=>r.progress==="基礎確認を優先").length;
-A.append(e("div","card",`<h2>${profile.name}の今週</h2><span class="pill">${rr.length}回取り組み</span><span class="pill">約${mins}分</span><p>${!last?"まだ記録はありません。":last.hints?`${last.subject}では、必要な説明を確認しながら再挑戦できました。`:`${last.subject}に自分で取り組めました。`}</p>`));
-let route=last&&last.adaptivePath?last.adaptivePath.map(x=>x.title).join(" → "):"";A.append(e("div","card",`<h2>🌱 どんなふうに学べている？</h2><p>${!last?"学習を始めると、ここに学び方の変化が表示されます。":route?`必要な内容を確認しながら学習しました：${route}`:`${last.process} → ${last.next}`}</p><p class="tiny">説明を見る・読み上げを使う・「わからない」と伝える・再挑戦することも、大切な学びの過程として記録します。</p>`));
-let movement=!rr.length?"まだ学習記録はありません。":advanced?`おすすめの内容に加えて、さらに進める状態が ${advanced}回ありました。理解できた時は予定で止めず、次の学習へつなげます。`:review?`必要な内容を確認する学習が ${review}回ありました。前の内容に戻ることも、次へつなげるための学びとして記録しています。`:"今の内容を自分のペースで確認しながら進めています。";
-A.append(e("div","card",`<h2>✨ 予定からの広がり</h2><p>${movement}</p><p class="tiny">予定どおりかどうかではなく、その日の理解に合わせて「進む・定着する・確認する」を見ています。</p>`));
-A.append(e("div","card",`<h2>できるようになってきたこと</h2><p>${growth(rr)}</p>`));
-A.append(e("div","card",`<h2>次のおすすめ</h2><p>${last?last.next:"興味のある教科から始めます。"}</p><p class="tiny">本番では、保護者ログインに紐づく自分のお子さんの情報だけを表示します。</p>`))}
+function parent(){
+ head("🏠 自分の子の学び",home);
+ let all=myRecords(), now=new Date(), day=now.getDay(), diff=(day===0?6:day-1);
+ let monday=new Date(now);monday.setHours(0,0,0,0);monday.setDate(now.getDate()-diff);
+ let sunday=new Date(monday);sunday.setDate(monday.getDate()+6);sunday.setHours(23,59,59,999);
+ let rr=all.filter(r=>{let d=new Date(r.date);return !isNaN(d)&&d>=monday&&d<=sunday});
+ let last=rr.at(-1),mins=Math.round(rr.reduce((a,r)=>a+(Number(r.seconds)||0),0)/60);
+ let dates=new Set(rr.map(r=>{let d=new Date(r.date);return isNaN(d)?"":d.toLocaleDateString("ja-JP",{timeZone:"Asia/Tokyo"})}).filter(Boolean));
+ let subjects=[...new Set(rr.map(r=>r.subject).filter(Boolean))];
+ let units=[...new Set(rr.map(r=>r.unit||r.nodeTitle||r.title).filter(Boolean))];
+ let period=`${monday.getMonth()+1}/${monday.getDate()}〜${sunday.getMonth()+1}/${sunday.getDate()}`;
+ A.append(e("div","card",`<h2>${profile.name}の今週</h2><p><b>${period}</b></p><span class="pill">学習 ${dates.size}日</span><span class="pill">${rr.length}回</span><span class="pill">約${mins}分</span><p>教科：${subjects.join("・")||"―"}</p>`));
+ let show=btn("🏫 学校に見せる画面",()=>weeklyShare(rr,monday,sunday),"primary");A.append(show);
+ let route=last&&last.adaptivePath?last.adaptivePath.map(x=>x.title).join(" → "):"";
+ A.append(e("div","card",`<h2>🌱 どんなふうに学べている？</h2><p>${!last?"今週の学習記録はまだありません。":route?`必要な内容を確認しながら学習しました：${route}`:`${last.process||last.subject||"学習"} → ${last.next||"次の学習へ"}`}</p><p class="tiny">説明を見る・読み上げを使う・「わからない」と伝える・再挑戦することも、大切な学びの過程として記録します。</p>`));
+ A.append(e("div","card",`<h2>今週取り組んだ内容</h2><p>${units.length?units.join("・"):"学習をすると単元がここに表示されます。"}</p>`));
+ A.append(e("div","card",`<h2>できるようになってきたこと</h2><p>${growth(rr)}</p>`));
+ A.append(e("div","card",`<h2>次のおすすめ</h2><p>${last&&last.next?last.next:"興味のある教科から始めます。"}</p><p class="tiny">本番では、保護者ログインに紐づく自分のお子さんの情報だけを表示します。</p>`));
+}
+function weeklyShare(rr,monday,sunday){
+ head("🏫 今週の学び・学校共有",parent);
+ let mins=Math.round(rr.reduce((a,r)=>a+(Number(r.seconds)||0),0)/60);
+ let dates=new Set(rr.map(r=>{let d=new Date(r.date);return isNaN(d)?"":d.toLocaleDateString("ja-JP",{timeZone:"Asia/Tokyo"})}).filter(Boolean));
+ let subjects=[...new Set(rr.map(r=>r.subject).filter(Boolean))];
+ A.append(e("div","card school-share",`<h2>${profile.name}｜今週の学び</h2><p><b>${monday.getMonth()+1}月${monday.getDate()}日〜${sunday.getMonth()+1}月${sunday.getDate()}日</b></p><p>学習した日：<b>${dates.size}日</b>　学習時間：<b>約${mins}分</b></p><p>教科：${subjects.join("・")||"―"}</p><p class="tiny">保護者の方が学校で簡単に学習状況を見せるための画面です。</p>`));
+ if(!rr.length){A.append(e("div","card","今週の学習記録はまだありません。"));return}
+ rr.slice().reverse().forEach(r=>{
+   let d=new Date(r.date),date=isNaN(d)?"日時記録なし":d.toLocaleString("ja-JP",{timeZone:"Asia/Tokyo",month:"numeric",day:"numeric",hour:"2-digit",minute:"2-digit",hour12:false});
+   let unit=r.unit||r.nodeTitle||r.title||"単元名の記録なし";
+   let mins2=Math.max(1,Math.round((Number(r.seconds)||0)/60));
+   let status=r.status||((r.result==="ok"||r.ok===true)?"自力でできた":"練習中");
+   A.append(e("div","card weekly-item",`<b>${date}　${r.subject||"学習"}｜${unit}</b><p>約${mins2}分　／　${status}</p>`));
+ });
+}
 function growth(rr){if(!rr.length)return"これからの小さな変化をここに残していきます。";let l=rr.at(-1);if(l.rate>=90&&l.hints<=1)return`${l.subject}では、自力で確認できる内容が増えています。次は定着を確かめながら少し先へ進みます。`;if(l.hints>0)return`${l.subject}では、説明を使いながらもう一度挑戦することができています。自力でできる範囲につなげていきます。`;return`${l.subject}に取り組み、自分のペースで学習を続けています。`}
 function teacher(){head("📝 先生・Pono",home);A.append(btn("📅 今週の時間割を作る",plan,"primary"));A.append(btn("👥 生徒の現在地・達成状況",()=>{head("👥 生徒の現在地",teacher);let r=myRecords(),l=r.at(-1);A.append(e("div","card",`<b>${profile.name}</b>｜在籍 小学${profile.grade}年<br><span class="pill">${!l?"未確認":l.rate>=90&&l.hints<=1?"自力でできた":l.hints?"練習中":"取り組み中"}</span><p>${l?`${l.subject}：${l.process}<br>次：${l.next}`:"記録はまだありません。"}</p>`))}));A.append(btn("📄 学校提出用を自動作成",report));A.append(e("p","tiny","試作版はこの端末のブラウザ内保存です。本番では子ども・保護者・先生の認証と権限を分けます。"))}
 function plan(){head("📅 今週の時間割",teacher);let saved=JSON.parse(localStorage.getItem(PK)||"{}"),days=["月","火","水","木","金"];
@@ -109,6 +136,12 @@ let old=saved[d], initial=old&&Array.isArray(old.items)?old.items:(old&&old.s?[{
 function addSlot(v={s:"国語",u:"おすすめ単元"}){let row=e("div","soft");row.style.padding="10px";row.style.margin="8px 0";let ss=e("select");subs.forEach(x=>{let o=e("option","",x);o.value=x;ss.append(o)});ss.value=v.s||"国語";let u=e("input");u.placeholder="単元・内容";u.value=v.u||"";let del=btn("－ この予定を削除",()=>row.remove());row.append(ss,u,del);area.append(row)}
 initial.forEach(addSlot);c.append(btn("＋ 科目を追加",()=>addSlot(),"soft"));off.onchange=()=>{area.style.opacity=off.checked?".35":"1";area.style.pointerEvents=off.checked?"none":"auto"};off.onchange();A.append(c)});
 A.append(btn("✓ 今週の予定を保存",()=>{let p={};document.querySelectorAll("[data-d]").forEach(c=>{let d=c.dataset.d,off=c.querySelector(".off").checked;if(off){p[d]={off:true,items:[]};return}let items=[];c.querySelectorAll(".slots>div").forEach(r=>{let ss=r.querySelector("select"),u=r.querySelector("input");items.push({s:ss.value,u:u.value||"おすすめ単元"})});p[d]={off:false,items}});localStorage.setItem(PK,JSON.stringify(p));alert("今週の予定を保存しました")},"primary"))}
+function jpDateTime(v){
+ if(!v)return "日時記録なし";
+ let d=new Date(v);
+ if(isNaN(d.getTime()))return v;
+ return new Intl.DateTimeFormat("ja-JP",{timeZone:"Asia/Tokyo",year:"numeric",month:"long",day:"numeric",hour:"2-digit",minute:"2-digit",hour12:false}).format(d);
+}
 function report(){
  head("📄 学校共有用・学習報告",teacher);
  let rr=myRecords().slice().reverse();
@@ -119,8 +152,8 @@ function report(){
  sum.innerHTML=`<h2>学習のまとめ</h2><p><b>取組 ${rr.length}回／約${total}分</b></p><p class="tiny">単元ごとの詳しい記録は下に表示されます。</p>`;
  A.append(sum);
  rr.forEach((r,i)=>{
-   let dt=r.date||"日時記録なし", mins=Math.max(1,Math.round((Number(r.seconds)||0)/60));
-   let unit=r.unit||r.nodeTitle||r.title||r.next||"学習内容";
+   let dt=jpDateTime(r.date), mins=Math.max(1,Math.round((Number(r.seconds)||0)/60));
+   let unit=r.unit||r.nodeTitle||r.title||"単元名の記録なし";
    let correct=(r.correct!=null?r.correct:(r.score!=null?r.score:"―"));
    let totalq=(r.total!=null?r.total:"―");
    let status=r.status||((r.result==="ok"||r.ok===true)?"自力でできた":"練習中");
@@ -133,6 +166,7 @@ function report(){
    c.innerHTML=`<h3>${dt}</h3>
    <p><b>${r.subject||"学習"}｜${r.grade?`${r.grade}年相当｜`:""}${unit}</b></p>
    <p>学習時間：約${mins}分</p>
+   <p>学習内容：${r.content||r.detail||unit}</p>
    <p>理解の記録：${totalq!=="―"?`${correct}/${totalq}`:(r.result==="ok"?"正答":"記録あり")}　／　現在：${status}</p>
    <p>学習方法：${supports.length?supports.join("・"):"自分で取り組み"}</p>
    ${r.next?`<p>次の学習：${r.next}</p>`:""}`;
