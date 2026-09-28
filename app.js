@@ -616,6 +616,92 @@ let sec=Math.round((Date.now()-adaptive.start)/1000);let lastNode=adaptive.histo
 let nextText=rate>=90?"少し発展へ":"定着を確認", status=rate>=90?"自力でできた":rate>=67?"練習中":"基礎を確認";
 records.push({studentId:profile.id,date:new Date().toISOString(),subject:"算数",grade:node.grade,unit:node.title,content:node.title,rate,correct:lastNode&&lastNode.ok!=null?lastNode.ok:Math.round(rate*node.qs.length/100),total:node.qs.length,seconds:sec,hints:adaptive.history.reduce((a,x)=>a+x.hints,0),reads:0,unknown:0,next:nextText,status,process:"学年横断の確認ルート",explanationViews:adaptive.learned||0,togetherViews:adaptive.together||0,adaptivePath:adaptive.history,errorKinds:adaptive.errorKinds||{},questionStructure:"理解確認・基本・文章/場面"});save();head("✨ 算数の学習経過",child);let path=adaptive.history.map(x=>`${x.title}（${x.rate}%）`).join(" → ");A.append(e("div","card",`<h2>取り組めました</h2><p><b>学習の道すじ</b><br>${path}</p><p>必要な内容を確認しながら、元の学習につなげました。</p><p class="tiny">この経過は保護者・先生の記録にも残ります。</p>`));A.append(btn("🌿 今日はここまで",child,"soft"))}
 
+
+/* ===== v17 国語 小1モデル ===== */
+const J1UNITS=[
+ {id:"j1_read",title:"文を読んでわかる",desc:"だれ・なにを・じゅんばん",qs:[
+  ["「あさ、ゆうたさんは こうえんへ いきました。」こうえんへ いったのは だれ？",["ゆうたさん","こうえん","あさ"],0],
+  ["「ねこが いすの したで ねています。」ねこは どこに いる？",["いすの うえ","いすの した","そと"],1],
+  ["「てを あらってから、ごはんを たべました。」さきに したことは？",["ごはんを たべる","てを あらう","ねる"],1]
+ ]},
+ {id:"j1_words",title:"ことばと文",desc:"ことばの意味・文のつながり",qs:[
+  ["「おおきい」の はんたいに ちかい ことばは？",["ちいさい","ながい","あかい"],0],
+  ["「わたし（　）がっこうへ いきます。」に はいるのは？",["は","を","で"],0],
+  ["「いぬが はしる。」はしるのは だれ？",["いぬ","はしる","だれもいない"],0]
+ ]},
+ {id:"j1_kanji",title:"かん字クエスト",desc:"読む・意味・形・お話・大きく書く",kanji:true}
+];
+const J1KANJI=[
+ {k:"休",read:"やすむ・キュウ",meaning:"からだや こころを やすめる",parts:"人（にんべん）＋ 木",story:"人が 木の そばで、ひと休み。",sentence:"きょうは ゆっくり 休みます。"},
+ {k:"木",read:"き・モク",meaning:"き。みきや えだが ある しょくぶつ",parts:"一本の みきと、えだの 形を 見てみよう",story:"まんなかに みき、左右に えだ。木の すがたを 思いうかべよう。",sentence:"大きな 木が あります。"},
+ {k:"日",read:"ひ・ニチ",meaning:"たいよう・一日などを あらわす",parts:"四角い 形の 中に 一本",story:"まどから お日さまを 見ているような 形。",sentence:"日よう日に あそびます。"}
+];
+let J={unit:null,qi:0,ok:0,reads:0,hints:0,start:0};
+
+function japaneseStart(){
+ head("📚 国語｜小1モデル",child);
+ A.append(e("div","card",`<h2>ことばの力を、分けて見つけよう</h2><p>読む・意味が分かる・考える・書くを、ひとまとめにしません。</p><p class="tiny">🔊 読み上げで分かった時も大切な記録です。漢字は「書ける」だけで判断しません。</p>`));
+ J1UNITS.forEach(u=>{let c=e("div","unit-pick",`<b>${u.kanji?"🌱":"📖"} ${u.title}</b><br><span class="tiny">${u.desc}</span>`);c.onclick=()=>u.kanji?kanjiMenu():japaneseEntry(u);A.append(c)});
+ A.append(e("div","card soft",`<b>今回のv17は小1モデルです</b><p class="tiny">文字サイズ・読み上げ・漢字の覚え方・大きな手書き欄を先に確認してから、小2〜小6へ広げます。</p>`));
+}
+function japaneseEntry(u){
+ J={unit:u,qi:0,ok:0,reads:0,hints:0,start:Date.now()};
+ head(`📖 ${u.title}`,japaneseStart);
+ A.append(e("div","card lesson",`<h2>① まなぶ</h2><p>${u.id==="j1_read"?"文を読んだら、「だれ」「どこ」「なにをした」を一つずつ見つけよう。": "ことばは、文の中でどんな役目をしているかを見てみよう。"}</p><p class="tiny">自分で読むのが大変な時は、聞いて確かめても大丈夫です。</p>`));
+ A.append(btn("🔊 説明を聞く",()=>speakJP(A.querySelector(".lesson").innerText),"soft"));
+ A.append(btn("➡️ ② 一緒にやってみる",()=>japaneseTogether(u),"primary"));
+ A.append(btn("③ 自分でやる",()=>japaneseQ(),"soft"));
+}
+function japaneseTogether(u){
+ head(`② 一緒に｜${u.title}`,()=>japaneseEntry(u));let q=u.qs[0];
+ A.append(e("div","card lesson",`<h2>一緒に見てみよう</h2><p><b>${q[0]}</b></p><p>文の中にある手がかりを、一つずつ見つけます。</p><p class="answer-box">答え：<b>${q[1][q[2]]}</b></p>`));
+ A.append(btn("🔊 一緒に聞く",()=>speakJP(q[0]+" 答えは "+q[1][q[2]]),"soft"));
+ A.append(btn("③ 自分でやってみる",japaneseQ,"primary"));
+}
+function japaneseQ(){
+ let u=J.unit,q=u.qs[J.qi]; if(!q)return japaneseFinish();
+ head(`${u.title}｜③ 自分で`,japaneseStart);
+ A.append(e("div","tiny",`${J.qi+1}/${u.qs.length}`));
+ A.append(e("div","card",`<h2>${q[0]}</h2>`));
+ A.append(btn("🔊 問題を聞く",()=>{J.reads++;speakJP(q[0])},"soft"));
+ q[1].forEach((x,i)=>A.append(btn(x,()=>{if(i===q[2]){J.ok++;new Audio("correct.wav").play().catch(()=>{});J.qi++;setTimeout(japaneseQ,500)}else{J.hints++;A.append(e("div","feedback warn","🌱 文の中の手がかりを、もう一度見てみよう。"))}})));
+ A.append(btn("🌱 わからない・説明を見る",()=>{J.hints++;A.append(e("div","feedback","一つずつ確認して大丈夫です。読み上げを使って内容が分かるか試してみよう。"))},"soft"));
+}
+function japaneseFinish(){
+ let u=J.unit,sec=Math.round((Date.now()-J.start)/1000),rate=Math.round(J.ok/u.qs.length*100);
+ records.push({studentId:profile.id,date:new Date().toISOString(),subject:"国語",grade:1,unit:u.title,content:u.desc,rate,correct:J.ok,total:u.qs.length,seconds:sec,hints:J.hints,reads:J.reads,status:rate>=90?"自力でできた":"練習中",process:J.reads?"読み上げも使って内容を確認":"自分で読んで確認"});save();
+ head("✨ 国語の学習経過",japaneseStart);
+ A.append(e("div","card",`<h2>取り組めました</h2><p><b>${u.title}</b></p><p>読み上げを使った回数：${J.reads}回</p><p class="tiny">読み上げで理解できた場合も、「読解できない」とはせず、読む負荷と内容理解を分けて見ていきます。</p>`));
+}
+function speakJP(t){let u=new SpeechSynthesisUtterance(String(t).replaceAll("①","").replaceAll("②","").replaceAll("③",""));u.lang="ja-JP";u.rate=.82;speechSynthesis.cancel();speechSynthesis.speak(u)}
+
+function kanjiMenu(){
+ head("🌱 かん字クエスト",japaneseStart);
+ A.append(e("div","card",`<h2>覚え方を えらべるよ</h2><p>👀 見る　🔊 読む　💡 意味　🧩 パーツ　🌱 お話・語呂　✍️ 大きく書く</p><p class="tiny">書けなくても、読める・意味が分かる・形が分かる力は別に残します。</p>`));
+ J1KANJI.forEach((x,i)=>A.append(btn(`${x.k}　${x.read}`,()=>kanjiDetail(i),"primary")));
+}
+function kanjiDetail(i){
+ let x=J1KANJI[i];head(`かん字「${x.k}」`,kanjiMenu);
+ let c=e("div","card kanji-card",`<div class="kanji-big">${x.k}</div><p><b>🔊 読む：</b>${x.read}</p><p><b>💡 意味：</b>${x.meaning}</p><p><b>🧩 パーツ・形：</b>${x.parts}</p><p><b>🌱 お話・語呂：</b>${x.story}</p><p><b>📝 文で使う：</b>${x.sentence}</p>`);A.append(c);
+ A.append(btn("🔊 聞いて覚える",()=>speakJP(`${x.k}。${x.read}。${x.meaning}。${x.story}。${x.sentence}`),"soft"));
+ A.append(btn("✍️ 大きく書いてみる",()=>kanjiWrite(i),"primary"));
+}
+function kanjiWrite(i){
+ let x=J1KANJI[i];head(`✍️「${x.k}」を大きく書く`,()=>kanjiDetail(i));
+ A.append(e("div","card",`<h2>大きく書いて大丈夫</h2><p>小さく書くことを目標にしません。指でもペンでも、書きやすい大きさで試せます。</p><div class="write-modes"><button id="traceMode">うすい字をなぞる</button><button id="freeMode">見ながら書く</button></div><div class="canvas-wrap"><div id="guideKanji">${x.k}</div><canvas id="writeCanvas"></canvas></div><p class="tiny">きれいさの自動採点はしません。「書く時の負担」と「漢字を知っている力」を分けます。</p>`));
+ let cv=document.getElementById("writeCanvas"),ctx=cv.getContext("2d"),wrap=cv.parentElement,guide=document.getElementById("guideKanji");
+ function size(){let r=wrap.getBoundingClientRect(),d=devicePixelRatio||1;cv.width=r.width*d;cv.height=r.width*d;cv.style.height=r.width+"px";ctx.scale(d,d);ctx.lineWidth=9;ctx.lineCap="round";ctx.lineJoin="round"}
+ size();let down=false;
+ function pos(ev){let r=cv.getBoundingClientRect(),p=ev.touches?ev.touches[0]:ev;return [p.clientX-r.left,p.clientY-r.top]}
+ cv.onpointerdown=ev=>{down=true;let [a,b]=pos(ev);ctx.beginPath();ctx.moveTo(a,b);cv.setPointerCapture(ev.pointerId)};
+ cv.onpointermove=ev=>{if(!down)return;let [a,b]=pos(ev);ctx.lineTo(a,b);ctx.stroke()};
+ cv.onpointerup=cv.onpointercancel=()=>down=false;
+ document.getElementById("traceMode").onclick=()=>guide.style.opacity=".14";
+ document.getElementById("freeMode").onclick=()=>guide.style.opacity="0";
+ A.append(btn("🧽 けす",()=>ctx.clearRect(0,0,cv.width,cv.height),"soft"));
+ A.append(btn("できた・今日はここまで",()=>{records.push({studentId:profile.id,date:new Date().toISOString(),subject:"国語",grade:1,unit:"かん字クエスト",content:`${x.k}｜大きな枠で書字`,seconds:0,status:"書字に取り組んだ",process:"大きな書字スペースを使用"});save();kanjiDetail(i)},"primary"));
+}
+
 function e(t,c,h){let x=document.createElement(t);if(c)x.className=c;if(h!==undefined)x.innerHTML=h;return x}
 function btn(t,f,c=""){let b=e("button",c,t);b.onclick=f;return b}
 function head(t,b){A.innerHTML="";let d=e("div","top");if(b)d.append(btn("← 戻る",b,"back"));d.append(e("h1","",t));A.append(d)}
@@ -625,8 +711,8 @@ function child(){head("🧒 今日の学習",home);let c=e("div","card",`<h2>${p
 let due=retentionDue();if(due){let rc=e("div","card good",`<h2>🔁 そろそろ定着確認</h2><p><b>${due.unit}</b></p><p>前に学んだ内容を、3問だけ確認してみよう。</p><p class="tiny">時間をあけて思い出せるかを見る確認です。できなくても大丈夫です。</p>`);rc.append(btn("3問だけやってみる",()=>startRetention(due),"primary"));A.append(rc)}
 let plan=JSON.parse(localStorage.getItem(PK)||"{}"), days=["日","月","火","水","木","金","土"], today=days[new Date().getDay()], tp=plan[today];
 if(tp&&tp.off){A.append(e("div","card soft","<h2>🌿 今日はお休み</h2><p>予定は入っていません。やりたい時は下から自由に学習できます。</p>"))}
-else if(tp){let items=Array.isArray(tp.items)?tp.items:(tp.s?[{s:tp.s,u:tp.u||"おすすめ単元"}]:[]);if(items.length){let pc=e("div","card good","<h2>🌟 今日のおすすめ</h2><p class='tiny'>予定は目安です。全部やらなくても、予定より進んでも大丈夫です。</p>");items.forEach((it,i)=>pc.append(btn(`▶ ${i+1}. ${it.s}｜${it.u||"おすすめ単元"}`,()=>it.s==="算数"?mathStart():start(it.s),"primary")));A.append(pc)}}
-let g=e("div","grid");subs.forEach(s=>g.append(btn(s,()=>s==="算数"?mathStart():start(s))));A.append(g)}
+else if(tp){let items=Array.isArray(tp.items)?tp.items:(tp.s?[{s:tp.s,u:tp.u||"おすすめ単元"}]:[]);if(items.length){let pc=e("div","card good","<h2>🌟 今日のおすすめ</h2><p class='tiny'>予定は目安です。全部やらなくても、予定より進んでも大丈夫です。</p>");items.forEach((it,i)=>pc.append(btn(`▶ ${i+1}. ${it.s}｜${it.u||"おすすめ単元"}`,()=>it.s==="算数"?mathStart():it.s==="国語"?japaneseStart():start(it.s),"primary")));A.append(pc)}}
+let g=e("div","grid");subs.forEach(s=>g.append(btn(s,()=>s==="算数"?mathStart():s==="国語"?japaneseStart():start(s))));A.append(g)}
 function start(s){subject=s;qi=0;S={ok:0,h:0,r:0,u:0,start:Date.now(),startGrade:profile.grade,route:[]};question()}
 function question(){head(`${subject}｜確認`,child);let q=B[subject][qi];if(!q)return finish();A.append(e("div","tiny",`${qi+1}/${B[subject].length}　開始目安：小学${S.startGrade}年`));A.append(e("div","card",`<h2>${q[0]}</h2>`));A.append(btn("🔊 問題をきく",()=>{S.r++;let u=new SpeechSynthesisUtterance(subject==="算数"?mathSpeechText(q[0]):q[0]);u.lang="ja-JP";u.rate=.86;speechSynthesis.cancel();speechSynthesis.speak(u)},"soft"));q[1].forEach((x,i)=>A.append(btn(x,()=>answer(i===q[2],q[3]))));A.append(btn("💡 ヒント・説明を見る",()=>help(q[3],false),"soft"));A.append(btn("🌱 わからない・説明を見る",()=>help(q[3],true),"soft"))}
 function help(x,unk){S.h++;if(unk)S.u++;document.querySelectorAll(".feedback").forEach(x=>x.remove());A.append(e("div","feedback",`<b>一緒に確認</b><br>${x}<br><span class="tiny">確認してから、もう一度挑戦して大丈夫です。</span>`))}

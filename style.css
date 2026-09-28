@@ -34,3 +34,10 @@ details.card summary{cursor:pointer;padding:4px 0}
 
 .cancel{text-decoration:line-through;text-decoration-thickness:2px}
 .fraction-steps .frac{font-size:1.15em}
+
+/* v17 国語・漢字 */
+.kanji-card{text-align:left}.kanji-big{font-size:clamp(96px,30vw,180px);line-height:1.05;text-align:center;margin:8px 0 18px}
+.canvas-wrap{position:relative;width:min(100%,620px);margin:14px auto;border:3px solid #bbb;border-radius:18px;overflow:hidden;background:#fff;aspect-ratio:1/1}
+#writeCanvas{position:absolute;inset:0;width:100%;touch-action:none;z-index:2}
+#guideKanji{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:min(65vw,430px);line-height:1;opacity:.14;z-index:1;user-select:none}
+.write-modes{display:grid;grid-template-columns:1fr 1fr;gap:8px}.write-modes button{font-size:16px}
