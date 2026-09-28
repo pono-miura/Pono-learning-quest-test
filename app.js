@@ -664,6 +664,7 @@ function japaneseQ(){
  A.append(e("div","tiny",`${J.qi+1}/${u.qs.length}`));
  A.append(e("div","card",`<h2>${q[0]}</h2>`));
  A.append(btn("🔊 問題を聞く",()=>{J.reads++;speakJP(q[0])},"soft"));
+ A.append(btn("✏️ メモ・筆算する",()=>mathScratchpad(),"soft"));
  q[1].forEach((x,i)=>A.append(btn(x,()=>{if(i===q[2]){J.ok++;new Audio("correct.wav").play().catch(()=>{});J.qi++;setTimeout(japaneseQ,500)}else{J.hints++;A.append(e("div","feedback warn","🌱 文の中の手がかりを、もう一度見てみよう。"))}})));
  A.append(btn("🌱 わからない・説明を見る",()=>{J.hints++;A.append(e("div","feedback","一つずつ確認して大丈夫です。読み上げを使って内容が分かるか試してみよう。"))},"soft"));
 }
@@ -700,6 +701,36 @@ function kanjiWrite(i){
  document.getElementById("freeMode").onclick=()=>guide.style.opacity="0";
  A.append(btn("🧽 けす",()=>ctx.clearRect(0,0,cv.width,cv.height),"soft"));
  A.append(btn("できた・今日はここまで",()=>{records.push({studentId:profile.id,date:new Date().toISOString(),subject:"国語",grade:1,unit:"かん字クエスト",content:`${x.k}｜大きな枠で書字`,seconds:0,status:"書字に取り組んだ",process:"大きな書字スペースを使用"});save();kanjiDetail(i)},"primary"));
+}
+
+
+/* v17.2 算数 共通メモ・筆算欄 */
+function mathScratchpad(){
+ let old=document.getElementById("mathScratchOverlay"); if(old) old.remove();
+ let ov=document.createElement("div"); ov.id="mathScratchOverlay"; ov.className="scratch-overlay";
+ ov.innerHTML=`<div class="scratch-sheet">
+   <div class="scratch-head"><b>✏️ メモ・筆算</b><button id="scratchClose">閉じる</button></div>
+   <p class="tiny">途中の計算や図を、自由に大きく書いて大丈夫です。メモを使ってもヒントにはなりません。</p>
+   <div class="scratch-canvas-wrap"><canvas id="scratchCanvas"></canvas></div>
+   <div class="scratch-actions"><button id="scratchClear">🧽 全部けす</button><button id="scratchDone">問題にもどる</button></div>
+ </div>`;
+ document.body.appendChild(ov);
+ let cv=document.getElementById("scratchCanvas"),wrap=cv.parentElement,ctx=cv.getContext("2d");
+ function resize(){
+   let r=wrap.getBoundingClientRect(),d=devicePixelRatio||1;
+   cv.width=r.width*d; cv.height=r.height*d; cv.style.width=r.width+"px"; cv.style.height=r.height+"px";
+   ctx.setTransform(d,0,0,d,0,0); ctx.lineWidth=5; ctx.lineCap="round"; ctx.lineJoin="round";
+ }
+ resize();
+ let down=false;
+ function pos(ev){let r=cv.getBoundingClientRect();return [ev.clientX-r.left,ev.clientY-r.top]}
+ cv.onpointerdown=ev=>{down=true;let [x,y]=pos(ev);ctx.beginPath();ctx.moveTo(x,y);cv.setPointerCapture(ev.pointerId)};
+ cv.onpointermove=ev=>{if(!down)return;let [x,y]=pos(ev);ctx.lineTo(x,y);ctx.stroke()};
+ cv.onpointerup=cv.onpointercancel=()=>down=false;
+ let close=()=>ov.remove();
+ document.getElementById("scratchClose").onclick=close;
+ document.getElementById("scratchDone").onclick=close;
+ document.getElementById("scratchClear").onclick=()=>ctx.clearRect(0,0,cv.width,cv.height);
 }
 
 function e(t,c,h){let x=document.createElement(t);if(c)x.className=c;if(h!==undefined)x.innerHTML=h;return x}

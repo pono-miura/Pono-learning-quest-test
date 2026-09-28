@@ -41,3 +41,14 @@ details.card summary{cursor:pointer;padding:4px 0}
 #writeCanvas{position:absolute;inset:0;width:100%;touch-action:none;z-index:2}
 #guideKanji{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:min(65vw,430px);line-height:1;opacity:.14;z-index:1;user-select:none}
 .write-modes{display:grid;grid-template-columns:1fr 1fr;gap:8px}.write-modes button{font-size:16px}
+
+/* v17.2 算数メモ・筆算欄 */
+.scratch-overlay{position:fixed;inset:0;background:rgba(0,0,0,.38);z-index:9999;padding:12px;overflow:auto}
+.scratch-sheet{max-width:720px;margin:8px auto;background:#fffdf8;border-radius:20px;padding:16px;box-shadow:0 8px 30px rgba(0,0,0,.2)}
+.scratch-head{display:flex;justify-content:space-between;align-items:center;font-size:22px;gap:12px}
+.scratch-head button,.scratch-actions button{font-size:17px;padding:12px 16px;border-radius:14px}
+.scratch-canvas-wrap{width:100%;height:min(62vh,650px);min-height:420px;background:#fff;border:3px solid #bbb;border-radius:16px;overflow:hidden;margin:12px 0;
+background-image:linear-gradient(#eee 1px,transparent 1px),linear-gradient(90deg,#eee 1px,transparent 1px);background-size:36px 36px}
+#scratchCanvas{display:block;touch-action:none}
+.scratch-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:480px){.scratch-canvas-wrap{height:58vh;min-height:390px}}
