@@ -1,0 +1,76 @@
+*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Noto Sans JP",sans-serif;background:#fbfaf5;color:#333}main{max-width:760px;margin:auto;padding:18px}.top{display:flex;gap:10px;align-items:center;margin-bottom:16px}.back{border:0;background:#eee8dc;border-radius:12px;padding:10px 14px}h1{font-size:24px;margin:8px 0}h2{font-size:20px}.sub,.tiny{color:#666}.tiny{font-size:13px}.card{background:#fff;border:1px solid #e5e0d7;border-radius:18px;padding:18px;margin:12px 0;box-shadow:0 2px 8px #0000000b}button,select,input,textarea{font:inherit}button{width:100%;padding:15px;margin:7px 0;border:1px solid #ddd4c6;background:#fff;border-radius:14px;text-align:left}.primary{background:#eee8dc;font-weight:700}.soft{background:#f7f2e9}.good{background:#eef6e9}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.grid button{margin:0}.pill{display:inline-block;padding:5px 9px;border-radius:999px;background:#f0ece4;margin:3px}select,input,textarea{width:100%;padding:11px;border:1px solid #ddd4c6;border-radius:10px;background:#fff;margin:5px 0}textarea{min-height:100px}.feedback{padding:14px;border-radius:12px;margin:10px 0;background:#eef6e9}.warn{background:#fff7e8}table{width:100%;border-collapse:collapse;font-size:14px}th,td{padding:8px;border-bottom:1px solid #eee;text-align:left}@media(max-width:520px){.grid{grid-template-columns:1fr}h1{font-size:22px}}@media print{.noPrint,.back{display:none!important}body{background:#fff}.card{box-shadow:none;border:0;padding:4px;margin:5px 0}main{max-width:none;padding:0}}
+.frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;line-height:1.05;margin:0 .12em;font-size:1.05em}
+.frac>span:first-child{border-bottom:1.8px solid currentColor;padding:0 .18em .08em}
+.frac>span:last-child{padding:.08em .18em 0}
+.lesson{font-size:1.05rem;line-height:1.9}
+
+.access-box{background:#f7faf5;border:1px solid #dce6d6;border-radius:18px;padding:12px 15px;margin:10px 0 16px}
+.access-box label{display:block;margin-top:8px}
+ruby rt{font-size:.55em;font-weight:500}
+.word-help{background:#faf8ef;border:1px solid #e6dfc9;border-radius:14px;padding:10px 13px;margin:14px 0}
+.word-help summary{font-weight:700;cursor:pointer}
+.word-grid p{margin:10px 0}
+.fraction-example{font-size:1.25rem;text-align:center}
+
+.learning-detail h3{margin:0 0 8px;font-size:1rem}.learning-detail p{margin:7px 0}
+@media print{.noPrint,header,.back{display:none!important}.card{break-inside:avoid;box-shadow:none}}
+
+.school-share{border:2px solid #e3dcc9}.weekly-item p{margin:8px 0 0}
+
+.tablewrap{overflow-x:auto} table{width:100%;border-collapse:collapse;font-size:14px} th,td{border-bottom:1px solid #ddd;padding:8px 5px;text-align:left;vertical-align:top}
+@media print{button,input[type=month],header,.no-print{display:none!important}.card{box-shadow:none;break-inside:avoid}body{background:#fff}.tablewrap{overflow:visible}textarea{border:1px solid #aaa;min-height:150px}}
+
+.unit-pick{margin:10px 0;padding:14px;border:1px solid #ddd;border-radius:14px;background:#fff;cursor:pointer;line-height:1.55}
+.unit-pick:active{transform:scale(.99)}
+details.card summary{cursor:pointer;padding:4px 0}
+
+.formula-card,.answer-box{margin:14px 0;padding:14px;border-radius:14px;background:#f7f7f7;line-height:1.8}.lesson h3{margin-top:18px}
+
+.question-kind{display:inline-block;margin:8px 0 10px;padding:7px 11px;border-radius:999px;background:#f2f2f2;font-size:.9rem;font-weight:700}
+
+.fraction-steps{text-align:center}
+.math-step{font-size:1.35rem;font-weight:700;margin:12px 0;line-height:2}
+.step-arrow{font-size:.9rem;margin:6px 0;line-height:1.6}
+
+.cancel{text-decoration:line-through;text-decoration-thickness:2px}
+.fraction-steps .frac{font-size:1.15em}
+
+/* v17 国語・漢字 */
+.kanji-card{text-align:left}.kanji-big{font-size:clamp(96px,30vw,180px);line-height:1.05;text-align:center;margin:8px 0 18px}
+.canvas-wrap{position:relative;width:min(100%,620px);margin:14px auto;border:3px solid #bbb;border-radius:18px;overflow:hidden;background:#fff;aspect-ratio:1/1}
+#writeCanvas{position:absolute;inset:0;width:100%;touch-action:none;z-index:2}
+#guideKanji{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:min(65vw,430px);line-height:1;opacity:.14;z-index:1;user-select:none}
+.write-modes{display:grid;grid-template-columns:1fr 1fr;gap:8px}.write-modes button{font-size:16px}
+
+/* v17.2 算数メモ・筆算欄 */
+.scratch-overlay{position:fixed;inset:0;background:rgba(0,0,0,.38);z-index:9999;padding:12px;overflow:auto}
+.scratch-sheet{max-width:720px;margin:8px auto;background:#fffdf8;border-radius:20px;padding:16px;box-shadow:0 8px 30px rgba(0,0,0,.2)}
+.scratch-head{display:flex;justify-content:space-between;align-items:center;font-size:22px;gap:12px}
+.scratch-head button,.scratch-actions button{font-size:17px;padding:12px 16px;border-radius:14px}
+.scratch-canvas-wrap{width:100%;height:min(62vh,650px);min-height:420px;background:#fff;border:3px solid #bbb;border-radius:16px;overflow:hidden;margin:12px 0;
+background-image:linear-gradient(#eee 1px,transparent 1px),linear-gradient(90deg,#eee 1px,transparent 1px);background-size:36px 36px}
+#scratchCanvas{display:block;touch-action:none}
+.scratch-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:480px){.scratch-canvas-wrap{height:58vh;min-height:390px}}
+
+.scratch-problem{margin:10px 0;padding:12px 14px;border:2px solid #ddd;border-radius:14px;background:#fff}.scratch-problem-text{font-size:clamp(24px,6vw,36px);font-weight:700;margin-top:4px}
+
+/* v17.6 scratchpad header */
+.scratch-head{align-items:flex-start}
+.scratch-head>div{flex:1;min-width:0}
+.scratch-head .scratch-close{width:44px;height:44px;min-width:44px;padding:0;margin:0;border-radius:50%;font-size:28px;line-height:1}
+.scratch-problem-inline{margin-top:10px;padding:10px 12px;border:2px solid #ddd;border-radius:12px;background:#fff}
+.scratch-problem-inline span{display:block;font-size:13px;font-weight:600}
+.scratch-problem-inline strong{display:block;font-size:clamp(24px,6vw,34px);line-height:1.35;margin-top:3px;overflow-wrap:anywhere}
+.scratch-note{margin:10px 0 6px}
+@media(max-width:480px){
+ .scratch-sheet{padding:12px}
+ .scratch-head{gap:8px}
+ .scratch-head .scratch-close{width:40px;height:40px;min-width:40px;font-size:25px}
+ .scratch-canvas-wrap{margin-top:8px}
+}
+
+/* v17.7: scratchpad fractions stay compact on one line */
+.scratch-problem-inline strong{white-space:normal}
+.scratch-frac{display:inline-flex;align-items:baseline;gap:.08em;white-space:nowrap;font-size:1em}
+.scratch-slash{font-weight:500;padding:0 .02em}
