@@ -445,28 +445,32 @@ function mathLessonData(node){
 
 function mathSpeechText(text){
  let t=String(text);
+
+ // 表示は変えず、読み上げ時だけ小学生向けの自然な読みへ変換する。
  t=t.replaceAll("時刻","じこく").replaceAll("時こく","じこく");
 
- // 数字を日本語の読みへ。TTSが「2分」を「にふん」と読むのを避けるため、
- // 分数は「にぶんのいち」のようなひらがなへ先に変換する。
  const nums={
    "0":"れい","1":"いち","2":"に","3":"さん","4":"よん","5":"ご",
    "6":"ろく","7":"なな","8":"はち","9":"きゅう","10":"じゅう"
  };
  function nread(x){ return nums[String(x)] || String(x); }
 
+ // 分数は先に変換する。
  t=t.replace(/(\d+)\s*\/\s*(\d+)/g,(m,num,den)=>{
    return `${nread(den)}ぶんの${nread(num)}`;
  });
-
- // 万一 / が残った場合も「スラッシュ」と発音させない。
  t=t.replace(/\s*\/\s*/g," ぶんの ");
 
  return t
+   .replaceAll("＋"," たす ")
+   .replaceAll("+"," たす ")
+   .replaceAll("−"," ひく ")
+   .replaceAll("－"," ひく ")
+   .replaceAll("-"," ひく ")
    .replaceAll("×"," かける ")
    .replaceAll("÷"," わる ")
-   .replaceAll("＝"," イコール ")
-   .replaceAll("="," イコール ")
+   .replaceAll("＝"," は ")
+   .replaceAll("="," は ")
    .replaceAll("cm²","へいほうセンチメートル")
    .replaceAll("cm³","りっぽうセンチメートル")
    .replaceAll("cm","センチメートル")
@@ -624,7 +628,7 @@ if(tp&&tp.off){A.append(e("div","card soft","<h2>🌿 今日はお休み</h2><p>
 else if(tp){let items=Array.isArray(tp.items)?tp.items:(tp.s?[{s:tp.s,u:tp.u||"おすすめ単元"}]:[]);if(items.length){let pc=e("div","card good","<h2>🌟 今日のおすすめ</h2><p class='tiny'>予定は目安です。全部やらなくても、予定より進んでも大丈夫です。</p>");items.forEach((it,i)=>pc.append(btn(`▶ ${i+1}. ${it.s}｜${it.u||"おすすめ単元"}`,()=>it.s==="算数"?mathStart():start(it.s),"primary")));A.append(pc)}}
 let g=e("div","grid");subs.forEach(s=>g.append(btn(s,()=>s==="算数"?mathStart():start(s))));A.append(g)}
 function start(s){subject=s;qi=0;S={ok:0,h:0,r:0,u:0,start:Date.now(),startGrade:profile.grade,route:[]};question()}
-function question(){head(`${subject}｜確認`,child);let q=B[subject][qi];if(!q)return finish();A.append(e("div","tiny",`${qi+1}/${B[subject].length}　開始目安：小学${S.startGrade}年`));A.append(e("div","card",`<h2>${q[0]}</h2>`));A.append(btn("🔊 問題をきく",()=>{S.r++;let u=new SpeechSynthesisUtterance(q[0].replaceAll("÷","わる").replaceAll("×","かける"));u.lang="ja-JP";u.rate=.86;speechSynthesis.cancel();speechSynthesis.speak(u)},"soft"));q[1].forEach((x,i)=>A.append(btn(x,()=>answer(i===q[2],q[3]))));A.append(btn("💡 ヒント・説明を見る",()=>help(q[3],false),"soft"));A.append(btn("🌱 わからない・説明を見る",()=>help(q[3],true),"soft"))}
+function question(){head(`${subject}｜確認`,child);let q=B[subject][qi];if(!q)return finish();A.append(e("div","tiny",`${qi+1}/${B[subject].length}　開始目安：小学${S.startGrade}年`));A.append(e("div","card",`<h2>${q[0]}</h2>`));A.append(btn("🔊 問題をきく",()=>{S.r++;let u=new SpeechSynthesisUtterance(subject==="算数"?mathSpeechText(q[0]):q[0]);u.lang="ja-JP";u.rate=.86;speechSynthesis.cancel();speechSynthesis.speak(u)},"soft"));q[1].forEach((x,i)=>A.append(btn(x,()=>answer(i===q[2],q[3]))));A.append(btn("💡 ヒント・説明を見る",()=>help(q[3],false),"soft"));A.append(btn("🌱 わからない・説明を見る",()=>help(q[3],true),"soft"))}
 function help(x,unk){S.h++;if(unk)S.u++;document.querySelectorAll(".feedback").forEach(x=>x.remove());A.append(e("div","feedback",`<b>一緒に確認</b><br>${x}<br><span class="tiny">確認してから、もう一度挑戦して大丈夫です。</span>`))}
 function answer(ok,x){if(ok){S.ok++;new Audio("correct.wav").play().catch(()=>{});A.append(e("div","feedback","✨ できた！"));setTimeout(()=>{qi++;question()},650)}else{S.h++;A.append(e("div","feedback warn",`🌱 ここを確認してみよう<br><span class="tiny">${x}</span>`))}}
 function finish(){let n=B[subject].length,rate=Math.round(S.ok/n*100),sec=Math.round((Date.now()-S.start)/1000);let next=rate>=90&&S.h<=1?"現在の学年を目安に少し発展":rate>=60?"今の内容をもう一度確認":"必要な既習内容を確認してから戻る";let process=S.h? "説明・確認を使って再挑戦":"自力で取り組み";let planned=(()=>{let p=JSON.parse(localStorage.getItem(PK)||"{}"),days=["日","月","火","水","木","金","土"],x=p[days[new Date().getDay()]];if(!x||x.off)return false;let a=Array.isArray(x.items)?x.items:(x.s?[{s:x.s}]:[]);return a.some(it=>it.s===subject)})();records.push({studentId:profile.id,date:new Date().toISOString(),subject,grade:profile.grade,unit:`${subject} 基礎確認`,content:`${subject}の問題 ${n}問`,rate,correct:S.ok,total:n,hints:S.h,reads:S.r,unknown:S.u,seconds:sec,next,status:rate>=90?"自力でできた":rate>=60?"練習中":"基礎を確認",process,planned:!!planned,progress:rate>=90?"予定より先へ進める状態":rate>=60?"予定内容を定着中":"基礎確認を優先"});save();head("✨ 学習記録",child);let c=e("div","card",`<h2>取り組めました</h2><p>${subject} ${n}問</p><p>${process}</p><p><b>次：</b>${next}</p><p class="tiny">予定は目安です。その日の理解に合わせて進む・確認するを選べます。</p>`);A.append(c);if(rate>=90){A.append(btn("🚀 もう少し進む",()=>start(subject),"primary"));A.append(btn("🌿 今日はここまで",child,"soft"))}else if(rate>=60){A.append(btn("🔁 もう一度やって定着する",()=>start(subject),"primary"));A.append(btn("🌿 今日はここまで",child,"soft"))}else{A.append(btn("🌱 基礎を確認してからもう一度",()=>start(subject),"primary"));A.append(btn("🌿 今日はここまで",child,"soft"))}}
