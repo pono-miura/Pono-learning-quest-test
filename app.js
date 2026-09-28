@@ -567,6 +567,7 @@ function mathQ(){
  A.append(e("div","tiny",`在籍 小学${profile.grade}年｜学習開始の目安 小学${profile.startGrade||profile.grade}年`));
  A.append(e("div","question-kind",mathQuestionType(adaptive.qi,n.qs.length)));
  A.append(e("div","card",`<h2>${fmtMath(q[0])}</h2>`));
+ A.append(btn("✏️ メモ・筆算する",()=>mathScratchpad(),"soft"));
  q[1].forEach((x,i)=>{let b=btn("",()=>mathAns(i===q[2],q));b.innerHTML=fmtMath(x);A.append(b)});
  A.append(btn("💡 説明を見る",()=>mathLearn(adaptive.node),"soft"));
  A.append(btn("🌱 わからない・説明を見る",()=>{adaptive.h++;mathLearn(adaptive.node)},"soft"))
