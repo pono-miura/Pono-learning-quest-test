@@ -1,0 +1,16 @@
+.jreading273{margin:12px 0 14px;padding:0;overflow:hidden}
+.jsection273{padding:11px 15px;font-weight:800;background:#f4efe5;border-bottom:1px solid #ddd4c6}
+.jbody273{padding:17px;font-size:1.08rem;line-height:2.05;letter-spacing:.02em}
+.jquestion273{margin:20px 0 12px;padding:18px;border:2px solid #d8d0c3;border-radius:16px;background:#fff}
+.jqnum273{font-size:.95rem;font-weight:800;margin-bottom:10px}
+.jqtext273{font-size:1.22rem;font-weight:800;line-height:1.7}
+.jroot273{margin:12px 0;padding:14px 16px;border-radius:14px;background:#f7f2e9;line-height:1.7}
+.jroot273 p{margin:7px 0 0}
+.jfeedback273{margin:12px 0;padding:14px 16px;border-radius:14px;background:#fff8df;line-height:1.8;font-weight:650}
+.jfeedback273 span{font-weight:500}
+.jchoose273{margin:18px 2px 8px}
+@media(max-width:520px){
+ .jbody273{padding:15px;font-size:1.02rem;line-height:1.95}
+ .jquestion273{padding:15px}
+ .jqtext273{font-size:1.14rem}
+}
