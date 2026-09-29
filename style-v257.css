@@ -1,0 +1,5 @@
+
+.p257grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.p257grid .card{margin:0;text-align:center;padding:12px 7px}.p257grid strong{display:block;font-size:1.45rem;margin-top:5px}
+.p257subjects{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}.p257subjects span{border:1px solid #ddd;border-radius:12px;padding:9px 4px;text-align:center;background:#fff}.p257subjects b,.p257subjects em{display:block}.p257subjects em{font-style:normal;font-size:1.2rem;margin-top:3px}
+@media(max-width:520px){.p257grid{grid-template-columns:repeat(2,1fr)}.p257subjects{grid-template-columns:repeat(2,1fr)}}
