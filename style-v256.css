@@ -1,0 +1,6 @@
+
+.k256grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.k256grid .card{margin:0;display:flex;flex-direction:column;gap:5px}
+.k256grid strong{font-size:1.7rem}.k256grid span{font-size:.82rem;opacity:.75}
+.k256chars{display:flex;gap:8px;flex-wrap:wrap}.k256chars span{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border:1px solid #ddd;border-radius:10px;font-size:1.5rem;background:#fff}
+@media(max-width:480px){.k256grid{grid-template-columns:1fr 1fr}.k256grid strong{font-size:1.45rem}}
