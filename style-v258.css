@@ -1,0 +1,7 @@
+
+.p258hero span{display:inline-block;padding:5px 10px;border-radius:999px;background:#f2f2f2;font-size:.82rem}
+.p258bars div{display:grid;grid-template-columns:64px 1fr 28px;gap:8px;align-items:center;margin:10px 0}
+.p258bars div:after{content:"";grid-column:2;grid-row:1;height:10px;border-radius:10px;background:#eee;z-index:0}
+.p258bars i{grid-column:2;grid-row:1;height:10px;border-radius:10px;background:currentColor;z-index:1;min-width:2px}
+.p258bars b{text-align:right}
+@media print{button,.topbar,.nav{display:none!important}.card{break-inside:avoid;box-shadow:none!important}}
