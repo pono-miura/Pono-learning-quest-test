@@ -1,0 +1,1 @@
+.kanji-grid251{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:12px 0}.kanji-btn251{font-size:1.55rem;min-height:58px;padding:8px}.kanji-grid251 button{margin:0}@media(max-width:430px){.kanji-grid251{grid-template-columns:repeat(4,1fr)}}
