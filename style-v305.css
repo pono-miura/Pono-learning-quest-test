@@ -1,0 +1,11 @@
+
+.jp305pass{padding:14px 16px;border-radius:14px;background:#fbfaf6;line-height:1.95;margin-top:10px}
+.jp305label{font-weight:800;margin-bottom:7px}
+.jp305kind{display:inline-block;font-weight:800;font-size:.9rem;padding:6px 10px;margin-bottom:10px;border-radius:999px;background:#f1eee7}
+.jp305answerway{margin:10px 0;padding:11px 12px;border-radius:12px;background:#f7f5ef;line-height:1.7}
+.jp305textarea{width:100%;box-sizing:border-box;min-height:110px;font-size:1rem;line-height:1.6;padding:12px;border:1px solid #bbb;border-radius:12px;margin:8px 0}
+.jp305progress{margin:8px 0 14px}
+.jp305bar{height:10px;background:#ece9e2;border-radius:999px;overflow:hidden;margin-bottom:5px}
+.jp305bar span{display:block;height:100%;background:currentColor;border-radius:999px}
+.jp305q h3{line-height:1.7}
+.jp305voice{margin:6px 0 10px}
