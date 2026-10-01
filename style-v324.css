@@ -1,0 +1,14 @@
+
+.report324-org{
+  margin:8px 0 0;
+  font-size:.88rem;
+  color:#555;
+}
+.report324-time-note{
+  margin-top:12px;
+  line-height:1.65;
+}
+@media print{
+  .report324-org{font-size:9.5pt!important;color:#333!important}
+  .report324-time-note{font-size:9pt!important;line-height:1.45!important}
+}
