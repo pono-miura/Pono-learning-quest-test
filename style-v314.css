@@ -1,0 +1,16 @@
+
+.jr313switch{display:flex;gap:8px;margin:8px 0 10px}
+.jr313rubyBtn{flex:1;border:1px solid #c9c4ba;border-radius:12px;padding:9px 10px;background:#fff;font:inherit;font-weight:700;cursor:pointer;touch-action:manipulation}
+.jr313rubyBtn.active{background:#f1eee7;border-color:#777168;box-shadow:0 0 0 2px rgba(80,75,68,.08);font-weight:800}
+.jr313note{margin:6px 0 10px;padding:8px 10px;border-radius:10px;background:#f7f5ef}
+.jr313passage{padding:14px 16px;border-radius:14px;background:#fbfaf6;line-height:2.5;letter-spacing:.03em}
+.jr313passage ruby{ruby-position:over}.jr313passage rt{font-size:.66em;font-weight:600}
+.jr313chunk{display:inline;border-radius:6px;padding:1px 2px;transition:background .12s ease,box-shadow .12s ease,font-weight .12s ease}
+.jr313chunk.jr313active{background:#fff1a8;box-shadow:0 0 0 2px #f3d35d;font-weight:800}
+.jr313chunk.jr313done{opacity:.72}
+.jr313progress{margin:8px 0 14px}.jr313bar{height:10px;background:#ece9e2;border-radius:999px;overflow:hidden;margin-bottom:5px}
+.jr313bar span{display:block;height:100%;background:currentColor;border-radius:999px}
+.jr313kind{display:inline-block;font-weight:800;font-size:.9rem;padding:6px 10px;margin-bottom:10px;border-radius:999px;background:#f1eee7}
+.jr313q h3{line-height:1.7}.jr313answerway{margin:10px 0;padding:11px 12px;border-radius:12px;background:#f7f5ef;line-height:1.7}
+.jr313textarea{width:100%;box-sizing:border-box;min-height:110px;font-size:1rem;line-height:1.6;padding:12px;border:1px solid #bbb;border-radius:12px;margin:8px 0}
+.jr313voice{margin:6px 0 10px}
