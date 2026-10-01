@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pono Learning 月間学習報告書</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#fbfaf5;color:#333;font-family:-apple-system,BlinkMacSystemFont,"Noto Sans JP",sans-serif}
+main{max-width:760px;margin:auto;padding:22px 18px 50px}
+.back{display:inline-block;text-decoration:none;color:#222;background:#eee8dc;border-radius:14px;padding:12px 18px;margin:0 0 18px}
+h1{font-size:25px;margin:4px 0 18px}
+h2{font-size:21px;margin:0 0 14px}
+.card,.paper{background:#fff;border:1px solid #e2ddd3;border-radius:20px;padding:22px;margin:14px 0;box-shadow:0 2px 8px #0000000a}
+.controls{margin-bottom:14px}
+input[type=month]{width:100%;font:inherit;font-size:18px;padding:14px;border:1px solid #bbb;border-radius:14px;background:#fff}
+.title{text-align:center;border-bottom:2px solid #333;padding-bottom:14px;margin-bottom:16px}
+.title h2{font-size:24px;margin-bottom:6px}
+.org{font-size:13px;color:#666;margin:6px 0 0}
+.meta{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.meta div{border:1px solid #bbb;border-radius:12px;padding:12px}
+.meta span{display:block;font-size:13px;color:#666}
+.sub{padding:9px 0;border-bottom:1px solid #eee;line-height:1.7}
+.sub:last-child{border-bottom:0}
+.tiny{font-size:13px;color:#666;line-height:1.65}
+textarea{width:100%;min-height:210px;font:inherit;font-size:16px;line-height:1.8;padding:14px;border:1px solid #bbb;border-radius:12px;resize:vertical}
+button{width:100%;font:inherit;font-weight:700;text-align:left;padding:16px;margin:10px 0;border:1px solid #ddd4c6;border-radius:14px;background:#eee8dc}
+.empty{padding:24px;text-align:center}
+@media(max-width:520px){
+  .meta{grid-template-columns:1fr 1fr}
+  .card,.paper{padding:18px}
+  h1{font-size:23px}
+  .title h2{font-size:22px}
+}
+@media print{
+  body{background:#fff}
+  main{max-width:none;padding:0}
+  .noPrint{display:none!important}
+  .card,.paper{box-shadow:none;border:1px solid #aaa;border-radius:0;margin:7px 0;padding:12px;break-inside:avoid}
+  .title h2{font-size:17pt}
+  h2{font-size:13pt}
+  p,.sub{font-size:10.5pt;line-height:1.5}
+  .tiny{font-size:9pt}
+  textarea{border:0;padding:0;min-height:120px;font-size:10.5pt;resize:none}
+}
+</style>
+</head>
+<body>
+<main>
+  <a class="back noPrint" href="index.html?v=327">← 先生・Ponoへ戻る</a>
+  <h1 class="noPrint">📄 学校共有用 月間レポート</h1>
+  <div class="controls noPrint"><input id="month" type="month"></div>
+  <div id="report"></div>
+</main>
+<script>
+(function(){
+  const el=document.getElementById("report");
+  const month=document.getElementById("month");
+
+  function safe(k, fallback){
+    try{
+      const v=JSON.parse(localStorage.getItem(k)||JSON.stringify(fallback));
+      return v;
+    }catch(e){return fallback}
+  }
+  function esc(v){
+    return String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
+  }
+  function profile(){
+    return safe("ponoV9Student",{id:"PONO001",name:"はるさん",grade:3});
+  }
+  function dayKey(v){
+    const d=new Date(v);if(isNaN(d))return"unknown";
+    return new Intl.DateTimeFormat("ja-JP",{timeZone:"Asia/Tokyo",year:"numeric",month:"2-digit",day:"2-digit"}).format(d);
+  }
+  function monthKey(v){
+    const d=new Date(v);if(isNaN(d))return"";
+    const p=new Intl.DateTimeFormat("ja-JP",{timeZone:"Asia/Tokyo",year:"numeric",month:"2-digit"}).format(d).split("/");
+    return p[0]+"-"+p[1];
+  }
+  function currentMonth(){
+    const p=new Intl.DateTimeFormat("ja-JP",{timeZone:"Asia/Tokyo",year:"numeric",month:"2-digit"}).format(new Date()).split("/");
+    return p[0]+"-"+p[1];
+  }
+  function subject(r){
+    let s=r.subject||"学習";
+    if(s==="外国語活動"&&Number(r.grade)>=5)s="外国語";
+    return s;
+  }
+  function unit(r){
+    for(const v of [r.unit,r.nodeTitle,r.title])if(v&&String(v).trim())return String(v).trim();
+    if(Array.isArray(r.adaptivePath)&&r.adaptivePath.length){
+      const x=[...r.adaptivePath].reverse().find(a=>a&&a.title);
+      if(x&&x.title)return String(x.title).trim();
+    }
+    if(r.content){
+      const c=String(r.content).trim();
+      if(c&&!/^.+の問題\s*\d+問$/.test(c)&&c.length<=36)return c;
+    }
+    return subject(r)==="算数"?"基礎確認":"学習内容の確認";
+  }
+  function state(r){
+    const s=String(r.status||"");
+    if(s.includes("自力")||s.includes("定着")||s.includes("10問完了")||s.includes("学習済み")||r.result==="ok"||r.ok===true)return"確認";
+    if(s.includes("練習")||s.includes("基礎を確認")||Number(r.hints)>0||(r.rate!=null&&Number(r.rate)<80))return"練習";
+    return"取組";
+  }
+  function raw(){
+    const p=profile();
+    let a=safe("ponoV9Records",[]).filter(r=>!r.studentId||r.studentId===p.id);
+    const rd=safe("ponoJapaneseReading313",[]).filter(r=>!r.studentId||r.studentId===p.id);
+    rd.forEach(x=>{
+      const dup=a.some(r=>r.date===x.date&&subject(r)==="国語"&&unit(r)===x.unit);
+      if(!dup)a.push({studentId:x.studentId||p.id,date:x.date,subject:"国語",grade:x.grade,unit:x.unit,total:x.total||10,correct:x.total||10,hints:x.hints||0,seconds:x.seconds||0,status:"10問完了"});
+    });
+    return a;
+  }
+  function grouped(rows){
+    const m=new Map();
+    rows.forEach(r=>{
+      const k=[dayKey(r.date),subject(r),unit(r),state(r),r.correct??"",r.total??"",r.rate??""].join("|");
+      if(!m.has(k))m.set(k,{...r});
+      else{
+        const g=m.get(k);
+        g.seconds=Math.max(Number(g.seconds)||0,Number(r.seconds)||0);
+        g.hints=Math.max(Number(g.hints)||0,Number(r.hints)||0);
+        if(new Date(r.date)>new Date(g.date))g.date=r.date;
+      }
+    });
+    return [...m.values()];
+  }
+  function units(rows){
+    const m=new Map();rows.forEach(r=>m.set(subject(r)+"|"+unit(r),r));return [...m.values()];
+  }
+  function supports(rows){
+    return{
+      reads:rows.reduce((a,r)=>a+(Number(r.reads)||0),0),
+      hints:rows.reduce((a,r)=>a+(Number(r.hints)||0),0),
+      explain:rows.reduce((a,r)=>a+(Number(r.explain)||Number(r.explanationViews)||0),0),
+      together:rows.reduce((a,r)=>a+(Number(r.together)||Number(r.togetherViews)||0),0)
+    };
+  }
+  function draft(rows,yy,mm){
+    const us=units(rows), subs=[...new Set(rows.map(subject))];
+    const days=new Set(rows.map(r=>dayKey(r.date))).size;
+    const mins=Math.round(rows.reduce((a,r)=>a+(Number(r.seconds)||0),0)/60);
+    const ok=us.filter(r=>state(r)==="確認").length;
+    const practice=us.filter(r=>state(r)==="練習").length;
+    const sp=supports(rows), methods=[];
+    if(sp.reads)methods.push("読み上げ");
+    if(sp.explain)methods.push("説明");
+    if(sp.together)methods.push("一緒に確認");
+    if(sp.hints)methods.push("ヒント");
+    let t=`${yy}年${Number(mm)}月は、${subs.join("・")||"各教科"}の学習に${days}日取り組み、教材内の記録時間は約${mins}分でした。 ${us.length}単元に取り組み、そのうち${ok}単元でその時点の理解を確認できています。`;
+    if(practice)t+=` ${practice}単元は、必要に応じて確認を続けています。`;
+    if(methods.length)t+=` 学習時には${methods.join("・")}を活用しました。`;
+    t+=" 今後も、理解が残っているかを確かめながら次の学習につなげます。";
+    return t;
+  }
+  function render(){
+    const p=profile(), cur=month.value||currentMonth(), [yy,mm]=cur.split("-");
+    const rr=grouped(raw()).filter(r=>monthKey(r.date)===cur).sort((a,b)=>new Date(a.date)-new Date(b.date));
+    if(!rr.length){
+      el.innerHTML=`<div class="paper"><div class="title"><h2>Pono Learning　月間学習報告書</h2><p>${esc(yy)}年${Number(mm)}月</p><p class="org">作成：フリースクールPono</p></div>
+      <div class="meta"><div><span>氏名</span><b>${esc(p.name)}</b></div><div><span>在籍学年</span><b>小学${esc(p.grade)}年</b></div></div></div>
+      <div class="card empty">この月の学習記録はまだありません。</div>`;
+      return;
+    }
+    const us=units(rr), subs=[...new Set(rr.map(subject))];
+    const days=new Set(rr.map(r=>dayKey(r.date))).size;
+    const mins=Math.round(rr.reduce((a,r)=>a+(Number(r.seconds)||0),0)/60);
+    const ok=us.filter(r=>state(r)==="確認"), practice=us.filter(r=>state(r)==="練習");
+    const sp=supports(rr);
+    const refs=safe("ponoUnitReflections",[]).filter(x=>(!x.studentId||x.studentId===p.id)&&monthKey(x.date)===cur);
+    const methods=[];
+    if(sp.reads)methods.push(`読み上げ ${sp.reads}回`);
+    if(sp.explain)methods.push(`説明の確認 ${sp.explain}回`);
+    if(sp.together)methods.push(`一緒に確認 ${sp.together}回`);
+    if(sp.hints)methods.push(`ヒント ${sp.hints}回`);
+    if(refs.length)methods.push(`本人のふりかえり ${refs.length}件`);
+
+    const bySubject=subs.map(s=>{
+      const x=us.filter(r=>subject(r)===s);
+      return `<div class="sub"><b>${esc(s)}</b><br>${x.map(r=>esc(unit(r))).join("・")}</div>`;
+    }).join("");
+
+    const next=practice.length
+      ? `「${practice.slice(0,4).map(r=>esc(unit(r))).join("」「")}」等を必要に応じて再確認し、理解が残っているかを確かめながら進めます。`
+      : "現在の学習内容を定着確認しながら、次の単元へ進めます。";
+
+    el.innerHTML=`
+      <div class="paper">
+        <div class="title"><h2>Pono Learning　月間学習報告書</h2><p>${esc(yy)}年${Number(mm)}月</p><p class="org">作成：フリースクールPono</p></div>
+        <div class="meta"><div><span>氏名</span><b>${esc(p.name)}</b></div><div><span>在籍学年</span><b>小学${esc(p.grade)}年</b></div></div>
+      </div>
+      <div class="card"><h2>1．学習の概要</h2>
+        <p>学習日数：<b>${days}日</b>　学習記録：<b>${rr.length}件</b>　教材内記録時間：<b>約${mins}分</b></p>
+        <p>教科：${subs.map(esc).join("・")||"―"}</p><p>取り組んだ単元：<b>${us.length}単元</b></p>
+        <p class="tiny">※教材内記録時間は、この教材を使った学習時間の記録です。Ponoでの滞在時間や出席時間を示すものではありません。</p>
+      </div>
+      <div class="card"><h2>2．今月取り組んだ内容</h2>${bySubject}</div>
+      <div class="card"><h2>3．学習の現在地</h2>
+        <p><b>その時点の理解を確認できた単元</b><br>${ok.map(r=>`${esc(subject(r))}「${esc(unit(r))}」`).join("、")||"―"}</p>
+        <p><b>引き続き確認している単元</b><br>${practice.map(r=>`${esc(subject(r))}「${esc(unit(r))}」`).join("、")||"―"}</p>
+        <p class="tiny">※「確認できた」は学年全体の到達度ではなく、この教材内での学習記録です。</p>
+      </div>
+      <div class="card"><h2>4．学習時に活用した方法</h2>
+        <p>${methods.map(esc).join("・")||"読み上げ・ヒント等の利用記録はありません。"}</p>
+        <p class="tiny">利用回数は能力評価ではなく、学習時に選んだ方法の記録です。</p>
+      </div>
+      <div class="card"><h2>5．Pono所見・学校共有コメント</h2>
+        <p class="tiny noPrint">学習記録から作った下書きです。実際の様子に合わせて編集できます。</p>
+        <textarea id="comment">${esc(draft(rr,yy,mm))}</textarea>
+      </div>
+      <div class="card"><h2>6．次月に向けて</h2><p>${next}</p></div>
+      <button class="noPrint" onclick="window.print()">🖨️ 印刷・PDFにする</button>
+      <p class="tiny noPrint">※学校との学習状況共有用です。出席扱いの申請・通所報告書とは別の資料です。</p>`;
+  }
+
+  month.value=currentMonth();
+  month.addEventListener("change",render);
+  render();
+})();
+</script>
+</body>
+</html>
