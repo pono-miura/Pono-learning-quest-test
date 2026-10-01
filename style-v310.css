@@ -1,0 +1,43 @@
+
+.jp305pass{padding:14px 16px;border-radius:14px;background:#fbfaf6;line-height:1.95;margin-top:10px}
+.jp305label{font-weight:800;margin-bottom:7px}
+.jp305kind{display:inline-block;font-weight:800;font-size:.9rem;padding:6px 10px;margin-bottom:10px;border-radius:999px;background:#f1eee7}
+.jp305answerway{margin:10px 0;padding:11px 12px;border-radius:12px;background:#f7f5ef;line-height:1.7}
+.jp305textarea{width:100%;box-sizing:border-box;min-height:110px;font-size:1rem;line-height:1.6;padding:12px;border:1px solid #bbb;border-radius:12px;margin:8px 0}
+.jp305progress{margin:8px 0 14px}
+.jp305bar{height:10px;background:#ece9e2;border-radius:999px;overflow:hidden;margin-bottom:5px}
+.jp305bar span{display:block;height:100%;background:currentColor;border-radius:999px}
+.jp305q h3{line-height:1.7}
+.jp305voice{margin:6px 0 10px}
+
+.jp305ruby{line-height:2.35}
+.jp305ruby ruby{ruby-position:over}
+.jp305ruby rt{font-size:.58em;font-weight:600}
+
+.jp305ruby ruby{display:inline ruby}
+.jp305ruby rt{font-size:.68em;line-height:1.15}
+
+.jp310note{
+  margin:6px 0 10px;
+  padding:8px 10px;
+  border-radius:10px;
+  background:#f7f5ef;
+}
+.jp310reading{
+  letter-spacing:.035em;
+  line-height:2.5;
+}
+.jp310chunk{
+  display:inline;
+  border-radius:6px;
+  padding:1px 2px;
+  transition:background .12s ease, box-shadow .12s ease, font-weight .12s ease;
+}
+.jp310chunk.jp310active{
+  background:#fff1a8;
+  box-shadow:0 0 0 2px #f3d35d;
+  font-weight:800;
+}
+.jp310chunk.jp310done{
+  opacity:.72;
+}
