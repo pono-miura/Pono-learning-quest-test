@@ -1,0 +1,14 @@
+/* 旧図解を完全に表示対象から外す。旧ObserverがDOMを増やしても画面には出さない */
+.visual279,.visual280,.visual281{display:none!important}
+.visual283{display:block!important;margin-top:18px}
+.mv283{background:#faf9f5;border:1px solid #e4ddcf;border-radius:18px;padding:18px;text-align:center}
+.cmp283{display:grid;grid-template-columns:1fr 1fr;gap:10px}.cmp283>div{border:1px solid #ddd3c4;border-radius:14px;padding:10px}.cmp283 b{display:block;font-size:28px}.cmp283 small{display:block;margin-top:8px}
+.frame283{display:grid;grid-template-columns:repeat(5,14px);grid-template-rows:repeat(2,14px);gap:3px;border:2px solid #777;padding:4px;width:max-content;margin:7px auto}.frame283 i{border:1px solid #aaa;border-radius:50%}.frame283 i.on283{background:#333}
+.nl283{position:relative;border-top:4px solid #555;height:45px;margin:35px 8px 0;display:flex;justify-content:space-between;padding-top:7px}.nl283 i{position:absolute;top:-31px;font-style:normal;font-weight:800}.nl283 i:after{content:"";position:absolute;border-left:4px solid #555;height:18px;top:23px;left:50%}
+.groups283{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}.groups283 span{border:2px solid #777;border-radius:12px;padding:12px;font-size:20px}
+.frac283{display:grid;grid-template-columns:1fr 1fr;gap:14px}.frac283 span{height:55px;display:flex}.frac283 span>*{flex:1;border:2px solid #777}.frac283 span b{background:#bbb}
+.area283{width:200px;margin:auto;display:grid;grid-template-columns:repeat(5,1fr)}.area283 i{height:38px;border:1px solid #777;background:#eee}
+.avg283{height:130px;display:flex;align-items:flex-end;justify-content:center;gap:7px}.avg283 span{width:32px;background:#ddd;border:2px solid #777}.avg283 b{align-self:center}
+.pct283{display:flex;max-width:320px;margin:15px auto;border:2px solid #777}.pct283 b{width:40%;padding:18px;background:#ddd}.pct283 i{flex:1;padding:18px;font-style:normal}
+.circle283{width:160px;height:160px;border:4px solid #666;border-radius:50%;margin:auto;position:relative;display:flex;align-items:center;justify-content:center}.circle283 i{position:absolute;width:72px;border-top:3px solid #666;left:80px}.circle283 span{position:absolute;left:102px;top:61px}
+.data283{display:flex;gap:8px;justify-content:center}.data283 span{border:2px solid #777;border-radius:10px;padding:12px}
