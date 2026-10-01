@@ -1,0 +1,28 @@
+
+.teacher323-label{font-weight:800;font-size:1.05rem;margin:22px 4px 8px}
+.teacher323-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:14px}
+.teacher323-stats>div{text-align:center;border:1px solid #ddd;border-radius:14px;padding:10px 3px}
+.teacher323-stats b{display:block;font-size:1.4rem}
+.teacher323-stats span{font-size:.78rem}
+.report323-controls{margin:0 0 14px}
+.report323-controls input{font-size:1rem;padding:10px;border:1px solid #bbb;border-radius:10px}
+.report323-paper{background:#fff;border:1px solid #ddd;border-radius:18px;padding:20px;margin:0 0 16px}
+.report323-title{text-align:center;border-bottom:2px solid #333;padding-bottom:12px;margin-bottom:14px}
+.report323-title h2{margin:0 0 5px}
+.report323-meta{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.report323-meta>div{border:1px solid #bbb;border-radius:10px;padding:10px}
+.report323-meta span{display:block;font-size:.8rem}
+.report323-sub{padding:8px 0;border-bottom:1px solid #eee;line-height:1.65}
+.report323-sub:last-child{border-bottom:0}
+.report323-comment textarea{width:100%;box-sizing:border-box;font-size:1rem;line-height:1.75;padding:12px;border:1px solid #bbb;border-radius:10px;min-height:150px}
+@media print{
+  body{background:#fff!important}
+  #app{max-width:none!important;padding:0!important}
+  .noPrint,.top .back,.top button{display:none!important}
+  .top{margin:0 0 8px!important}
+  .top h1{font-size:18pt!important}
+  .card,.report323-paper{box-shadow:none!important;border:1px solid #aaa!important;break-inside:avoid;margin:8px 0!important;padding:12px!important}
+  .report323-section h2{font-size:13pt!important;margin:0 0 6px!important}
+  .report323-section p,.report323-sub{font-size:10.5pt!important;line-height:1.5!important}
+  .report323-comment textarea{border:0!important;padding:0!important;min-height:100px!important;resize:none!important}
+}
