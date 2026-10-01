@@ -1,0 +1,11 @@
+/* v29.7 英語発音練習＋スマホ見出し */
+.ponoPron297,.ponoConv297{margin-top:16px}
+.ponoPron297 button,.ponoConv297 button{width:100%;margin:8px 0}
+.p297meaning{margin-top:12px;padding:12px;border:1px solid #ddd7ca;border-radius:12px;background:#fff}
+.p297meaning summary{font-weight:700;cursor:pointer}
+.p297result{margin-top:10px}
+@media(max-width:520px){
+ .top{display:block!important}
+ .top .back{width:auto!important;min-width:0!important;margin-bottom:10px!important}
+ .top h1{display:block!important;width:100%!important;max-width:100%!important;margin:0!important;font-size:1.35rem!important;line-height:1.3!important;overflow-wrap:anywhere!important}
+}
