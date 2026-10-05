@@ -1,0 +1,23 @@
+
+.sciVisualPack335{margin:0}
+.sciFig335{margin:18px 0 26px;padding:14px;border:1px solid #e6e1d5;border-radius:18px;background:#fff}
+.sciFigTitle335{font-weight:800;font-size:1.05rem;margin-bottom:10px}
+.sciFigCaption335{margin:10px 2px 2px;line-height:1.7;font-weight:600}
+.sciSvg335{width:100%;height:auto;display:block;background:#fbfaf6;border-radius:16px}
+.sciSvg335 .line335{fill:#ddd7c9}
+.sciSvg335 .wax335{fill:#f2ead5;stroke:#716c61;stroke-width:3}
+.sciSvg335 .flame335{fill:#fff1a8;stroke:#75652a;stroke-width:3}
+.sciSvg335 .jar335{fill:rgba(255,255,255,.35);stroke:#6f7c86;stroke-width:5}
+.sciSvg335 .arrow335{fill:none;stroke:#65615a;stroke-width:5;stroke-linecap:round;marker-end:url(#none)}
+.sciSvg335 .air335{fill:#f7f4ea;stroke:#797468;stroke-width:4}
+.sciSvg335 .oxy335{fill:#e8f0ff;stroke:#67778c;stroke-width:3}
+.sciSvg335 .co2335{fill:#eee7f5;stroke:#756985;stroke-width:3}
+.sciSvg335 .other335{fill:#f0eee8;stroke:#8a877e;stroke-width:3}
+.sciSvg335 .note335,.sciSvg335 .box335{fill:#fff;stroke:#8a877e;stroke-width:3}
+.sciSvg335 .txt335{font-size:24px;font-weight:700;fill:#333}
+.sciSvg335 .smalltxt335{font-size:19px;font-weight:600;fill:#333}
+@media(max-width:520px){
+  .sciFig335{padding:10px}
+  .sciSvg335 .txt335{font-size:21px}
+  .sciSvg335 .smalltxt335{font-size:17px}
+}
