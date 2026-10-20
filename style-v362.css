@@ -1,0 +1,9 @@
+
+.bunka362grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:12px 0}
+.bunka362grid div{border:1px solid #ddd;border-radius:14px;padding:12px;background:#fff;display:flex;flex-direction:column;gap:6px}
+.bunka362grid strong{font-size:1.08em}
+.bunka362grid span{font-weight:700}
+.bunka362grid small{line-height:1.6}
+.bunka362flow{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin:14px 0}
+.bunka362flow span{border:1px solid #ddd;border-radius:12px;background:#fff;padding:8px 10px;font-weight:700}
+@media(max-width:640px){.bunka362grid{grid-template-columns:1fr}}
