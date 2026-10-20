@@ -1,0 +1,10 @@
+
+/* v36.1 江戸幕府と人々の暮らし：図解 */
+.edo361flow,.edo361ports,.edo361chain{display:flex;gap:8px;align-items:stretch;flex-wrap:wrap;margin:12px 0}
+.edo361flow div,.edo361ports div{flex:1 1 130px;border:1px solid #ddd;border-radius:12px;background:#fff;padding:10px;text-align:center}
+.edo361flow div b,.edo361ports div b{display:block;font-size:1.05em;margin-bottom:5px}
+.edo361flow div span,.edo361ports div span{display:block;line-height:1.5}
+.edo361flow i{font-style:normal;align-self:center;font-weight:700}
+.edo361chain span{flex:1 1 150px;border-radius:12px;background:#fff;padding:10px;border:1px solid #ddd;text-align:center;line-height:1.5}
+.edo361chain b{align-self:center}
+.edo361 p{line-height:1.7}
