@@ -1,0 +1,5 @@
+.meiji363grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:12px 0}
+.meiji363grid div{border:1px solid #ddd;border-radius:14px;padding:12px;background:#fff;display:flex;flex-direction:column;gap:6px}
+.meiji363grid strong{font-size:1.08em}.meiji363grid span{font-weight:700}.meiji363grid small{line-height:1.6}
+.meiji363flow{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:14px 0}.meiji363flow span{border:1px solid #ddd;border-radius:12px;background:#fff;padding:8px 10px;font-weight:700}
+@media(max-width:640px){.meiji363grid{grid-template-columns:1fr}}
