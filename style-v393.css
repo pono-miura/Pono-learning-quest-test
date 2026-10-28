@@ -1,0 +1,27 @@
+/* v39.3 小学1年 国語 後半5単元 */
+#app .j393title{font-size:clamp(1.17rem,4.9vw,1.55rem);line-height:1.55;overflow-wrap:anywhere}
+#app .j393intro,#app .j393unit,#app .j393lesson,#app .j393question,#app .j393source,#app .j393result,#app .j393review,#app .j393feedback,#app .j393entry{padding:18px 16px;margin:15px 0;border-radius:16px}
+#app .j393unit h2,#app .j393question h2,#app .j393lesson h2,#app .j393source h3,#app .j393review h3{font-size:1.16rem;line-height:1.65;overflow-wrap:anywhere}
+#app .j393lesson p,#app .j393unit p,#app .j393source p,#app .j393review p{font-size:1.02rem;line-height:2;overflow-wrap:anywhere}
+#app .j393example{background:#f1f6fb;border-radius:12px;padding:12px 14px;margin:12px 0;line-height:1.85}
+#app .j393example p{margin:6px 0 0}
+#app .j393tip{color:#425f70}
+#app .j393source{background:#f8fafc;border:1px solid #d3dce5}
+#app .j393passage{white-space:pre-wrap;line-height:2.1!important;font-size:1.09rem!important}
+#app .j393audio{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:9px 0 14px}
+#app .j393audio button{min-width:0;width:100%;min-height:52px;white-space:normal;line-height:1.5}
+#app .j393audio .j393small{grid-column:1/-1}
+#app .j393counter{font-size:1.05rem;font-weight:700;letter-spacing:.02em}
+#app .j393choice,#app .j393wide{display:block;width:100%;text-align:left;min-height:54px;line-height:1.65;white-space:normal;overflow-wrap:anywhere;margin:9px 0}
+#app .j393choice:disabled{opacity:.55}
+#app .j393result{text-align:center;border:1px solid #c8ddcf;background:#f7fbf8}
+#app .j393score{font-size:1.8rem;font-weight:800}
+#app .j393answer{font-weight:700;color:#27604b}
+#app .j393feedback{background:#f2f8f5;border:1px solid #cce2d4}
+#app .j393review{border:1px solid #d5dce2}
+#app .j393entry{background:#f4f8fb;border:1px solid #c4d5e2}
+#app .j393entry button{width:100%;min-height:55px}
+#app .j393small{font-size:.87rem;color:#526579;line-height:1.8;margin:8px 0}
+#app .j393warn{color:#913f32;font-weight:700;padding:12px}
+@media(max-width:360px){#app .j393intro,#app .j393unit,#app .j393lesson,#app .j393question,#app .j393source,#app .j393result,#app .j393review{padding:14px 11px}#app .j393audio{grid-template-columns:1fr}}
+@media print{#app .j393audio,#app .j393choice,#app .j393wide,#app .j393entry button{display:none}}
