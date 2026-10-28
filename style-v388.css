@@ -1,0 +1,19 @@
+/* v38.8 : 試用前の安全確認（既存教材・記録は変更しない） */
+#app .pono388title{font-size:clamp(1.2rem,4.7vw,1.55rem);line-height:1.5;overflow-wrap:anywhere}
+#app .pono388entry{background:#f4f8fb;border:1px solid #bfcedd;padding:16px;margin:14px 0}
+#app .pono388entry h3,#app .pono388section h3,#app .pono388current h3{font-size:1.12rem;margin:0 0 9px;line-height:1.5}
+#app .pono388entry p,#app .pono388intro p,#app .pono388current p,#app .pono388section p{line-height:1.75;margin:9px 0}
+#app .pono388entry button,#app .pono388section button{width:100%;margin:12px 0}
+#app .pono388intro,#app .pono388current,#app .pono388section{padding:16px;margin:15px 0}
+#app .pono388alert{font-weight:700;background:#fff6ea;padding:12px 13px;border-radius:11px;border:1px solid #dfc7a4}
+#app .pono388sample{font-size:1.18rem;font-weight:600;background:#eef5f9;padding:15px 12px;border-radius:12px}
+#app .pono388audio{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+#app .pono388audio button{min-width:0;overflow-wrap:anywhere;margin:4px 0}
+#app .pono388check{display:flex;align-items:flex-start;gap:12px;padding:15px 11px;margin:9px 0;background:#f9fbfd;border:1px solid #d6dfe7;border-radius:13px;line-height:1.65}
+#app .pono388check input{width:22px;height:22px;flex:0 0 22px;margin:2px 0 0;accent-color:#497a8f}
+#app .pono388small{color:#596c78;font-size:.93rem}
+#app .pono388feedback{min-height:1.5rem;color:#2c5870}
+#app button[disabled]{opacity:.5;cursor:not-allowed}
+#app .pono388return{width:100%}
+@media(max-width:350px){#app .pono388audio{grid-template-columns:1fr}#app .pono388intro,#app .pono388current,#app .pono388section{padding:13px 10px}}
+@media print{#app .pono388entry,#app .pono388audio,#app .pono388return{display:none}}
