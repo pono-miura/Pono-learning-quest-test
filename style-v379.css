@@ -1,0 +1,41 @@
+/* v37.9: 小学6年 国語の総復習 */
+#app .jap379entry{border:1px solid #c8d6df;background:#f8fbfd;padding:16px;margin:18px 0 23px}
+#app .jap379entry h3{font-size:1.17rem;line-height:1.5;margin:0 0 8px}
+#app .jap379entry p,#app .jap379hero p{line-height:1.85}
+#app .jap379entry button{display:block;width:100%;margin-top:12px}
+#app .jap379top{display:flex;flex-wrap:wrap;align-items:flex-start;gap:9px;margin-bottom:14px}
+#app .jap379top>.back{flex:0 0 auto}
+#app .jap379top>.jap379title{flex:0 0 100%;width:100%;margin:4px 0 8px;font-size:clamp(1.2rem,5vw,1.5rem);line-height:1.5;overflow-wrap:anywhere}
+#app .jap379hero h2,#app .jap379lesson h2{font-size:clamp(1.18rem,4.7vw,1.48rem);line-height:1.55}
+#app .jap379areas>div{display:flex;justify-content:space-between;gap:12px;padding:11px 3px;border-bottom:1px solid #e1e7ec}
+#app .jap379areas>div b{min-width:0;overflow-wrap:anywhere}
+#app .jap379areas>div span{white-space:nowrap}
+#app .jap379lesson,#app .jap379question,#app .jap379review{line-height:1.85}
+#app .jap379progress{color:#37586e;margin-bottom:15px}
+#app .jap379progress>div,#app .jap379progressBar{height:10px;background:#e1eaf0;border-radius:99px;overflow:hidden;margin:9px 0 15px}
+#app .jap379progress i,#app .jap379progressBar i{height:100%;display:block;background:#7196ab;border-radius:99px}
+#app .jap379point{display:grid;grid-template-columns:2rem minmax(0,1fr);gap:11px;align-items:flex-start;padding:13px 11px;margin:12px 0;border-radius:15px;border:1px solid #d7e1e8;background:white}
+#app .jap379point>b{width:2rem;height:2rem;display:flex;align-items:center;justify-content:center;background:#e5eef4;color:#315774;border-radius:50%}
+#app .jap379point>span{overflow-wrap:anywhere;line-height:1.85}
+#app .jap379flow{display:flex;flex-direction:column;gap:9px}
+#app .jap379flow h3{margin:0 0 4px}
+#app .jap379flow span{padding:12px;border:1px solid #d1dfe7;border-radius:12px;text-align:center;background:white;line-height:1.6;font-weight:650}
+#app .jap379flow>b{text-align:center;line-height:1}
+#app .jap379passage{line-height:1.85;border:2px solid #d3e1e9;background:#fcfdff;padding:17px}
+#app .jap379passageHead{display:flex;flex-wrap:wrap;gap:5px 10px;align-items:center;margin-bottom:12px}
+#app .jap379passageHead b{font-size:1.1rem;line-height:1.5}
+#app .jap379passageHead span{font-size:.8rem;color:#58758a}
+#app .jap379passage>p{white-space:pre-line;line-height:2;margin:0;overflow-wrap:anywhere}
+#app .jap379question h2,#app .jap379review h3{font-size:clamp(1.17rem,4.8vw,1.45rem);line-height:1.7;overflow-wrap:anywhere}
+#app .jap379answer textarea{width:100%;max-width:100%;box-sizing:border-box;min-height:86px;border-radius:12px;padding:12px;border:1px solid #a7b8c6;font:inherit;line-height:1.7}
+#app .jap379answer>button{width:100%;margin-top:9px}
+#app .jap379result>h2{font-size:clamp(2rem,8.5vw,2.65rem);margin:0 0 6px}
+#app .jap379barrow{margin:14px 0}
+#app .jap379barrow>div:first-child{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:6px}
+#app .jap379barrow span{white-space:nowrap}
+#app .jap379bar{height:10px;background:#e5edf1;border-radius:99px;overflow:hidden}
+#app .jap379bar i{height:100%;display:block;background:#789db1;border-radius:99px}
+#app .jap379reviewSource{border:1px solid #d5e1e9;background:#f9fcfe;border-radius:12px;padding:11px;margin:12px 0}
+#app .jap379reviewSource p{white-space:pre-line;line-height:1.85;margin:8px 0 0}
+@media(max-width:640px){#app .jap379lesson,#app .jap379question,#app .jap379passage{padding:14px 12px}#app .jap379point{padding:11px 9px}}
+@media print{#app .jap379passage,#app .jap379point,#app .jap379review{break-inside:avoid}}
