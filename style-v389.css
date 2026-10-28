@@ -1,0 +1,27 @@
+/* Pono Learning Quest v38.9 — one local learner ID per browser, not an authenticated account */
+#app .pono389title{font-size:clamp(1.17rem,4.8vw,1.55rem);line-height:1.5;overflow-wrap:anywhere}
+#app .pono389entry{padding:16px;margin:12px 0 18px;background:#f4f8fc;border:1px solid #b6cbd9}
+#app .pono389entry h3{margin:0 0 8px;font-size:1.12rem;line-height:1.5}
+#app .pono389entry p{margin:0 0 12px;line-height:1.7}
+#app .pono389entry button{width:100%}
+#app .pono389section{padding:18px 16px;margin:15px 0}
+#app .pono389section h2{font-size:clamp(1.12rem,4.6vw,1.38rem);line-height:1.5;margin:0 0 10px}
+#app .pono389section p{line-height:1.8;overflow-wrap:anywhere}
+#app .pono389muted{color:#526579;font-size:.93rem;line-height:1.7}
+#app .pono389id{font-weight:800;letter-spacing:.045em;font-size:clamp(1.17rem,5vw,1.55rem);background:#edf4f8;padding:13px;border-radius:12px;text-align:center;overflow-wrap:anywhere;color:#284a62;margin:8px 0}
+#app .pono389field{display:flex;flex-direction:column;gap:7px;margin:14px 0;font-weight:650;line-height:1.55}
+#app .pono389field input,#app .pono389field select{width:100%;box-sizing:border-box;min-height:50px;padding:11px 12px;background:white;color:#26343f;border:1px solid #b0bdca;border-radius:12px;font-size:1rem}
+#app .pono389field input:disabled{background:#edf0f2;color:#65727b}
+#app .pono389options{display:grid;gap:8px;margin:8px 0 14px}
+#app .pono389option,#app .pono389agree{display:flex;align-items:flex-start;gap:11px;padding:11px;background:#f8fafb;border:1px solid #d5dce1;border-radius:12px;line-height:1.65;font-weight:500}
+#app .pono389option input,#app .pono389agree input{width:20px;height:20px;flex:0 0 20px;margin:4px 0 0;accent-color:#406c87}
+#app .pono389agree{margin:17px 0}
+#app .pono389sub{font-weight:700;margin:17px 0 4px}
+#app .pono389error{min-height:0;color:#a0372d;font-weight:650;line-height:1.6}
+#app .pono389warn{color:#75481d;font-weight:600;background:#fff6e8;border:1px solid #dfc9a3;border-radius:10px;padding:12px;line-height:1.7}
+#app .pono389alert{padding:14px;margin:15px 0;border:1px solid #c6d5df;border-radius:12px}
+#app .pono389bad{background:#fff4f0;border-color:#d8aa9c}
+#app .pono389section button{width:100%;min-height:49px;margin:9px 0 3px;white-space:normal;line-height:1.5}
+#app .pono389return{width:100%;margin:10px 0 24px}
+@media(max-width:420px){#app .pono389section{padding:15px 12px}#app .pono389entry{padding:14px 12px}}
+@media print{#app .pono389entry,#app .pono389return{display:none}}
