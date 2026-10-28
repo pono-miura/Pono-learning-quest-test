@@ -1,0 +1,30 @@
+/* Pono Learning Quest v40.5 — 記述の仮評価 */
+#app .r405title{font-size:clamp(1.2rem,4.9vw,1.6rem);line-height:1.55;overflow-wrap:anywhere}
+#app .r405card{padding:18px 16px;margin:15px 0;border-radius:18px;line-height:1.8}
+#app .r405card h2{font-size:1.16rem;line-height:1.65;margin:0 0 9px}
+#app .r405card h3{font-size:1.09rem;margin:15px 0 7px}
+#app .r405card p{line-height:1.85;white-space:pre-wrap;overflow-wrap:anywhere}
+#app .r405note,#app .r405important{color:#536576;font-size:.94rem;line-height:1.85}
+#app .r405intro,#app .r405entry{background:#f4f8fc;border:1px solid #c9dce8}
+#app .r405entry button{display:block;width:100%;min-height:53px}
+#app .r405source{background:#f2f6fa;padding:14px 13px;border-radius:12px;line-height:2.0!important}
+#app .r405prompt,#app .r405result,#app .r405teacher{border:1px solid #d7ddd5}
+#app .r405eyebrow{font-size:.92rem;color:#506576}
+#app .r405grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+#app .r405btn{font-size:1rem;min-height:48px;line-height:1.55;white-space:normal;overflow-wrap:anywhere;border-radius:12px}
+#app .r405selected{border:2px solid #527f92;background:#e4f0f6;font-weight:700}
+#app .r405primary{font-weight:650;background:#ece8db;border-color:#d8d1bf}
+#app .r405wide{display:block;width:100%;min-height:55px;margin:12px 0}
+#app .r405audio{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+#app .r405textarea{display:block;box-sizing:border-box;width:100%;min-height:138px;font:inherit;font-size:1.08rem;line-height:1.8;padding:13px;border-radius:12px;border:1px solid #b4c3c9;background:#fff;color:#202527}
+#app .r405scoreline{display:grid;grid-template-columns:1fr auto;gap:1px 12px;padding:11px 0;border-bottom:1px solid #e7e8e8;line-height:1.6}
+#app .r405scoreline strong{font-variant-numeric:tabular-nums;white-space:nowrap}
+#app .r405scoreline small{grid-column:1/-1;color:#546576;font-size:.88rem}
+#app .r405reviewrow{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:12px 0}
+#app .r405select{font:inherit;font-size:1.05rem;min-height:48px;padding:8px 16px;border-radius:10px;border:1px solid #a8b5bd;background:white;color:#222}
+#app .r405confirm{display:flex;align-items:flex-start;gap:11px;line-height:1.8;margin:14px 0}
+#app .r405confirm input{width:23px;height:23px;flex:none;margin-top:4px;accent-color:#507d91}
+#app .r405warn{padding:15px;background:#fff0e9;color:#983b2d}
+#app .r405unit button{width:100%}
+@media(max-width:380px){#app .r405card{padding:15px 12px}#app .r405audio{grid-template-columns:1fr}#app .r405grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media print{#app .r405entry,#app .r405btn,#app .r405audio{display:none}}
