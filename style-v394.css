@@ -1,0 +1,31 @@
+/* Pono Learning Quest v39.4 — 小学1年 国語・算数 総復習 */
+#app .r394title{font-size:clamp(1.2rem,4.6vw,1.55rem);line-height:1.55;overflow-wrap:anywhere}
+#app .r394intro,#app .r394subject,#app .r394question,#app .r394note,#app .r394result,#app .r394review,#app .r394topic,#app .r394entry,#app .r394feedback{padding:18px 16px;margin:15px 0;border-radius:18px;line-height:1.75;overflow-wrap:anywhere}
+#app .r394subject h2,#app .r394result h2,#app .r394note h3,#app .r394question h2{font-size:clamp(1.1rem,4.5vw,1.35rem);line-height:1.65;margin:6px 0 14px}
+#app .r394intro,#app .r394subject,#app .r394question,#app .r394result,#app .r394entry{background:#fff;border:1px solid #dbded9}
+#app .r394note{background:#f7f9f8;border:1px solid #d5ddd8}
+#app .r394entry{background:#f0f8f5;border:1px solid #c3dbd1}
+#app .r394entry h3{font-size:1.14rem;margin:4px 0 8px}
+#app .r394small{font-size:.91rem;line-height:1.85;color:#526374;margin:8px 0}
+#app .r394wide{width:100%;display:block;min-height:53px;white-space:normal;line-height:1.5;margin:10px 0;padding:13px 12px}
+#app .r394source{background:#f5f8fb;border:1px solid #d5e1e8;padding:13px 14px;margin:14px 0;border-radius:12px}
+#app .r394source p{font-size:1.1rem;line-height:2.05;white-space:pre-wrap;margin:10px 0 0}
+#app .r394tools{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:12px 0}
+#app .r394tools button{margin:0;padding:12px 7px;white-space:normal;min-width:0;line-height:1.45}
+#app .r394tools button:last-child{grid-column:1/-1}
+#app .r394options{display:grid;grid-template-columns:1fr;gap:8px;margin:16px 0}
+#app .r394choice{display:block;width:100%;white-space:normal;text-align:left;font-size:1.13rem;line-height:1.7;min-height:64px;padding:15px 18px;margin:0;background:#f7f4ed;border:1px solid #d7d3c7;border-radius:15px}
+#app .r394choice:disabled{opacity:.66}
+#app .r394feedback{background:#eff8f4;border:1px solid #b9d5c7}
+#app .r394score{font-size:2.2rem;font-weight:750;margin:9px 0;color:#245477}
+#app .r394unitrow{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid #e3e7e6;padding:11px 0;align-items:flex-start}
+#app .r394unitrow span{flex:1;line-height:1.65}
+#app .r394unitrow strong{white-space:nowrap;font-variant-numeric:tabular-nums}
+#app .r394sourceText{background:#f5f8fb;padding:12px;border-radius:12px;line-height:1.95}
+#app .r394review{border:1px solid #d7dedf;background:white}
+#app .r394progress{background:#edf0f0;height:9px;border-radius:10px;overflow:hidden;margin:10px 0 16px}
+#app .r394progress span{display:block;background:#7ca8a2;height:100%;border-radius:10px}
+#app.r394large .r394question h2,#app.r394large .r394source p{font-size:1.43rem}
+#app.r394large .r394choice{font-size:1.32rem}
+@media(max-width:350px){#app .r394intro,#app .r394subject,#app .r394question,#app .r394result,#app .r394review,#app .r394note{padding:14px 11px}#app .r394tools{grid-template-columns:1fr}#app .r394tools button:last-child{grid-column:1}}
+@media print{#app .r394tools,#app .r394options,#app .r394entry,#app .r394wide{display:none}}
