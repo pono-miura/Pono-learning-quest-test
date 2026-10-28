@@ -1,0 +1,21 @@
+/* Pono Learning Quest v36.7 - Japanese history review */
+.hist367intro{line-height:1.85}
+.hist367timeline{border-left:4px solid #7590ab;margin:14px 0 14px 12px;padding-left:14px;display:flex;flex-direction:column;gap:13px}
+.hist367period{position:relative;border:1px solid #c8d4e2;border-radius:13px;background:#fff;padding:13px 15px;line-height:1.7}
+.hist367period:before{content:"";position:absolute;width:11px;height:11px;background:#446784;border-radius:50%;left:-22px;top:17px;border:2px solid #fff}
+.hist367period strong{display:block;font-size:1.15em;line-height:1.5}
+.hist367period .hist367key{display:block;font-weight:700;margin:5px 0}
+.hist367period small{display:block;font-size:.98em;line-height:1.65;color:#35475b}
+.hist367panel{margin:13px 0;padding:15px;border:1px solid #c5d4e3;border-radius:14px;background:#fff;line-height:1.7}
+.hist367panel h3{font-size:1.2em;margin-top:0;margin-bottom:7px}
+.hist367panel p{margin:7px 0}
+.hist367flow{display:flex;flex-wrap:wrap;align-items:center;gap:7px;margin:13px 0}
+.hist367flow span{padding:8px 10px;border:1px solid #c7d3df;border-radius:10px;background:#fff;font-weight:650}
+.hist367stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:14px 0}
+.hist367stats article{border:1px solid #d0d9e2;border-radius:12px;padding:10px;background:#fff}
+.hist367stats strong{display:block;font-size:.98em;line-height:1.55}
+.hist367stats small{display:block;line-height:1.55;font-size:.92em;color:#32445b}
+.hist367focus{font-size:1.1em;line-height:1.7}
+.hist367tip{border-left:4px solid #5b7fa1;padding:10px 12px;line-height:1.7;margin:13px 0}
+.hist367label{font-size:.95em;color:#45566b}
+@media(max-width:640px){.hist367stats{grid-template-columns:1fr}.hist367period{padding:12px}}
