@@ -1,0 +1,39 @@
+/* v37.1 社会全体の総復習・スマートフォン表示 */
+#app .social371hero h2{font-size:clamp(1.2rem,5vw,1.55rem);line-height:1.5;margin:7px 0 12px}
+#app .social371hero p,#app .social371entry p{line-height:1.8}
+#app .social371entry{border:1px solid #cbdbe4;background:#f9fbfc;margin:22px 0 8px;padding:15px}
+#app .social371entry h3{margin:0 0 8px;line-height:1.5;font-size:1.15rem}
+#app .social371entry p{margin:0}
+#app .social371areas h3{margin-top:0}
+#app .social371areas>div{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid #e4e9ed;padding:10px 0;line-height:1.55}
+#app .social371areas>div b{min-width:0}
+#app .social371areas>div span{white-space:nowrap}
+#app .social371lesson{line-height:1.85}
+#app .social371lesson>h2{font-size:clamp(1.15rem,4.8vw,1.45rem);line-height:1.5;overflow-wrap:break-word}
+#app .social371lesson .soc352learn>span{min-width:0}
+#app .social371lesson .soc352learn>span>strong{display:block;color:#234e68;margin-bottom:5px;line-height:1.6;font-size:1em}
+#app .social371lesson .soc352learn>span>span{display:block;line-height:1.85}
+#app .social371progress{display:grid;gap:7px;margin:4px 0 17px;color:#2a516a}
+#app .social371progress>div{height:9px;border-radius:99px;overflow:hidden;background:#e7eef2}
+#app .social371progress i{display:block;height:100%;border-radius:99px;background:#5f86a1}
+#app .social371flow{display:flex;flex-direction:column;align-items:stretch;gap:5px;margin:14px 0}
+#app .social371flow span{display:block;padding:12px;border:1px solid #ccdbe4;border-radius:12px;background:#fff;text-align:center;font-weight:650;line-height:1.6}
+#app .social371flow b{text-align:center;font-size:1.15rem}
+#app .social371question h2{font-size:clamp(1.1rem,4.8vw,1.4rem);line-height:1.65}
+#app .social371result h2{font-size:clamp(1.5rem,7vw,2.1rem);line-height:1.4;margin:2px 0 8px}
+#app .social371result p{line-height:1.75}
+#app .social371breakdown h3{margin:0 0 15px}
+#app .social371baritem{margin-bottom:18px}
+#app .social371baritem>div:first-child{display:flex;gap:9px;justify-content:space-between;align-items:center;line-height:1.55;margin-bottom:7px}
+#app .social371baritem>div:first-child strong{min-width:0;overflow-wrap:break-word}
+#app .social371baritem>div:first-child b{white-space:nowrap}
+#app .social371bar{height:12px;background:#ebf0f3;border-radius:100px;overflow:hidden}
+#app .social371bar i{display:block;height:100%;background:#638ba6;border-radius:100px}
+#app .social371tip p,#app .social371review p{line-height:1.75}
+#app .social371review h3{font-size:1.12rem;line-height:1.55;overflow-wrap:anywhere}
+@media(max-width:640px){
+ #app .social371lesson{padding:16px 12px}
+ #app .social371lesson .soc352learn{margin:10px 0;padding:12px 10px;grid-template-columns:2rem minmax(0,1fr)}
+ #app .social371areas>div b{font-size:.98rem}
+}
+@media print{#app .social371lesson .soc352learn,#app .social371review{break-inside:avoid}}
