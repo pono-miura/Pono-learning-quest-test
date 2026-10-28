@@ -1,0 +1,16 @@
+/* v38.6: 学習者別の手動バックアップと重複しない追加復元 */
+#app .pono386title{font-size:clamp(1.16rem,4.9vw,1.58rem);line-height:1.5;overflow-wrap:anywhere}
+#app .pono386entry{margin:16px 0;padding:17px;background:#f7fafc;border:1px solid #bfd3dd}
+#app .pono386entry h3,#app .pono386block h3,#app .pono386note h3{margin:0 0 9px;font-size:1.11rem;line-height:1.55}
+#app .pono386entry p,#app .pono386intro p,#app .pono386block p,#app .pono386note p,#app .pono386preview p,#app .pono386success p{line-height:1.85;overflow-wrap:anywhere}
+#app .pono386entry button,#app .pono386block button,#app .pono386apply{width:100%;margin-top:9px}
+#app .pono386block,#app .pono386intro,#app .pono386preview{padding:19px 16px;margin:16px 0}
+#app .pono386note{background:#faf8f3;padding:16px;margin:16px 0}
+#app .pono386message{margin:15px 0;padding:16px;line-height:1.75;background:#f2f8f4}
+#app .pono386warning{background:#fff7ed;border:1px solid #ddc4ab}
+#app .pono386success{padding:19px 16px;margin:18px 0;background:#f3fbf6}
+#app .pono386file{position:absolute!important;width:1px!important;height:1px!important;opacity:0!important;pointer-events:none!important}
+#app .pono386small{font-size:.92em;color:#536779}
+#app .pono386good{font-weight:700;color:#315d48}
+@media(max-width:420px){#app .pono386block,#app .pono386intro,#app .pono386preview{padding:15px 12px}#app .pono386note{padding:13px 11px}}
+@media print{#app .pono386entry button,#app .pono386block button{display:none}}
