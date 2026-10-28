@@ -1,0 +1,23 @@
+/* v38.0: 読解の根拠を本文から見つける・音声利用を減点しない */
+#app .jap380entry{border:1px solid #b7d0df;background:#f4f9fc;margin:16px 0;padding:15px}
+#app .jap380entry h3{font-size:1.08rem;margin:0 0 8px;line-height:1.5}
+#app .jap380entry p,#app .jap380intro p,#app .jap380tip p{line-height:1.8}
+#app .jap380entry button{width:100%;margin-top:8px}
+#app .jap380title{font-size:clamp(1.2rem,4.9vw,1.55rem);line-height:1.5;overflow-wrap:anywhere}
+#app .jap380intro h2,#app .jap380question h2,#app .jap380answer h2{font-size:clamp(1.2rem,5vw,1.46rem);line-height:1.65;overflow-wrap:anywhere}
+#app .jap380passage{margin:10px 0 18px}
+#app .jap380para{display:grid;grid-template-columns:2.2rem minmax(0,1fr);align-items:start;gap:9px;padding:17px 14px;background:#fff;border:1px solid #d2dfe5;border-radius:16px;margin:12px 0;line-height:1.95;overflow-wrap:anywhere}
+#app .jap380num{border-radius:50%;background:#e3edf4;color:#274e67;text-align:center;font-weight:700;padding:5px 0;line-height:1.65}
+#app .jap380para p{margin:0;white-space:pre-line;line-height:1.95}
+#app mark.jap380marked{background:#ffedaf;color:#222;border-radius:4px;padding:2px 1px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+#app .jap380audio{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+#app .jap380audio button{flex:1;min-width:126px;font-size:1rem}
+#app .jap380question{padding:17px 15px}
+#app .jap380question p{line-height:1.8}
+#app .jap380subheading{font-size:1.1rem;font-weight:700;margin:22px 0 7px}
+#app>button.jap380opt{display:block;width:100%;text-align:left;font-weight:500;line-height:1.65;white-space:normal;overflow-wrap:anywhere}
+#app .jap380notice{margin:8px 0 18px;line-height:1.8}
+#app .jap380big{font-size:1.65rem;font-weight:700;color:#294f68;margin:12px 0}
+#app .jap380answer p,#app .jap380area p,#app .jap380read p{line-height:1.8}
+@media(max-width:420px){#app .jap380para{padding:13px 10px;gap:7px;grid-template-columns:2rem minmax(0,1fr)}#app .jap380question{padding:14px 11px}}
+@media print{#app .jap380para{break-inside:avoid}}
