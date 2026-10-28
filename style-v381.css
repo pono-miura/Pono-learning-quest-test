@@ -1,0 +1,32 @@
+/* v38.1 本文から根拠を選び、自分の言葉で説明する */
+#app .jap381title{font-size:clamp(1.2rem,4.8vw,1.55rem);line-height:1.5;overflow-wrap:anywhere}
+#app .jap381entry{margin:15px 0;padding:15px;border:1px solid #bdcfdc;background:#f6fafc}
+#app .jap381entry h3{font-size:1.11rem;line-height:1.5;margin:0 0 7px}
+#app .jap381entry p,#app .jap381intro p,#app .jap381steps p{line-height:1.85}
+#app .jap381entry button{width:100%;margin-top:9px}
+#app .jap381prompt h2,#app .jap381intro h2,#app .jap381example h2{font-size:clamp(1.18rem,5vw,1.45rem);line-height:1.65;overflow-wrap:anywhere}
+#app .jap381prompt p,#app .jap381example p,#app .jap381results p,#app .jap381summary p{line-height:1.85;overflow-wrap:anywhere}
+#app .jap381meter{margin:12px 0 15px;color:#325b75}
+#app .jap381meter b{display:block;margin:0 0 6px}
+#app .jap381meter>div{height:9px;border-radius:99px;background:#e6ecf2;overflow:hidden}
+#app .jap381meter>div>span{display:block;height:100%;border-radius:99px;background:#789bb4}
+#app .jap381passage{margin:12px 0 18px}
+#app .jap381para{display:grid;grid-template-columns:2.25rem minmax(0,1fr);gap:9px;align-items:start;border:1px solid #d7e0e6;border-radius:15px;background:white;padding:14px 12px;margin:10px 0;line-height:1.95}
+#app .jap381number{display:inline-flex;align-items:center;justify-content:center;width:2.1rem;height:2.1rem;border-radius:50%;background:#e8f0f6;color:#30546b;font-weight:700}
+#app .jap381para p{margin:0;line-height:1.95;overflow-wrap:anywhere}
+#app mark.jap381mark{background:#ffedaf;color:#242424;border-radius:4px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+#app .jap381audio{display:flex;gap:9px;flex-wrap:wrap;margin:10px 0 17px}
+#app .jap381audio button{flex:1;min-width:120px;font-size:1rem}
+#app .jap381sub{font-size:1.12rem;line-height:1.5;margin:20px 0 11px}
+#app>button.jap381choice{width:100%;text-align:left;white-space:normal;overflow-wrap:anywhere;line-height:1.75;font-weight:500}
+#app .jap381evidence{background:#f4f8fa;border:1px solid #cadae5}
+#app .jap381evidence p{font-size:1.04rem;line-height:1.9}
+#app .jap381writing h3,#app .jap381example h3{font-size:1.09rem;line-height:1.5;margin:12px 0 8px}
+#app textarea.jap381input{display:block;box-sizing:border-box;width:100%;min-height:124px;margin:12px 0;padding:14px;border:1.5px solid #a6bdca;border-radius:12px;background:white;color:inherit;font-size:1.08rem;line-height:1.75}
+#app .jap381note,#app .jap381status{line-height:1.7}
+#app .jap381results strong{font-size:1.9rem;color:#305d76;display:block;margin:8px 0}
+#app .jap381review{margin:14px 0}
+#app .jap381review p{line-height:1.8;overflow-wrap:anywhere}
+#app .jap381review h3{line-height:1.6;font-size:1.1rem}
+@media(max-width:420px){#app .jap381para{grid-template-columns:2rem minmax(0,1fr);gap:7px;padding:12px 9px}#app .jap381number{width:1.9rem;height:1.9rem}#app .jap381prompt,#app .jap381writing{padding:15px 12px}}
+@media print{#app .jap381para,#app .jap381review{break-inside:avoid}}
