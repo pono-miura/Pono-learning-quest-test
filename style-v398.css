@@ -1,0 +1,26 @@
+/* Pono Learning Quest v39.2 — 小学2年・国語5単元 */
+#app .j398title{font-size:clamp(1.15rem,5vw,1.56rem);line-height:1.55;overflow-wrap:anywhere}
+#app .j398intro,#app .j398unit,#app .j398lesson,#app .j398question,#app .j398result,#app .j398source,#app .j398feedback,#app .j398review,#app .j398entry{margin:15px 0;padding:19px 16px;border-radius:17px;line-height:1.85;overflow-wrap:anywhere}
+#app .j398intro h2,#app .j398unit h2,#app .j398lesson h2,#app .j398question h2,#app .j398result h2,#app .j398source h3,#app .j398review h3{font-size:1.19rem;line-height:1.62;margin:0 0 11px}
+#app .j398source{background:#f4f8fd;border:1px solid #bdd5e9}
+#app .j398source p{white-space:pre-wrap;font-size:1.16rem;line-height:2.05}
+#app .j398intro p,#app .j398unit p,#app .j398lesson p,#app .j398result p,#app .j398review p{line-height:1.9}
+#app .j398unit button{display:block;width:100%;margin:9px 0;min-height:51px;white-space:normal}
+#app .j398audio{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:13px 0 19px}
+#app .j398audio button{min-height:50px;white-space:normal;font-size:1rem}
+#app .j398example{background:#f4f6ee;border:1px solid #dae4cf;border-radius:14px;padding:12px 14px;margin:14px 0}
+#app .j398example p{font-weight:600;margin:6px 0}
+#app .j398tip,#app .j398note{font-size:.9rem;color:#586a75;line-height:1.8;margin:12px 0}
+#app .j398right{font-size:1.18rem;font-weight:700;color:#315d47}
+#app .j398counter{text-align:center;font-size:1.1rem;font-weight:700;margin:15px 0}
+#app button.j398choice{display:block;width:100%;min-height:54px;text-align:left;margin:10px 0;padding:13px 16px;border-radius:14px;white-space:normal;line-height:1.7;font-size:1.1rem}
+#app button.j398choice:disabled{opacity:.7}
+#app button.j398wide{width:100%;margin:10px 0;min-height:52px;white-space:normal}
+#app .j398feedback{background:#f3f8ee;border:1px solid #cadfc1}
+#app .j398feedback h3{margin:0 0 8px}
+#app .j398warn{padding:12px 14px;background:#fff4ee;border:1px solid #e0b5a6;border-radius:12px}
+#app .j398entry{background:#f3f8fc;border:1px solid #bad2e0}
+#app .j398entry h3{margin:0 0 7px}
+#app .j398entry button{width:100%;margin:10px 0 0;min-height:53px}
+@media(max-width:375px){#app .j398audio{grid-template-columns:1fr}#app .j398intro,#app .j398unit,#app .j398lesson,#app .j398question,#app .j398result,#app .j398source{padding:14px 11px}}
+@media print{#app .j398entry button,#app .j398audio,#app .j398choice,#app button.j398wide{display:none}}
