@@ -1,0 +1,23 @@
+/* Pono Learning Quest v40.1 — 小学3年 算数 後半5単元 */
+#app .m401title{font-size:clamp(1.12rem,4.6vw,1.55rem);line-height:1.55;overflow-wrap:anywhere}
+#app .m401intro,#app .m401unit,#app .m401lesson,#app .m401question,#app .m401result,#app .m401feedback,#app .m401review,#app .m401entry{padding:18px 16px;margin:15px 0;border-radius:17px;line-height:1.75;overflow-wrap:anywhere}
+#app .m401intro h2,#app .m401unit h2,#app .m401lesson h2,#app .m401question h2,#app .m401result h2,#app .m401review h3{font-size:1.2rem;line-height:1.55;margin:0 0 10px;overflow-wrap:anywhere}
+#app .m401unit button{display:block;width:100%;min-height:54px;white-space:normal;margin:10px 0 0;line-height:1.55}
+#app .m401visual{white-space:pre-wrap;font-variant-numeric:tabular-nums;letter-spacing:.02em;text-align:center;background:#eef5fa;color:#1b3a56;font-weight:700;border:1px solid #bed1df;border-radius:15px;padding:17px 8px;margin:16px 0;font-size:clamp(.96rem,4.0vw,1.25rem);line-height:1.9;overflow-wrap:anywhere}
+#app .m401example{padding:13px 15px;background:#f7f5ee;border:1px solid #ded7c8;border-radius:13px;line-height:1.9}
+#app .m401example p{margin:5px 0 0}
+#app .m401voice{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:15px 0}
+#app .m401voice button{min-height:54px;white-space:normal;min-width:0;line-height:1.5}
+#app .m401voice .m401hint{grid-column:1/-1;margin:0}
+#app .m401hint{font-size:.91rem;color:#546575;line-height:1.8}
+#app .m401wide,#app .m401choice{width:100%;min-height:54px;white-space:normal;display:block;margin:10px 0;line-height:1.65;overflow-wrap:anywhere;text-align:left}
+#app .m401count{font-weight:700;font-variant-numeric:tabular-nums;color:#35556a}
+#app .m401choice:disabled{opacity:.65}
+#app .m401feedback{background:#f3f8ef;border:1px solid #c5d9bd}
+#app .m401result{text-align:center}
+#app .m401result h2{font-size:1.7rem}
+#app .m401warn{padding:12px;border:1px solid #dbad9d;background:#fff4ee;color:#883e32;border-radius:12px;line-height:1.75}
+#app .m401entry{background:#f3f8fc;border:1px solid #bcd4e3}
+#app .m401entry button{width:100%;min-height:55px}
+@media(max-width:365px){#app .m401voice{grid-template-columns:1fr}#app .m401intro,#app .m401unit,#app .m401lesson,#app .m401question,#app .m401result,#app .m401review{padding:15px 11px}}
+@media print{#app .m401voice,#app .m401entry,#app .m401choice,#app .m401wide{display:none}}
