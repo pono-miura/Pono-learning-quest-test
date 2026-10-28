@@ -1,0 +1,26 @@
+/* Pono Learning Quest v39.2 — 小学2年・国語5単元 */
+#app .j403title{font-size:clamp(1.15rem,5vw,1.56rem);line-height:1.55;overflow-wrap:anywhere}
+#app .j403intro,#app .j403unit,#app .j403lesson,#app .j403question,#app .j403result,#app .j403source,#app .j403feedback,#app .j403review,#app .j403entry{margin:15px 0;padding:19px 16px;border-radius:17px;line-height:1.85;overflow-wrap:anywhere}
+#app .j403intro h2,#app .j403unit h2,#app .j403lesson h2,#app .j403question h2,#app .j403result h2,#app .j403source h3,#app .j403review h3{font-size:1.19rem;line-height:1.62;margin:0 0 11px}
+#app .j403source{background:#f4f8fd;border:1px solid #bdd5e9}
+#app .j403source p{white-space:pre-wrap;font-size:1.16rem;line-height:2.05}
+#app .j403intro p,#app .j403unit p,#app .j403lesson p,#app .j403result p,#app .j403review p{line-height:1.9}
+#app .j403unit button{display:block;width:100%;margin:9px 0;min-height:51px;white-space:normal}
+#app .j403audio{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:13px 0 19px}
+#app .j403audio button{min-height:50px;white-space:normal;font-size:1rem}
+#app .j403example{background:#f4f6ee;border:1px solid #dae4cf;border-radius:14px;padding:12px 14px;margin:14px 0}
+#app .j403example p{font-weight:600;margin:6px 0}
+#app .j403tip,#app .j403note{font-size:.9rem;color:#586a75;line-height:1.8;margin:12px 0}
+#app .j403right{font-size:1.18rem;font-weight:700;color:#315d47}
+#app .j403counter{text-align:center;font-size:1.1rem;font-weight:700;margin:15px 0}
+#app button.j403choice{display:block;width:100%;min-height:54px;text-align:left;margin:10px 0;padding:13px 16px;border-radius:14px;white-space:normal;line-height:1.7;font-size:1.1rem}
+#app button.j403choice:disabled{opacity:.7}
+#app button.j403wide{width:100%;margin:10px 0;min-height:52px;white-space:normal}
+#app .j403feedback{background:#f3f8ee;border:1px solid #cadfc1}
+#app .j403feedback h3{margin:0 0 8px}
+#app .j403warn{padding:12px 14px;background:#fff4ee;border:1px solid #e0b5a6;border-radius:12px}
+#app .j403entry{background:#f3f8fc;border:1px solid #bad2e0}
+#app .j403entry h3{margin:0 0 7px}
+#app .j403entry button{width:100%;margin:10px 0 0;min-height:53px}
+@media(max-width:375px){#app .j403audio{grid-template-columns:1fr}#app .j403intro,#app .j403unit,#app .j403lesson,#app .j403question,#app .j403result,#app .j403source{padding:14px 11px}}
+@media print{#app .j403entry button,#app .j403audio,#app .j403choice,#app button.j403wide{display:none}}
