@@ -1,0 +1,35 @@
+/* v37.4: 6年算数の教科書内容に沿った練習・単元テスト */
+#app .v374title {font-size:clamp(1.18rem,5vw,1.55rem);overflow-wrap:anywhere;line-height:1.45}
+#app .v374intro h2,#app .v374lesson h2 {font-size:clamp(1.2rem,5vw,1.55rem);line-height:1.5}
+#app .v374intro p,#app .v374lesson p,#app .v374diagram p {line-height:1.85}
+#app .v374progress {background:#e9f2f8;color:#244e6a;font-weight:750;border-radius:12px;padding:10px 12px;margin-bottom:15px}
+#app .v374point {display:grid;grid-template-columns:2rem minmax(0,1fr);gap:10px;border:1px solid #d7e0e8;border-radius:15px;padding:13px 11px;margin:10px 0;line-height:1.85;background:#fff}
+#app .v374point>b {display:flex;align-items:center;justify-content:center;background:#e4eff6;border-radius:50%;width:2rem;height:2rem;color:#284963;flex:0 0 auto}
+#app .v374point>span {min-width:0;overflow-wrap:anywhere}
+#app .v374diagram h3 {margin:0 0 12px;line-height:1.5}
+#app .v374svg {display:block;width:100%;max-width:540px;height:auto;max-height:300px;margin:auto}
+#app .v374formula {display:flex;align-items:center;justify-content:center;gap:9px;flex-wrap:wrap;font-size:1.1rem;line-height:1.8}
+#app .v374formula span {border:1px solid #cddfe9;background:#fff;border-radius:12px;padding:12px}
+#app .v374table {display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2px;background:#d4e0ea;border:2px solid #d4e0ea;border-radius:12px;overflow:hidden}
+#app .v374table div {padding:10px 3px;text-align:center;background:#fff;font-size:1rem;overflow-wrap:anywhere}
+#app .v374table div:nth-child(4n+1){background:#edf4f9;font-weight:700}
+#app .v374question h2 {font-size:clamp(1.16rem,4.9vw,1.42rem);line-height:1.7;overflow-wrap:anywhere}
+#app .v374result h2 {font-size:clamp(1.8rem,8vw,2.6rem);margin:0 0 6px}
+#app .v374review h3 {font-size:1.12rem;line-height:1.55;overflow-wrap:anywhere}
+#app .v374review p {line-height:1.75}
+#app textarea[aria-label="解答"] {width:100%;box-sizing:border-box;min-height:80px;font-size:1.05rem;padding:12px;border:1px solid #a4b7c5;border-radius:12px}
+@media(max-width:640px){#app .v374lesson,#app .v374diagram {padding:15px 12px}#app .v374point{padding:12px 10px}#app .v374formula{flex-direction:column}#app .v374formula span{width:100%;box-sizing:border-box;text-align:center}}
+@media print{#app .v374point,#app .v374review{break-inside:avoid}}
+
+/* v37.5: fractions and ratio diagrams, no extra image files needed */
+#app .v375fraction{background:#f7fafc;border:1px solid #cbdde7;border-radius:16px;padding:14px;margin:12px 0;line-height:1.7}
+#app .v375fraction>div:first-child{display:flex;gap:7px;flex-wrap:wrap;justify-content:space-between;align-items:center}
+#app .v375fraction span{font-size:.98rem}
+#app .v375bar{background:#e2e5e8;border-radius:12px;height:45px;margin:14px 0;overflow:hidden}
+#app .v375bar>i{display:block;height:100%;background:#b8d9eb;position:relative}
+#app .v375bar em{display:block;height:100%;background:#3a759f}
+#app .v375parts{display:flex;gap:3px;margin:12px 0}
+#app .v375parts>span{flex:1;background:#d9b1b1;border-radius:6px;padding:10px 2px;text-align:center;font-weight:700;min-width:0}
+#app .v375parts>span.blue{background:#abcbe6}
+#app .v375parts>span.pale{background:#ebeff2;color:#77818d}
+#app .v375fraction p{margin:6px 0;font-size:1.06rem}
