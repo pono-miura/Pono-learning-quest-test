@@ -1,0 +1,52 @@
+/* Pono Learning Quest v38.3 - 6年国語 初見読解・実力確認 */
+#app .jap383title{font-size:clamp(1.2rem,4.7vw,1.6rem);line-height:1.5;overflow-wrap:anywhere}
+#app .jap383entry{margin:18px 0;padding:17px;border:1px solid #b8ccdb;background:#f6fafc}
+#app .jap383entry h3{font-size:1.14rem;margin:0 0 8px;line-height:1.5}
+#app .jap383entry p,#app .jap383hero p,#app .jap383tip p{line-height:1.75}
+#app .jap383entry button{width:100%;margin:10px 0 0}
+#app .jap383hero{padding:20px 17px}
+#app .jap383hero h2{font-size:1.32rem;line-height:1.5}
+#app .jap383breakdown p{line-height:1.8;margin:9px 0}
+#app .jap383progress{margin:12px 0 18px}
+#app .jap383progress>div{height:10px;background:#e6eaed;border-radius:10px;margin-top:8px;overflow:hidden}
+#app .jap383progress span{display:block;height:100%;background:#658aa2}
+#app .jap383prompt{padding:20px 17px;margin:14px 0}
+#app .jap383prompt h2{font-size:clamp(1.12rem,4.7vw,1.36rem);line-height:1.65;overflow-wrap:anywhere}
+#app .jap383source{border:1px solid #d0d8df;border-radius:18px;margin:14px 0;background:#fff;overflow:hidden}
+#app .jap383source summary{cursor:pointer;padding:16px 15px;font-size:1.08rem;font-weight:700;line-height:1.6;list-style-position:inside}
+#app .jap383source[open] summary{border-bottom:1px solid #e3e7ea;background:#f7f9fa}
+#app .jap383sourceBody{padding:15px 14px}
+#app .jap383intro{font-size:.94rem;color:#586571;line-height:1.7}
+#app .jap383para{display:grid;grid-template-columns:2.2rem minmax(0,1fr);gap:10px;margin:11px 0;padding:14px 11px;border:1px solid #e3e6e9;border-radius:14px;align-items:start}
+#app .jap383num{display:grid;place-items:center;width:2rem;height:2rem;border-radius:50%;background:#e6eff4;color:#345467;font-weight:700}
+#app .jap383para p{margin:0;line-height:1.85;overflow-wrap:anywhere}
+#app .jap383tablecard{margin:14px 0;padding:10px 8px;border:1px solid #e0e5e7;border-radius:12px}
+#app .jap383tablecard h3{font-size:1rem;line-height:1.5;margin:6px 4px 12px}
+#app .jap383tableScroll{overflow-x:auto}
+#app .jap383table{width:100%;border-collapse:collapse;font-size:1rem}
+#app .jap383table th,#app .jap383table td{border:1px solid #d5dee4;padding:10px 7px;text-align:left}
+#app .jap383table thead{background:#f1f6f9}
+#app .jap383audio{display:flex;gap:9px;flex-wrap:wrap;margin:9px 0 12px}
+#app .jap383audio button{flex:1;min-width:120px}
+#app .jap383selectLabel{font-size:1.08rem;margin:17px 0 10px}
+#app .jap383choice{display:block;text-align:left;width:100%;padding:15px;margin:9px 0;white-space:normal;overflow-wrap:anywhere;line-height:1.65;border-radius:14px;font-size:1rem}
+#app .jap383selected{border:2px solid #44718b;background:#e7f2f8;color:#1b4052;font-weight:700}
+#app .jap383nav{display:flex;gap:10px;align-items:stretch;margin:15px 0;flex-wrap:wrap}
+#app .jap383nav button{flex:1;min-width:125px}
+#app .jap383size button{width:auto;margin:5px 0 12px}
+#app .jap383large .jap383para p,#app .jap383large .jap383choice,#app .jap383large .jap383prompt h2{font-size:1.24rem;line-height:1.95}
+#app .jap383unanswered{line-height:1.7}
+#app .jap383result{text-align:center;padding:28px 16px}
+#app .jap383result strong{display:block;font-size:3rem;line-height:1.5;color:#315a76}
+#app .jap383band{display:flex;justify-content:space-between;align-items:center;gap:15px;border-bottom:1px solid #e5e5e5;padding:12px 3px}
+#app .jap383band:last-of-type{border-bottom:0}
+#app .jap383bands h3{font-size:1.16rem}
+#app .jap383bands .tiny{line-height:1.75}
+#app .jap383review{margin:12px 0;padding:16px 14px;overflow-wrap:anywhere}
+#app .jap383review h3{font-size:1.08rem;line-height:1.6}
+#app .jap383review p{line-height:1.75}
+#app .jap383writing textarea{width:100%;box-sizing:border-box;min-height:145px;font-size:1rem;line-height:1.7;padding:12px;border-radius:12px;border:1px solid #b7c5ce;background:#fff}
+#app .jap383writing button{width:100%;margin:8px 0}
+#app .jap383comparison p,#app .jap383check p{line-height:1.85;overflow-wrap:anywhere}
+@media(max-width:420px){#app .jap383para{grid-template-columns:2rem minmax(0,1fr);gap:7px;padding:11px 8px}#app .jap383prompt,#app .jap383sourceBody{padding:13px 11px}#app .jap383choice{padding:13px 11px}}
+@media print{#app .jap383para,#app .jap383review,#app .jap383tablecard{break-inside:avoid}}
