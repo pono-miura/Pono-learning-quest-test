@@ -1,0 +1,32 @@
+/* v37.7: 6年算数・全体まとめ */
+#app .math377entry {background:#f6fafb;border:1px solid #b7cedc;margin:16px 0 24px;padding:17px}
+#app .math377entry h3 {margin:0 0 7px;font-size:1.1rem;line-height:1.5}
+#app .math377entry p,#app .math377hint p,#app .math377hero p {line-height:1.8}
+#app .math377entry button {width:100%;text-align:center;margin:6px 0 0}
+#app .math377top {display:flex;flex-wrap:wrap;gap:9px;align-items:flex-start;margin-bottom:14px}
+#app .math377top .math377title {width:100%;flex-basis:100%;font-size:clamp(1.25rem,5.3vw,1.55rem);line-height:1.5;overflow-wrap:anywhere;margin:4px 0 8px}
+#app .math377hero h2,#app .math377lesson h2 {font-size:clamp(1.18rem,4.8vw,1.48rem);line-height:1.5}
+#app .math377lesson,#app .math377diagram,#app .math377question,#app .math377review {line-height:1.8}
+#app .math377progress {font-weight:700;color:#2a536b;margin:0 0 14px}
+#app .math377progress>div {height:9px;border-radius:99px;background:#dfe8ee;overflow:hidden;margin:6px 0 0}
+#app .math377progress i {display:block;height:100%;background:#729db7;border-radius:99px}
+#app .math377point {display:grid;grid-template-columns:2rem minmax(0,1fr);gap:10px;padding:12px 10px;border-radius:14px;border:1px solid #d8e2e9;background:white;margin:10px 0;line-height:1.8}
+#app .math377point>b {display:flex;align-items:center;justify-content:center;border-radius:50%;background:#e5eef4;color:#244a64;width:2rem;height:2rem}
+#app .math377point>span {min-width:0;overflow-wrap:anywhere}
+#app .math377visual {white-space:pre-line;border:1px solid #d4e1ea;background:#f3f8fb;border-radius:13px;padding:14px 10px;text-align:center;font-size:1.02rem;font-weight:650;line-height:1.85;overflow-wrap:anywhere}
+#app .math377source {border:2px solid #cbdee9;border-radius:14px;background:#f4f9fc;padding:13px;margin:13px 0 18px;overflow-wrap:anywhere}
+#app .math377source strong {color:#274a62;display:block;margin-bottom:8px}
+#app .math377source p {margin:0;white-space:pre-line;line-height:1.9}
+#app .math377question h2,#app .math377review h3 {font-size:clamp(1.14rem,4.9vw,1.42rem);line-height:1.65;overflow-wrap:anywhere;margin:12px 0}
+#app .math377input textarea {width:100%;box-sizing:border-box;min-height:85px;border:1px solid #a0b5c4;border-radius:12px;font:inherit;font-size:1.1rem;padding:12px}
+#app .math377result h2 {font-size:clamp(1.9rem,9vw,2.65rem);margin:0 0 5px}
+#app .math377breakdown h3,#app .math377tip h3 {margin:0 0 12px;font-size:1.16rem}
+#app .math377baritem {margin:12px 0}
+#app .math377baritem>div:first-child {display:flex;align-items:start;justify-content:space-between;gap:9px;font-size:1rem;line-height:1.5;margin-bottom:6px}
+#app .math377baritem>div:first-child span {flex:1;min-width:0;overflow-wrap:anywhere}
+#app .math377baritem>div:first-child b {white-space:nowrap}
+#app .math377bar {height:10px;background:#e8edf1;border-radius:99px;overflow:hidden}
+#app .math377bar i {height:100%;display:block;background:#638ea9;border-radius:99px}
+#app .math377tip p,#app .math377review p {line-height:1.8}
+@media(max-width:640px){#app .math377lesson,#app .math377diagram,#app .math377question{padding:15px 12px}#app .math377point{padding:12px 9px}#app .math377source{padding:12px 10px}}
+@media print{#app .math377point,#app .math377review{break-inside:avoid}}
