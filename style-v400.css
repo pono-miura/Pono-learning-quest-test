@@ -1,0 +1,26 @@
+/* Pono Learning Quest v40.0 — 小学3年・算数の学習・練習・テスト */
+#app .m400title{font-size:clamp(1.15rem,4.7vw,1.55rem);line-height:1.6;overflow-wrap:anywhere}
+#app .m400intro,#app .m400unit,#app .m400lesson,#app .m400prompt,#app .m400feedback,#app .m400result,#app .m400review,#app .m400entry{padding:18px 16px;margin:15px 0;border-radius:17px}
+#app .m400intro h2,#app .m400unit h2,#app .m400lesson h2,#app .m400prompt h2,#app .m400review h3,#app .m400result h2{font-size:1.17rem;line-height:1.6;overflow-wrap:anywhere;margin:0 0 12px}
+#app .m400intro p,#app .m400unit p,#app .m400lesson p,#app .m400prompt p,#app .m400result p,#app .m400feedback p,#app .m400review p{line-height:1.9;overflow-wrap:anywhere}
+#app .m400unit button{display:block;width:100%;min-height:51px;margin-top:10px;white-space:normal;line-height:1.55}
+#app .m400visual{margin:20px 0;padding:19px 12px;text-align:center;background:#eef5fa;border:1px solid #c7d6e1;border-radius:15px;font-size:clamp(1.05rem,4.4vw,1.45rem);font-weight:700;color:#253e54;line-height:1.8;overflow-wrap:anywhere}
+#app .m400example{padding:12px 14px;border-radius:13px;background:#f6f4ed;border:1px solid #ded8c9;line-height:1.8}
+#app .m400example p{margin:7px 0 0}
+#app .m400voice{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:15px 0}
+#app .m400voice button{min-width:0;min-height:55px;white-space:normal;line-height:1.5}
+#app .m400voice .m400hint{grid-column:1/-1;margin:0}
+#app .m400wide,#app .m400choice{display:block;width:100%;min-height:55px;white-space:normal;margin:11px 0;line-height:1.6;overflow-wrap:anywhere}
+#app .m400choice[disabled]{opacity:.65;cursor:default}
+#app .m400count{font-weight:700;font-variant-numeric:tabular-nums;color:#32546c;font-size:1.06rem}
+#app .m400hint{color:#526677;font-size:.94rem;line-height:1.9}
+#app .m400result{text-align:center}
+#app .m400result h2{font-size:1.75rem}
+#app .m400warn{border:1px solid #dcb7a7;color:#904a35;background:#fff6f1;padding:13px;border-radius:12px}
+#app .m400entry{background:#f4f9fc;border:1px solid #b9d2e0}
+#app .m400entry h3{font-size:1.13rem;margin:0 0 9px}
+#app .m400entry button{width:100%;min-height:54px}
+@media(max-width:360px){#app .m400voice{grid-template-columns:1fr}#app .m400intro,#app .m400unit,#app .m400lesson,#app .m400prompt,#app .m400result,#app .m400review{padding:15px 11px}}
+@media print{#app .m400voice,#app .m400choice,#app .m400wide,#app .m400entry{display:none}}
+
+#app .m400visual{white-space:pre-wrap;font-variant-numeric:tabular-nums;letter-spacing:.035em}
