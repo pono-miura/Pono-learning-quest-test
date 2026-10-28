@@ -1,0 +1,27 @@
+/* Pono Learning Quest v38.5 — 5教科の学習状況 */
+#app .pono385title{font-size:clamp(1.17rem,4.6vw,1.55rem);line-height:1.55;overflow-wrap:anywhere}
+#app .pono385entry{margin:14px 0 22px;padding:17px;background:#f4f9f9;border:1px solid #bfd5d5}
+#app .pono385entry h3{font-size:1.1rem;line-height:1.55;margin:0 0 7px}
+#app .pono385entry p{line-height:1.8;margin:5px 0 12px}
+#app .pono385entry button,#app .pono385subject button{width:100%;margin:11px 0 0}
+#app .pono385hero{padding:20px 18px}
+#app .pono385hero h2{line-height:1.5;margin:6px 0}
+#app .pono385hero p,#app .pono385note p{line-height:1.8}
+#app .pono385counter{background:#edf5f7;border:1px solid #d8e5ec;border-radius:12px;padding:12px 13px}
+#app .pono385counter strong{font-size:1.27em}
+#app .pono385grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:18px 0}
+#app .pono385subject{padding:18px 14px;margin:0;min-width:0;display:flex;flex-direction:column}
+#app .pono385subject h2{font-size:1.2rem;line-height:1.5;margin:0 0 4px}
+#app .pono385subject p{line-height:1.7;margin:7px 0}
+#app .pono385hint{color:#5a6670;font-size:.96rem}
+#app .pono385score strong{font-size:1.2rem}
+#app .pono385bar{height:10px;background:#ebeff1;border-radius:999px;overflow:hidden;margin:8px 0}
+#app .pono385bar>span{display:block;height:100%;background:#6692ae;border-radius:999px}
+#app .pono385empty{background:#f6f7f7;border-radius:10px;padding:12px 11px;color:#59616b}
+#app .pono385meta{font-size:.88rem;color:#5b6974}
+#app .pono385action{margin-top:auto!important}
+#app .pono385note{padding:18px 16px;margin:18px 0}
+#app .pono385note h3{margin:0 0 6px;line-height:1.5}
+#app .pono385return{margin:8px 0 22px;width:100%}
+@media(max-width:680px){#app .pono385grid{grid-template-columns:1fr}#app .pono385subject{padding:17px 15px}}
+@media print{#app .pono385subject{break-inside:avoid}#app .pono385subject button,#app .pono385return{display:none}}
