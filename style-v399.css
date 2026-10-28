@@ -1,0 +1,30 @@
+/* v39.9 小学2年 国語・算数 全体のまとめ */
+#app .r399title{font-size:clamp(1.18rem,4.8vw,1.55rem);line-height:1.5;overflow-wrap:anywhere}
+#app .r399intro,#app .r399subject,#app .r399note,#app .r399source,#app .r399question,#app .r399feedback,#app .r399result,#app .r399unitresults,#app .r399explain,#app .r399entry{border-radius:17px;padding:18px 16px;margin:15px 0;line-height:1.8;overflow-wrap:anywhere}
+#app .r399intro h2,#app .r399subject h2,#app .r399question h2,#app .r399result h2,#app .r399unitresults h2,#app .r399feedback h2{font-size:1.18rem;line-height:1.55;margin:0 0 12px}
+#app .r399intro p,#app .r399subject p,#app .r399note p,#app .r399source p,#app .r399question p,#app .r399result p,#app .r399feedback p,#app .r399explain p{line-height:1.9}
+#app .r399source{background:#f1f7fc;border:1px solid #b7d0e4}
+#app .r399source p{white-space:pre-wrap;font-size:1.13rem;line-height:2.05}
+#app .r399question h2{font-weight:700;font-size:1.22rem}
+#app .r399progress{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;margin:12px 3px;font-size:1rem}
+#app .r399bar{height:8px;background:#e6e7e5;border-radius:99px;overflow:hidden;margin:0 5px 18px}
+#app .r399fill{height:100%;background:#60899e;border-radius:99px;transition:width .15s}
+#app button.r399choice{display:block;width:100%;min-height:56px;text-align:left;line-height:1.7;margin:11px 0;padding:13px 17px;white-space:normal;font-size:1.1rem}
+#app button.r399wide{display:block;width:100%;min-height:52px;margin:11px 0;white-space:normal;line-height:1.6;padding:12px 15px}
+#app .r399voice{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:13px 0 0}
+#app .r399voice button{min-height:50px;line-height:1.5;font-size:1rem}
+#app .r399voicewrap{margin:12px 0 20px}
+#app .r399muted{color:#546572;font-size:.89rem;line-height:1.7}
+#app .r399score{font-size:2.45rem!important;line-height:1.35!important;text-align:center;color:#345c73}
+#app .r399unitrow{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;padding:13px 5px;border-bottom:1px solid #e2e5e4}
+#app .r399unitrow strong{white-space:nowrap}
+#app .r399retry strong{color:#995b36}
+#app .r399sourcefold{border-top:1px solid #ddd;padding:9px 0;margin-top:10px}
+#app .r399sourcefold p{white-space:pre-wrap;line-height:2}
+#app .r399units{border-top:1px solid #ddd;padding:10px 0;margin-top:10px}
+#app .r399units p{margin:4px 0}
+#app .r399entry{background:#f3f8fc;border:1px solid #c4d8e4}
+#app .r399entry h3{font-size:1.14rem;margin:0 0 8px}
+#app .r399error{background:#fff3ed;border:1px solid #d7af9b;border-radius:12px;padding:14px}
+@media(max-width:380px){#app .r399voice{grid-template-columns:1fr}#app .r399intro,#app .r399subject,#app .r399note,#app .r399source,#app .r399question,#app .r399result,#app .r399unitresults,#app .r399explain{padding:14px 11px}}
+@media print{#app .r399voice,#app .r399entry,#app .r399choice,#app button.r399wide{display:none}}
