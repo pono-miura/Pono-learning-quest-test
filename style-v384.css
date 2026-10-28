@@ -1,0 +1,36 @@
+/* v38.4 小学6年英語 全体のまとめ */
+#app .eng384title{font-size:clamp(1.15rem,4.8vw,1.55rem);line-height:1.5;overflow-wrap:anywhere}
+#app .eng384entry{background:#f1faf8;border:1px solid #b6d7cd;padding:16px;margin:17px 0 22px}
+#app .eng384entry h3,#app .eng384hero h2{line-height:1.5;margin:5px 0 10px}
+#app .eng384entry p,#app .eng384hero p,#app .eng384tips p{line-height:1.8}
+#app .eng384entry button{width:100%;margin:10px 0 0}
+#app .eng384english{font-size:1.16rem;font-weight:700;line-height:1.7;overflow-wrap:anywhere;white-space:pre-line}
+#app .eng384lesson,#app .eng384question,#app .eng384result{padding:18px 15px}
+#app .eng384phrase{border:1px solid #dbe5e9;padding:12px;margin:12px 0;border-radius:15px;background:#fff}
+#app .eng384phrase p{margin:7px 0}
+#app .eng384note{background:#f3f7f9;padding:12px;border-radius:12px;line-height:1.8}
+#app .eng384audio{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+#app .eng384audio button{flex:1;min-width:115px;margin:0;padding:11px 9px;font-size:.97rem}
+#app .eng384unitbtn{display:block;width:100%;margin:9px 0;text-align:left}
+#app .eng384nav{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+#app .eng384nav button{flex:1;min-width:130px}
+#app .eng384prompt{font-size:1.1rem;margin:20px 0 10px}
+#app .eng384question h2{font-size:clamp(1.16rem,5vw,1.45rem);line-height:1.6;overflow-wrap:anywhere}
+#app .eng384source{line-height:1.7;padding:13px;background:#f7fafb;border-left:4px solid #91b7cb;border-radius:8px;font-size:1.13rem}
+#app .eng384script{background:#eff6fa;padding:12px;border-radius:10px}
+#app .eng384script[hidden]{display:none!important}
+#app .eng384choice{display:block;width:100%;margin:9px 0;padding:14px 12px;text-align:left;white-space:normal;line-height:1.5;border-radius:13px;border:1px solid #d5dbdf;cursor:pointer;font-size:1rem}
+#app .eng384chosen{border-color:#377e9f;background:#edf6fa}
+#app .eng384progress{display:flex;align-items:center;gap:12px;margin:14px 0}
+#app .eng384progress>div{height:8px;flex:1;border-radius:50px;overflow:hidden;background:#e0e7eb}
+#app .eng384progress span{display:block;height:100%;background:#6794af}
+#app .eng384feedback{padding:14px 16px;line-height:1.8}
+#app .eng384ok{background:#f1faf5;border:1px solid #b8d9c5}
+#app .eng384review{background:#fff8ee;border:1px solid #ecd9ae}
+#app .eng384area{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 0;border-bottom:1px solid #e5e9e9}
+#app .eng384area b{flex-shrink:0;font-variant-numeric:tabular-nums}
+#app .eng384area span{overflow-wrap:anywhere}
+#app .eng384wrong{line-height:1.8;margin:13px 0}
+#app .eng384recognition{border-left:3px solid #648da8;padding:9px;background:#f1f6f8;line-height:1.8}
+@media(max-width:420px){#app .eng384lesson,#app .eng384question,#app .eng384result{padding:15px 11px}#app .eng384audio button{min-width:110px}}
+@media print{#app .eng384phrase,#app .eng384wrong{break-inside:avoid}}
