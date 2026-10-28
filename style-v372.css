@@ -1,0 +1,15 @@
+/* v37.2：資料を読み取る社会まとめテスト */
+#app .social372source {
+  background:#f4f8fa;
+  border:2px solid #cbdde7;
+  border-radius:15px;
+  padding:15px 14px;
+  margin:10px 0 19px;
+  line-height:1.75;
+  overflow-wrap:anywhere;
+}
+#app .social372source strong {display:block;margin:0 0 8px;color:#254961;font-size:1.03rem}
+#app .social372source p {margin:0;white-space:pre-line;font-size:1.03rem;line-height:1.95}
+#app .social371question h2 {margin-top:12px;font-size:clamp(1.16rem,4.8vw,1.42rem);line-height:1.75;overflow-wrap:break-word}
+@media(max-width:640px) {#app .social372source {padding:12px 11px;}#app .social372source p {font-size:1rem;line-height:1.85}}
+@media print {#app .social372source {break-inside:avoid;}}
