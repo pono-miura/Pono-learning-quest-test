@@ -1,0 +1,38 @@
+/* v37.8: 小学6年生理科・総復習 */
+#app .science378entry{background:#f4faf8;border:1px solid #bfd8cf;margin:17px 0 23px;padding:16px}
+#app .science378entry h3{margin:0 0 8px;font-size:1.16rem;line-height:1.5}
+#app .science378entry p,#app .science378hero p{line-height:1.8}
+#app .science378entry button{width:100%;margin:5px 0 0}
+#app .science378top{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:15px}
+#app .science378title{width:100%;flex-basis:100%;font-size:clamp(1.24rem,5vw,1.55rem);line-height:1.5;overflow-wrap:anywhere;margin:3px 0 7px}
+#app .science378hero h2,#app .science378lesson h2{font-size:clamp(1.2rem,5vw,1.55rem);line-height:1.5}
+#app .science378areas>div{display:flex;justify-content:space-between;gap:10px;padding:11px 3px;border-bottom:1px solid #d8e5e1}
+#app .science378areas>div span{flex:1;overflow-wrap:anywhere}
+#app .science378areas>div b{white-space:nowrap}
+#app .science378lesson,#app .science378question,#app .science378review{line-height:1.8}
+#app .science378progress{font-weight:700;color:#286356;margin-bottom:16px}
+#app .science378progress>div{background:#e4eee9;border-radius:99px;overflow:hidden;height:10px;margin-top:7px}
+#app .science378progress i{display:block;height:100%;background:#76aa98;border-radius:99px}
+#app .science378point{display:grid;grid-template-columns:2rem minmax(0,1fr);gap:12px;background:white;border:1px solid #d2e3dd;border-radius:14px;padding:12px 11px;margin:12px 0}
+#app .science378point>b{display:flex;justify-content:center;align-items:center;width:2rem;height:2rem;background:#e3f0eb;color:#286052;border-radius:50%}
+#app .science378point>p{margin:0;line-height:1.8;overflow-wrap:anywhere}
+#app .science378flow{display:flex;flex-direction:column;gap:10px}
+#app .science378flow h3{margin:0 0 3px}
+#app .science378flow span{display:block;padding:13px 10px;border:1px solid #d2e4db;border-radius:12px;background:#fff;text-align:center;font-weight:650;line-height:1.7}
+#app .science378flow>b{text-align:center;line-height:1;font-size:1.2rem}
+#app .science378question h2,#app .science378review h3{font-size:clamp(1.16rem,4.8vw,1.43rem);line-height:1.7;overflow-wrap:anywhere}
+#app .science378source{background:#f4f9f8;border:2px solid #c9e1d8;border-radius:14px;padding:13px;margin:12px 0 18px;overflow-wrap:anywhere}
+#app .science378source strong{display:block;margin-bottom:7px;color:#285a4e}
+#app .science378source p{white-space:pre-line;margin:0;line-height:1.9}
+#app .science378input textarea{width:100%;box-sizing:border-box;min-height:85px;border-radius:12px;padding:11px;font:inherit;border:1px solid #a2bdb4}
+#app .science378result h2{font-size:clamp(2rem,9vw,2.6rem);margin:0 0 6px}
+#app .science378breakdown h3{margin:0 0 14px}
+#app .science378baritem{margin:13px 0}
+#app .science378baritem>div:first-child{display:flex;justify-content:space-between;gap:9px;margin-bottom:7px;line-height:1.5}
+#app .science378baritem b{flex:1}
+#app .science378baritem span{white-space:nowrap}
+#app .science378bar{height:10px;background:#e5efe9;border-radius:99px;overflow:hidden}
+#app .science378bar i{height:100%;display:block;background:#76a997;border-radius:99px}
+#app .science378review p{line-height:1.75}
+@media(max-width:640px){#app .science378lesson,#app .science378question{padding:15px 12px}#app .science378point{padding:12px 9px}#app .science378source{padding:12px 10px}}
+@media print{#app .science378point,#app .science378review{break-inside:avoid}}
