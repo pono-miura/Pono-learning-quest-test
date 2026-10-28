@@ -1,0 +1,28 @@
+/* Pono Learning Quest v39.5 — 生活科 1・2年 */
+#app .life395title{font-size:clamp(1.18rem,4.8vw,1.55rem);line-height:1.55;overflow-wrap:anywhere}
+#app .life395intro,#app .life395unit,#app .life395lesson,#app .life395activity,#app .life395safety,#app .life395question,#app .life395feedback,#app .life395reflection,#app .life395note,#app .life395done,#app .life395entry{padding:18px 16px;margin:14px 0;border-radius:18px}
+#app .life395unit,#app .life395activity,#app .life395lesson,#app .life395reflection,#app .life395question{background:#fff}
+#app .life395intro{background:#f3f8f2;border:1px solid #c8dcc5}
+#app .life395entry{border:1px solid #cadbc9;background:#f1f8f4}
+#app .life395unit h2,#app .life395lesson h2,#app .life395activity h2,#app .life395question h2,#app .life395reflection h2,#app .life395entry h3{font-size:1.18rem;line-height:1.6;margin:0 0 9px}
+#app .life395intro p,#app .life395unit p,#app .life395lesson p,#app .life395activity p,#app .life395safety p,#app .life395question p,#app .life395feedback p,#app .life395note p,#app .life395done p{line-height:1.9;overflow-wrap:anywhere}
+#app .life395small{font-size:.89rem;line-height:1.8;color:#586774;margin:11px 0}
+#app .life395switch{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}
+#app .life395switch button,#app .life395audio button{min-height:52px;margin:0;white-space:normal}
+#app button.life395wide{width:100%;min-height:54px;margin:9px 0 3px;text-align:left;line-height:1.65;white-space:normal}
+#app .life395audio{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0 22px}
+#app .life395audio .life395small{grid-column:1/-1}
+#app .life395bigIcon{font-size:3rem;text-align:center;padding:12px 0}
+#app .life395step{display:flex;gap:12px;align-items:flex-start;padding:13px 8px;border-bottom:1px solid #dee5e6;line-height:1.75}
+#app .life395step b{flex:0 0 34px;height:34px;border-radius:50%;background:#deecdf;color:#2c5239;display:grid;place-items:center}
+#app .life395step span{min-width:0;overflow-wrap:anywhere;flex:1}
+#app .life395safety{background:#fff9ec;border:1px solid #e4d6ad}
+#app .life395choices{display:grid;gap:10px;margin:16px 0}
+#app .life395choices button{min-height:65px;padding:16px 13px;background:#fff;border:1px solid #ccd6dc;border-radius:15px;text-align:left;white-space:normal;line-height:1.65;font-size:1.02rem;color:inherit}
+#app .life395choices button:disabled{opacity:.64}
+#app .life395feedback{background:#eff7f0;border:1px solid #cbdcc9}
+#app .life395good,#app .life395warn{border-radius:14px;padding:13px 15px;line-height:1.7;margin:15px 0}
+#app .life395good{background:#ecf6ee;color:#265634}
+#app .life395warn{background:#fff2eb;color:#8c4034}
+@media(max-width:360px){#app .life395audio{grid-template-columns:1fr}#app .life395intro,#app .life395unit,#app .life395lesson,#app .life395activity,#app .life395question,#app .life395reflection,#app .life395done{padding:14px 11px}}
+@media print{#app .life395audio,#app .life395choices,#app .life395entry{display:none}}
