@@ -1,0 +1,125 @@
+/* Pono Learning Quest v36.8 — 小学6年社会の読みやすさ改善 */
+/* v35.2 の .soc352learn が公開ページに読み込まれなかったため、ここで明示的に定義する。 */
+#app .card.lesson .soc352learn {
+  display:grid;
+  grid-template-columns:2.2rem minmax(0,1fr);
+  gap:0.8rem;
+  align-items:start;
+  border:1px solid #d9e1e8;
+  border-radius:15px;
+  background:#fff;
+  padding:15px 14px;
+  margin:12px 0;
+  line-height:1.9;
+  break-inside:avoid;
+}
+#app .card.lesson .soc352learn > b {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:2.2rem;
+  min-width:2.2rem;
+  height:2.2rem;
+  padding:0;
+  background:#e7eff5;
+  color:#24465e;
+  border-radius:50%;
+  font-weight:750;
+  font-size:1rem;
+  line-height:1;
+}
+#app .card.lesson .soc352learn > span {
+  min-width:0;
+  display:block;
+  font-size:1.05rem;
+  line-height:1.92;
+  letter-spacing:.015em;
+  overflow-wrap:break-word;
+  word-break:normal;
+}
+/* 元の文章を削らず、一文ごとに視線を戻しやすくする。 */
+#app .card.lesson .soc352learn .pono368sentence {
+  display:block;
+  margin:0 0 .5em;
+}
+#app .card.lesson .soc352learn .pono368sentence:last-child { margin-bottom:0; }
+/* 小単元別の「学ぶ」の見出し・注記は、本文と離して配置する。 */
+#app .card.lesson > h2 { margin:0 0 12px; line-height:1.45; }
+#app .card.lesson > .tiny,
+#app .card.lesson > p.tiny { line-height:1.7; margin:0 0 16px; }
+#app .card.lesson .peace366section { margin-top:26px; }
+/* 図解カードを画面幅よりはみ出させない。 */
+#app .edo361flow > div,
+#app .edo361chain > span,
+#app .bunka362flow > span,
+#app .meiji363flow > span,
+#app .war365path > span,
+#app .peace366path > span,
+#app .hist367flow > span,
+#app .hist351flow > span { min-width:0; overflow-wrap:break-word; }
+/* スマートフォン：流れの図を上から下へ自然に読む。 */
+@media (max-width:640px) {
+  #app .top .back { flex:0 0 auto; width:auto; white-space:nowrap; }
+  #app .top h1 { min-width:0; overflow-wrap:break-word; line-height:1.4; }
+  #app .card.lesson { padding:16px 14px; }
+  #app .card.lesson .soc352learn {
+    grid-template-columns:2rem minmax(0,1fr);
+    gap:10px;
+    padding:14px 11px;
+    margin:10px 0;
+  }
+  #app .card.lesson .soc352learn > b {
+    width:2rem; min-width:2rem; height:2rem;
+  }
+  #app .card.lesson .soc352learn > span { font-size:1.02rem; }
+  #app .edo361flow,
+  #app .edo361chain,
+  #app .bunka362flow,
+  #app .meiji363flow,
+  #app .war365path,
+  #app .peace366path,
+  #app .hist367flow,
+  #app .hist351flow {
+    display:flex;
+    flex-direction:column;
+    align-items:stretch;
+    flex-wrap:nowrap;
+    gap:5px;
+  }
+  #app .edo361flow > div,
+  #app .edo361chain > span,
+  #app .bunka362flow > span,
+  #app .meiji363flow > span,
+  #app .war365path > span,
+  #app .peace366path > span,
+  #app .hist367flow > span,
+  #app .hist351flow > span {
+    width:100%;
+    flex:0 0 auto;
+    text-align:center;
+    line-height:1.65;
+  }
+  #app .edo361flow > i,
+  #app .edo361chain > b,
+  #app .bunka362flow > b,
+  #app .meiji363flow > b,
+  #app .war365path > b,
+  #app .peace366path > b,
+  #app .hist367flow > b,
+  #app .hist351flow > b {
+    display:block;
+    align-self:center;
+    flex:0 0 auto;
+    width:auto;
+    margin:1px 0;
+    line-height:1;
+    font-style:normal;
+    font-size:1.2rem;
+    transform:rotate(90deg);
+  }
+}
+/* 印刷時も番号と本文を分離して表示する。 */
+@media print {
+  #app .card.lesson .soc352learn { box-shadow:none; border:1px solid #aaa; padding:10px; }
+  #app .card.lesson .soc352learn .pono368sentence {margin-bottom:5px;}
+}
