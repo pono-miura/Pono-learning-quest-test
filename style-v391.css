@@ -1,0 +1,27 @@
+/* Pono Learning Quest v39.1 — 小学1年生算数 */
+#app .m391title{font-size:clamp(1.16rem,4.9vw,1.55rem);line-height:1.55;overflow-wrap:anywhere}
+#app .m391intro,#app .m391unit,#app .m391lesson,#app .m391prompt,#app .m391result,#app .m391review,#app .m391entry{padding:18px 16px;margin:15px 0;border-radius:17px}
+#app .m391unit h2,#app .m391lesson h2,#app .m391prompt h2,#app .m391result h2,#app .m391review h3{font-size:1.18rem;line-height:1.65;margin:0 0 9px;overflow-wrap:anywhere}
+#app .m391unit p,#app .m391lesson p,#app .m391prompt p,#app .m391feedback p,#app .m391review p{font-size:1.05rem;line-height:1.9}
+#app .m391unit button{display:block;width:100%;min-height:52px;margin:10px 0 0;white-space:normal}
+#app .m391visual{font-size:clamp(1.1rem,4.8vw,1.6rem);line-height:1.9;font-weight:700;letter-spacing:1px;background:#f0f6fa;border:1px solid #d1e1eb;border-radius:13px;text-align:center;padding:18px 9px;overflow-wrap:anywhere;margin:15px 0}
+#app .m391example{border-left:4px solid #7490a2;background:#f7fafc;padding:12px 15px;border-radius:9px}
+#app .m391example p{margin:5px 0 0}
+#app .m391audio{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+#app .m391audio button{min-height:52px;white-space:normal;line-height:1.5;padding:12px 8px}
+#app .m391counter{margin:14px 0 7px;font-size:1.02rem;font-weight:700;color:#496074}
+#app .m391choice{width:100%;margin:8px 0;min-height:54px;text-align:left;padding:12px 17px;font-size:1.14rem;line-height:1.7;white-space:normal;overflow-wrap:anywhere}
+#app .m391choice:disabled{opacity:.75}
+#app .m391feedback{padding:17px 15px;margin:17px 0;border:1px solid #bcd1c4;background:#f4fbf6}
+#app .m391correct{font-size:1.28rem;font-weight:700;margin:15px 0;padding:12px;background:#eaf6ed;border-radius:12px}
+#app .m391wide{width:100%;min-height:54px;margin:10px 0;white-space:normal;line-height:1.5}
+#app .m391result{background:#f3f8fa;border:1px solid #cadee8}
+#app .m391result h2{font-size:1.65rem}
+#app .m391review{border-left:4px solid #a2b8ca}
+#app .m391note{font-size:.9rem;line-height:1.75;color:#5d6974;margin:15px 0}
+#app .m391warn{border:1px solid #d5a38f;background:#fff4f0;padding:15px;border-radius:10px}
+#app .m391entry{background:#f3f8fc;border:1px solid #c2d7e4}
+#app .m391entry h3{margin:0 0 8px;font-size:1.15rem}
+#app .m391entry button{width:100%;margin-top:10px;min-height:53px}
+@media(max-width:360px){#app .m391audio{grid-template-columns:1fr}#app .m391intro,#app .m391unit,#app .m391lesson,#app .m391prompt,#app .m391result{padding:15px 11px}}
+@media print{#app .m391entry button,#app .m391audio,#app .m391choice,#app .m391wide{display:none}}
