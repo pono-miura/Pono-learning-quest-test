@@ -1,0 +1,51 @@
+/* v420: 小学3年 英語・大単元4／小単元16 */
+#app .s420page{max-width:800px;margin:0 auto;padding:10px 14px 50px;font-size:17px;line-height:1.85;overflow-wrap:anywhere;color:#203a44}
+#app .s420head{display:flex;gap:13px;align-items:flex-start;margin:5px 0 17px}
+#app .s420head h1{font-size:clamp(21px,5.2vw,28px);line-height:1.48;margin:0;font-weight:800}
+#app .s420card{background:#fff;border:1px solid #d4e3e5;border-radius:17px;padding:17px 18px;margin:14px 0;box-shadow:0 2px 7px rgba(23,70,78,.05)}
+#app .s420card h2{font-size:clamp(20px,4.7vw,23px);margin:1px 0 10px;line-height:1.6}
+#app .s420card h3{font-size:19px;margin:4px 0 8px}
+#app .s420card p{line-height:1.9;margin:8px 0}
+#app .s420intro,#app .s420entry{background:#f1f8fb}
+#app button.s420btn{min-height:48px;padding:10px 14px;border-radius:12px;border:1px solid #bed3d8;background:#f7fbfd;color:#184755;font-size:16px;line-height:1.55;cursor:pointer;text-align:center;white-space:normal;overflow-wrap:anywhere}
+#app button.s420btn:focus-visible{outline:3px solid #1683ac;outline-offset:3px}
+#app button.s420primary{background:#d5eef5;border-color:#88bacb;font-weight:750;color:#123e51}
+#app button.s420wide{width:100%;display:block;margin:10px 0;min-height:54px}
+#app button.s420back{min-width:90px;flex-shrink:0;padding:8px}
+#app .s420sublist{border-top:1px solid #e5eeee;margin-top:12px}
+#app .s420subitem{padding:14px 5px;border-bottom:1px solid #e8eeee}
+#app .s420subitem strong{font-size:18px}
+#app .s420small{font-size:15px;color:#536e78;line-height:1.7}
+#app .s420audio{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+#app .s420audio button{width:100%}
+#app .s420visual{padding:14px;background:#f2f8f5;border:1px dashed #a3c9b8;border-radius:12px;margin:15px 0}
+#app .s420diagramtitle{font-size:14px;color:#426857;margin:0 0 6px;font-weight:800}
+#app .s420diagramtext{white-space:pre-line;text-align:center;font-weight:700;font-size:19px;line-height:2}
+#app .s420tip{padding:11px 13px;background:#eff8f0;border-left:4px solid #89b497;border-radius:8px}
+#app .s420minimap{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;max-width:360px;margin:10px auto}
+#app .s420mapcell{display:flex;flex-direction:column;text-align:center;border:1px solid #cadfd6;border-radius:8px;background:white;padding:7px 3px;line-height:1.3;font-size:24px}
+#app .s420mapcell small{font-size:13px}
+#app .s420compass{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,32px);width:160px;text-align:center;align-items:center;margin:auto;font-weight:800;color:#235d64}
+#app .s420north{grid-area:1/2}#app .s420west{grid-area:2/1}#app .s420center{grid-area:2/2}#app .s420east{grid-area:2/3}#app .s420south{grid-area:3/2}
+#app .s420flow{display:flex;align-items:center;justify-content:center;gap:5px;flex-wrap:wrap;margin:12px 0}
+#app .s420flowitem{background:white;border:1px solid #d8e1dd;border-radius:8px;padding:5px 9px;font-size:14px}
+#app .s420emergency{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}.s420emergency span{background:white;padding:7px 9px;border-radius:8px;border:1px solid #ced9d9;font-weight:700}
+#app .s420progress{font-weight:800;padding:9px 4px;font-variant-numeric:tabular-nums}
+#app button.s420choice{display:block;width:100%;text-align:left;margin:12px 0;padding:14px;min-height:60px;background:#fff;font-size:18px}
+#app .s420prompt{font-size:19px;font-weight:700}
+#app .s420answer{background:#e6f3e9;border-radius:10px;padding:11px;font-weight:750}
+#app .s420feedback{background:#f2f8ee}
+#app .s420score{font-size:34px!important;color:#255d73}
+#app .s420warning{background:#fff8ef;border:1px solid #e1c8ad;border-radius:10px;padding:12px}
+#app .s420retry{background:#fffaf3;border-left:4px solid #d6ad74}
+#app .s420success{padding:12px;border:1px solid #bfdbc5;border-radius:12px;background:#f0faf2}
+#app .s420review{border-left:4px solid #a6c9da}
+@media(max-width:450px){#app .s420page{padding:7px 10px 45px}#app .s420head{display:block}#app button.s420back{margin:0 0 12px}#app .s420card{padding:15px 13px}#app .s420audio{grid-template-columns:1fr}}
+@media print{#app .s420audio,#app button.s420btn{display:none}}
+
+#app .s420arrow{font-weight:bold;color:#416c7a}
+#app .s420subitem:hover{background:#f6fafb}
+
+#app .s420wordline{display:flex;gap:12px;align-items:center;justify-content:space-between;margin:10px 0;padding:7px 0;border-bottom:1px solid #dce9e5;flex-wrap:wrap;font-size:16px}
+#app button.s420word{min-width:150px;text-align:left;font-weight:700}
+#app .s420wordline span{flex:1}
