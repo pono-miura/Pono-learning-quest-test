@@ -1,0 +1,26 @@
+/* v40.9 — 小学3年理科11単元の総復習 */
+#app .s409title{font-size:clamp(1.15rem,4.7vw,1.55rem);line-height:1.55;overflow-wrap:anywhere}
+#app .s409card{padding:19px 17px;margin:14px 0;border-radius:17px;line-height:1.85;overflow-wrap:anywhere}
+#app .s409card h2{font-size:1.20rem;line-height:1.6;margin:0 0 12px}
+#app .s409review h3{font-size:1.13rem;line-height:1.75}
+#app .s409entry{background:#f1f7fb;border:1px solid #c2d5e1}
+#app .s409entry h3{margin:0 0 7px}
+#app .s409btn.s409wide{display:block;width:100%;min-height:52px;margin:10px 0;white-space:normal;line-height:1.6;overflow-wrap:anywhere}
+#app .s409btn.s409choice{display:block;width:100%;min-height:55px;padding:12px 14px;text-align:left;font-size:1.05rem;white-space:normal;border-radius:13px;line-height:1.7;margin:10px 0;overflow-wrap:anywhere}
+#app .s409choice:disabled{opacity:.75}
+#app .s409primary{background:#e6f0f5;border:1px solid #bdd5e2;font-weight:700;color:#25485b}
+#app .s409counter{font-weight:700;margin:15px 0;font-size:1rem}
+#app .s409progress{height:9px;overflow:hidden;border-radius:9px;background:#e9eced}
+#app .s409fill{height:100%;background:#75a3b4}
+#app .s409audio{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0 18px}
+#app .s409audio button{min-height:48px}
+#app .s409source{background:#f3f7fa;border:1px solid #bfd2df;padding:13px 12px;border-radius:12px;margin-bottom:13px}
+#app .s409source p{line-height:1.85;margin:8px 0 0}
+#app .s409note{font-size:.92rem;color:#586e79;line-height:1.8}
+#app .s409feedback{background:#f3f8f0;border:1px solid #ccddc0}
+#app .s409row{display:flex;justify-content:space-between;align-items:center;gap:10px;border-bottom:1px solid #e0e6e9;padding:12px 0}
+#app .s409row span{white-space:nowrap;font-weight:700;color:#386576}
+#app .s409result h2{font-size:2.05rem;color:#27516b}
+#app .s409warn{padding:13px;border:1px solid #d9aa95;background:#fff3e9;border-radius:12px}
+@media(max-width:380px){#app .s409card{padding:14px 11px}#app .s409audio{grid-template-columns:1fr}}
+@media print{#app .s409audio,#app .s409entry,#app .s409choice,#app .s409wide{display:none}}
