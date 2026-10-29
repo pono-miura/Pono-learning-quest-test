@@ -1,0 +1,44 @@
+/* v417: 小学3年社会・大単元4／小単元16 */
+#app .s417page{max-width:800px;margin:0 auto;padding:10px 14px 50px;font-size:17px;line-height:1.85;overflow-wrap:anywhere;color:#203a44}
+#app .s417head{display:flex;gap:13px;align-items:flex-start;margin:5px 0 17px}
+#app .s417head h1{font-size:clamp(21px,5.2vw,28px);line-height:1.48;margin:0;font-weight:800}
+#app .s417card{background:#fff;border:1px solid #d4e3e5;border-radius:17px;padding:17px 18px;margin:14px 0;box-shadow:0 2px 7px rgba(23,70,78,.05)}
+#app .s417card h2{font-size:clamp(20px,4.7vw,23px);margin:1px 0 10px;line-height:1.6}
+#app .s417card h3{font-size:19px;margin:4px 0 8px}
+#app .s417card p{line-height:1.9;margin:8px 0}
+#app .s417intro,#app .s417entry{background:#f1f8fb}
+#app button.s417btn{min-height:48px;padding:10px 14px;border-radius:12px;border:1px solid #bed3d8;background:#f7fbfd;color:#184755;font-size:16px;line-height:1.55;cursor:pointer;text-align:center;white-space:normal;overflow-wrap:anywhere}
+#app button.s417btn:focus-visible{outline:3px solid #1683ac;outline-offset:3px}
+#app button.s417primary{background:#d5eef5;border-color:#88bacb;font-weight:750;color:#123e51}
+#app button.s417wide{width:100%;display:block;margin:10px 0;min-height:54px}
+#app button.s417back{min-width:90px;flex-shrink:0;padding:8px}
+#app .s417sublist{border-top:1px solid #e5eeee;margin-top:12px}
+#app .s417subitem{padding:14px 5px;border-bottom:1px solid #e8eeee}
+#app .s417subitem strong{font-size:18px}
+#app .s417small{font-size:15px;color:#536e78;line-height:1.7}
+#app .s417audio{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+#app .s417audio button{width:100%}
+#app .s417visual{padding:14px;background:#f2f8f5;border:1px dashed #a3c9b8;border-radius:12px;margin:15px 0}
+#app .s417diagramtitle{font-size:14px;color:#426857;margin:0 0 6px;font-weight:800}
+#app .s417diagramtext{white-space:pre-line;text-align:center;font-weight:700;font-size:19px;line-height:2}
+#app .s417tip{padding:11px 13px;background:#eff8f0;border-left:4px solid #89b497;border-radius:8px}
+#app .s417minimap{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;max-width:360px;margin:10px auto}
+#app .s417mapcell{display:flex;flex-direction:column;text-align:center;border:1px solid #cadfd6;border-radius:8px;background:white;padding:7px 3px;line-height:1.3;font-size:24px}
+#app .s417mapcell small{font-size:13px}
+#app .s417compass{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,32px);width:160px;text-align:center;align-items:center;margin:auto;font-weight:800;color:#235d64}
+#app .s417north{grid-area:1/2}#app .s417west{grid-area:2/1}#app .s417center{grid-area:2/2}#app .s417east{grid-area:2/3}#app .s417south{grid-area:3/2}
+#app .s417flow{display:flex;align-items:center;justify-content:center;gap:5px;flex-wrap:wrap;margin:12px 0}
+#app .s417flowitem{background:white;border:1px solid #d8e1dd;border-radius:8px;padding:5px 9px;font-size:14px}
+#app .s417emergency{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}.s417emergency span{background:white;padding:7px 9px;border-radius:8px;border:1px solid #ced9d9;font-weight:700}
+#app .s417progress{font-weight:800;padding:9px 4px;font-variant-numeric:tabular-nums}
+#app button.s417choice{display:block;width:100%;text-align:left;margin:12px 0;padding:14px;min-height:60px;background:#fff;font-size:18px}
+#app .s417prompt{font-size:19px;font-weight:700}
+#app .s417answer{background:#e6f3e9;border-radius:10px;padding:11px;font-weight:750}
+#app .s417feedback{background:#f2f8ee}
+#app .s417score{font-size:34px!important;color:#255d73}
+#app .s417warning{background:#fff8ef;border:1px solid #e1c8ad;border-radius:10px;padding:12px}
+#app .s417retry{background:#fffaf3;border-left:4px solid #d6ad74}
+#app .s417success{padding:12px;border:1px solid #bfdbc5;border-radius:12px;background:#f0faf2}
+#app .s417review{border-left:4px solid #a6c9da}
+@media(max-width:450px){#app .s417page{padding:7px 10px 45px}#app .s417head{display:block}#app button.s417back{margin:0 0 12px}#app .s417card{padding:15px 13px}#app .s417audio{grid-template-columns:1fr}}
+@media print{#app .s417audio,#app button.s417btn{display:none}}
