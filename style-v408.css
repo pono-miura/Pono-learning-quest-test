@@ -1,0 +1,28 @@
+/* Pono Learning Quest v40.8 — 小学3年 理科 前半5単元 */
+#app .s408page{padding-bottom:36px;max-width:780px;margin:auto}
+#app .s408head h1{font-size:clamp(1.2rem,5vw,1.72rem);line-height:1.6;margin:15px 0 16px;overflow-wrap:anywhere}
+#app .s408head .s408btn{width:auto}
+#app .s408card{padding:19px 17px;margin:15px 0;border:1px solid #d9e0da;border-radius:18px;background:#fff;box-shadow:0 2px 9px #2439290a;line-height:1.8;overflow-wrap:anywhere}
+#app .s408card h2{font-size:1.16rem;line-height:1.65;margin:0 0 10px}
+#app .s408card h3{font-size:1.1rem;line-height:1.6;margin:0 0 9px}
+#app .s408card p{margin:9px 0;line-height:1.85}
+#app button.s408btn{display:block;min-height:50px;white-space:normal;overflow-wrap:anywhere;border-radius:13px;border:1px solid #cfd8d1;background:#f6f4ed;color:#1c3224;padding:12px 14px;cursor:pointer;font-size:1rem;font-family:inherit;text-align:center;line-height:1.6;margin:9px 0}
+#app .s408unit button.s408btn,#app .s408wide,#app .s408entry button.s408btn{width:100%}
+#app button.s408primary{background:#e1f0e3;border-color:#b0d0b7;font-weight:700;color:#173f27}
+#app button.s408choice{width:100%;text-align:left;background:#f9fbfc;border-color:#cdd9df;font-size:1.09rem;min-height:54px}
+#app button.s408back{background:#ece9df;border:0;min-height:45px;padding:8px 15px}
+#app .s408audio{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0 17px}
+#app .s408audio .s408btn{width:100%}
+#app .s408visual{padding:17px 10px;border-radius:14px;background:#f0f7f3;border:1px solid #bad7c5;font-size:clamp(1rem,4.5vw,1.26rem);font-weight:700;text-align:center;white-space:pre-wrap;line-height:2;overflow-wrap:anywhere;margin:15px 0}
+#app .s408tip{font-size:.94rem;color:#385a4a}
+#app .s408counter{display:inline-block;background:#e9f2f7;color:#365a6e;padding:5px 11px;border-radius:99px;font-weight:700;font-size:.95rem;margin-bottom:12px}
+#app .s408context{background:#eef5fc;border:1px solid #c5d7e5;border-radius:13px;padding:15px;margin:12px 0 17px}
+#app .s408contexttitle{font-size:.88rem;color:#4b6680;font-weight:700}
+#app .s408context p{font-weight:700;font-size:1.05rem;white-space:pre-wrap}
+#app .s408answer,#app .s408feedback{padding:13px;border-radius:12px;background:#ecf7ee;border:1px solid #b9d4bd;font-weight:600}
+#app .s408small{font-size:.88rem;color:#5b6f67;line-height:1.7}
+#app .s408warn{background:#fff4e6;color:#714c2a;padding:13px;border-radius:10px}
+#app .s408entry{background:#eef8f4}
+#app .s408result h2{font-size:2rem;color:#244f38}
+@media(max-width:380px){#app .s408card{padding:15px 12px}#app .s408audio{grid-template-columns:1fr}#app .s408head h1{font-size:1.24rem}}
+@media print{#app .s408audio,#app .s408entry,#app .s408choice,#app .s408wide{display:none}}
