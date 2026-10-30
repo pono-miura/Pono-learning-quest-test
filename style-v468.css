@@ -1,0 +1,18 @@
+/* v468: 読みガイドの連続読み上げ。教材・採点・学習記録は変更しません。 */
+.v468-panel{box-sizing:border-box;border:2px solid #9abfc5;border-radius:16px;padding:12px 14px;margin:12px 0 16px;background:#f4fbf9;color:#204c4e;font-family:system-ui,'Noto Sans JP',sans-serif}
+.v468-panel *{box-sizing:border-box}
+.v468-heading{font-size:18px;line-height:1.5;margin:0 0 5px;font-weight:800}
+.v468-explain{font-size:15px;line-height:1.7;margin:0 0 8px}
+.v468-actions{display:flex;flex-wrap:wrap;gap:10px}
+.v468-play,.v468-stop{flex:1 1 160px;min-height:56px;font-size:16px;line-height:1.5;padding:12px 10px;border-radius:12px;border:2px solid #2d7376;font-weight:750;cursor:pointer;touch-action:manipulation}
+.v468-play{background:#23676a;color:white}
+.v468-stop{background:#fff;color:#205659}
+.v468-play:disabled,.v468-stop:disabled{opacity:.5;cursor:default}
+.v468-status{font-size:14px;line-height:1.7;min-height:1.7em;margin:9px 0 0}
+.v468-panel button:focus-visible{outline:4px solid #eeb44b;outline-offset:3px}
+html.pono465-font-large .v468-panel :is(.v468-heading,.v468-play,.v468-stop){font-size:20px}
+html.pono465-font-xl .v468-panel :is(.v468-heading,.v468-play,.v468-stop){font-size:22px}
+html.pono465-buttons-large .v468-panel button{min-height:70px;padding:14px}
+html.pono465-contrast-high .v468-panel{background:white;color:#111;border-color:#111}
+html.pono465-contrast-high .v468-panel :is(.v468-explain,.v468-status){color:#111}
+@media(max-width:390px){.v468-play,.v468-stop{flex-basis:100%}}
