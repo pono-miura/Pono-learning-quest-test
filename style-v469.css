@@ -1,0 +1,21 @@
+/* v469 文の道しるべ｜v466の本文・既存採点は変更なし */
+.v469-panel{box-sizing:border-box;border:2px solid #b7cbd9;border-radius:16px;background:#f7fafc;padding:14px 14px 16px;margin:12px 0;color:#203f56;font:16px/1.7 system-ui,'Noto Sans JP',sans-serif}
+.v469-panel *{box-sizing:border-box}
+.v469-heading{font-size:18px;font-weight:800;line-height:1.5;margin:0 0 6px}
+.v469-note{font-size:17px;font-weight:750;margin:4px 0 8px}
+.v469-progress{height:16px;border-radius:20px;background:#d6e3ec;overflow:hidden;border:1px solid #93b0c4}
+.v469-fill{height:100%;width:0;background:#286d91;transition:width .2s ease}
+.v469-help{font-size:14px;line-height:1.6;margin:10px 0 6px}
+.v469-numbers{display:flex;flex-wrap:wrap;gap:8px}
+.v469-number{flex:0 0 auto;min-height:46px;min-width:46px;padding:7px;border:2px solid #497c99;background:#fff;color:#1d4f6c;border-radius:11px;font:bold 17px/1.3 system-ui,'Noto Sans JP',sans-serif;cursor:pointer;touch-action:manipulation}
+.v469-number[aria-current="step"]{background:#235c7b;color:#fff;border-color:#235c7b;box-shadow:0 0 0 2px white inset}
+.v469-number:focus-visible{outline:4px solid #e9b447;outline-offset:3px}
+html.pono465-font-large .v469-panel :is(.v469-heading,.v469-note,.v469-number){font-size:20px}
+html.pono465-font-xl .v469-panel :is(.v469-heading,.v469-note,.v469-number){font-size:23px}
+html.pono465-buttons-large .v469-number{min-height:60px;min-width:60px}
+html.pono465-contrast-high .v469-panel{background:#fff;color:#111;border-color:#111}
+html.pono465-contrast-high .v469-progress{background:#fff;border-color:#111}
+html.pono465-contrast-high .v469-fill{background:#111}
+html.pono465-contrast-high .v469-number{color:#111;border-color:#111}
+html.pono465-contrast-high .v469-number[aria-current="step"]{background:#111;color:#fff}
+@media (prefers-reduced-motion:reduce){.v469-fill{transition:none}}
