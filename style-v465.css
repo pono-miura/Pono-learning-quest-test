@@ -1,0 +1,35 @@
+/* v465 - 表示設定のみ。既存の教材データを変更しない。 */
+.v465-entry{margin:13px 12px;padding:15px;background:#f3f8ff;border:2px solid #aec5dc;border-radius:16px;color:#234760;display:grid;gap:8px}
+.v465-entry strong{font-size:17px}
+.v465-page{max-width:850px;min-height:90vh;margin:0 auto;padding:16px;background:#f5f8fc;color:#263a4d;font:16px/1.7 system-ui,-apple-system,'Noto Sans JP',sans-serif}
+.v465-page *,.v465-dialog *{box-sizing:border-box}.v465-nav{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:12px}.v465-title{font-size:clamp(21px,4vw,29px);margin:0}.v465-heading{font-size:21px;margin:0 0 13px}
+.v465-card{border:1px solid #d9e3ed;border-radius:18px;padding:17px;background:white;margin:14px 0;box-shadow:0 3px 13px #1834520d}
+.v465-note{margin:8px 0}.v465-muted{color:#4b6379;font-size:14px;line-height:1.65}.v465-warn{padding:10px;background:#fff0d8;color:#783e14;border-radius:11px}.v465-save-note{margin:10px 0;color:#286043;min-height:1.3em;font-size:14px}
+.v465-btn{border:2px solid #7195b0;border-radius:12px;background:white;color:#234760;font:700 16px/1.55 system-ui,-apple-system,'Noto Sans JP',sans-serif;min-height:48px;padding:10px 14px;cursor:pointer;margin:5px 6px 5px 0}.v465-btn.v465-primary{color:white;border-color:#245e83;background:#245e83}.v465-btn.v465-wide{display:block;width:100%;min-height:55px;text-align:center}.v465-btn:focus-visible,.v465-choice input:focus-visible{outline:3px solid #e3a42b;outline-offset:3px}
+.v465-fieldset{border:0;padding:0 0 9px;margin:17px 0;border-bottom:1px solid #e5e9ef;min-width:0}.v465-legend{font-weight:750;font-size:17px;margin-bottom:9px}.v465-choice-row{display:flex;flex-wrap:wrap;gap:8px}.v465-choice{display:flex;align-items:center;gap:8px;padding:11px 12px;min-height:48px;border:1px solid #a9c0d1;border-radius:12px;background:#f8fbff;cursor:pointer;font-size:15px}.v465-choice:has(input:checked){background:#e5f3ff;border:2px solid #28698d;padding:10px 11px;font-weight:800}.v465-choice input{width:20px;height:20px;accent-color:#256f97;margin:0}
+.v465-preview{background:#f1f7fd;border-radius:15px;padding:14px 16px}.v465-preview-title{font-size:18px;margin:0 0 8px}.v465-preview-sentence{margin:7px 0;line-height:1.75;font-size:16px}.v465-preview-row{display:flex;flex-wrap:wrap;gap:7px}.v465-preview-button{min-height:49px}.v465-preview-hint{background:white;border-radius:10px;padding:9px}.v465-preview-hint[hidden]{display:none!important}
+.v465-dialog{width:min(94vw,650px);max-height:min(92dvh,780px);overflow-y:auto;border:3px solid #285b7d;border-radius:18px;padding:0;box-shadow:0 12px 50px #0f273955;background:white;color:#243a4a;font:16px/1.6 system-ui}.v465-dialog::backdrop{background:#122d4495}.v465-dialog-inner{padding:20px}.v465-floating{position:fixed;bottom:14px;right:14px;z-index:2147483647;background:#174b70!important;color:white!important;border:3px solid white!important;min-height:56px!important;min-width:99px;box-shadow:0 3px 12px #1c34488c;font-size:17px!important;text-align:center}.v465-floating[hidden]{display:none!important}.v465-shortcut{padding:6px}
+/* 既存の子ども用教材に限定した表示改善。先生用管理画面のレイアウトは変えない */
+html.pono465-font-large .v454-child .v454-prompt{font-size:1.48rem!important}
+html.pono465-font-xl .v454-child .v454-prompt{font-size:1.8rem!important}
+html.pono465-font-large .v454-child .v454-btn{font-size:1.22rem!important}
+html.pono465-font-xl .v454-child .v454-btn{font-size:1.43rem!important}
+html.pono465-font-large .v454-child .v454-big-glyph{font-size:5.6rem!important}
+html.pono465-font-xl .v454-child .v454-big-glyph{font-size:6.2rem!important}
+html.pono465-font-large .v463-page .v463-prompt,html.pono465-font-large .v449-page .v449-question,html.pono465-font-large :is(.v441-page,.v442-page,.v443-page,.v444-page) :is(.v441-prompt,.v442-prompt,.v443-prompt,.v444-prompt),html.pono465-font-large :is(.v445-page,.v446-page,.v447-page,.v448-page) :is(.v445-question,.v446-question,.v447-question,.v448-question){font-size:1.32rem!important}
+html.pono465-font-xl .v463-page .v463-prompt,html.pono465-font-xl .v449-page .v449-question,html.pono465-font-xl :is(.v441-page,.v442-page,.v443-page,.v444-page) :is(.v441-prompt,.v442-prompt,.v443-prompt,.v444-prompt),html.pono465-font-xl :is(.v445-page,.v446-page,.v447-page,.v448-page) :is(.v445-question,.v446-question,.v447-question,.v448-question){font-size:1.56rem!important}
+html.pono465-font-large :is(.v463-page,.v449-page,.v441-page,.v442-page,.v443-page,.v444-page,.v445-page,.v446-page,.v447-page,.v448-page) button:not(.v465-btn){font-size:1.12rem!important}
+html.pono465-font-xl :is(.v463-page,.v449-page,.v441-page,.v442-page,.v443-page,.v444-page,.v445-page,.v446-page,.v447-page,.v448-page) button:not(.v465-btn){font-size:1.32rem!important}
+html.pono465-lines-wide :is(.v454-child,.v463-page,.v449-page,.v441-page,.v442-page,.v443-page,.v444-page,.v445-page,.v446-page,.v447-page,.v448-page) :is(p,h2,h3,label,.v454-prompt,.v449-question){line-height:2.05!important}
+html.pono465-buttons-large :is(.v454-child,.v463-page,.v449-page,.v441-page,.v442-page,.v443-page,.v444-page,.v445-page,.v446-page,.v447-page,.v448-page) button:not(.v465-btn){min-height:66px!important;padding:14px 17px!important;margin-top:5px;margin-bottom:5px;touch-action:manipulation}
+html.pono465-contrast-high :is(.v454-child,.v463-page,.v449-page,.v441-page,.v442-page,.v443-page,.v444-page,.v445-page,.v446-page,.v447-page,.v448-page) :is(.v454-card,.v463-card,.v449-card,.v441-card,.v442-card,.v443-card,.v444-card,.v445-card,.v446-card,.v447-card,.v448-card){background:#fff!important;border:2px solid #242424!important;color:#111!important}
+html.pono465-contrast-high :is(.v454-child,.v463-page,.v449-page,.v441-page,.v442-page,.v443-page,.v444-page,.v445-page,.v446-page,.v447-page,.v448-page) :is(.v454-prompt,.v454-big-glyph,.v449-question,.v449-prompt,.v463-prompt){color:#101010!important}
+html.pono465-contrast-high :is(.v454-child,.v463-page,.v449-page,.v441-page,.v442-page,.v443-page,.v444-page,.v445-page,.v446-page,.v447-page,.v448-page) button:not(.v465-btn){border:2px solid #111!important}
+html.pono465-font-large .v465-preview-sentence{font-size:19px}
+html.pono465-font-xl .v465-preview-sentence{font-size:23px}
+html.pono465-lines-wide .v465-preview-sentence{line-height:2.25}
+html.pono465-buttons-large .v465-preview-button{min-height:66px;padding:16px;font-size:18px}
+html.pono465-contrast-high .v465-preview{background:#fff;border:2px solid #1a1a1a;color:#111}
+html.pono465-contrast-high .v465-preview-button{border:2px solid #000;color:#000}
+@media(max-width:400px){.v465-page{padding:10px}.v465-card{padding:13px}.v465-choice{flex:1}.v465-dialog-inner{padding:12px}}
+@media print{.v465-entry,.v465-floating,.v465-dialog,.v465-btn{display:none!important}}
