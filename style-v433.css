@@ -1,0 +1,16 @@
+/* Pono Learning Quest v433 | scoped */
+.v433-page{box-sizing:border-box;max-width:900px;margin:0 auto;min-height:100vh;padding:16px 14px 48px;background:#f8fafb;color:#223c49;font:17px/1.8 system-ui,-apple-system,"Noto Sans JP",sans-serif}
+.v433-head{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:18px}.v433-title{font-size:23px;line-height:1.45;color:#244f66;margin:0}
+.v433-entry,.v433-card{background:#fff;border:1px solid #cadbe2;border-radius:16px;padding:16px;margin:14px 0;box-shadow:0 2px 8px #21333d0c}
+.v433-entry{background:#f1fafa;border:2px solid #398486}
+.v433-h2{font-size:20px;line-height:1.5;margin:0 0 10px}.v433-card p{margin:8px 0}
+.v433-btn{display:inline-block;font:inherit;line-height:1.5;font-size:16px;font-weight:650;min-height:48px;margin:6px 8px 6px 0;padding:10px 15px;text-align:left;color:#184258;background:#eef5f8;border:1px solid #a2bfc9;border-radius:12px;cursor:pointer}
+.v433-btn:disabled{opacity:.55;cursor:default}.v433-primary{background:#216a7a;color:white;border-color:#216a7a}.v433-selected{background:#164d65;color:white}
+.v433-back{background:white}.v433-nav,.v433-audio,.v433-adjust{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.v433-note{font-size:15px;color:#526977}.v433-alert{font-size:15px;color:#774b17;background:#fff8e9;border-radius:9px;padding:10px;margin-top:10px}
+.v433-score{font-size:28px;font-weight:750;color:#17546b}.v433-textarea{display:block;width:100%;min-height:130px;box-sizing:border-box;border:2px solid #9dafbb;border-radius:12px;padding:12px;font-size:18px;line-height:1.8;color:#263b49;background:#fff}
+.v433-checkbox{display:flex;gap:8px;align-items:center;line-height:1.6;margin-top:12px}.v433-checkbox input{width:20px;height:20px;flex:none}
+.v433-manual{font-size:18px}.v433-btn:focus-visible,.v433-textarea:focus-visible{outline:3px solid #db9b40;outline-offset:3px}
+@media(max-width:560px){.v433-page{padding:12px 10px 32px}.v433-title{font-size:21px}.v433-h2{font-size:19px}.v433-entry,.v433-card{padding:14px}.v433-btn{width:auto}}
+
+.v433-alert:empty{display:none}
