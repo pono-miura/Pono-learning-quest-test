@@ -1,0 +1,32 @@
+/* v475 — 在籍学年を起点に教科→単元、理解に応じて学び直しを選べる入口 */
+html.v475-locked{overflow:hidden}
+.v475-hub{position:fixed;inset:0;z-index:2147483200;overflow:auto;overscroll-behavior:contain;background:#f8fbfa;color:#1c3d50;font:16px/1.6 system-ui,'Noto Sans JP',sans-serif;box-sizing:border-box}
+.v475-hub[hidden],.v475-reopen[hidden]{display:none!important}
+.v475-hub *{box-sizing:border-box}
+.v475-inner{width:min(100%,790px);margin:auto;padding:24px 18px 48px}
+.v475-brand{margin:0 0 15px;font-size:15px;font-weight:800;color:#176f6a}
+.v475-title{margin:0 0 12px;font-size:clamp(24px,5vw,31px);line-height:1.4;font-weight:850}
+.v475-subtitle{margin:0 0 24px;color:#475f68;line-height:1.75}
+.v475-grades,.v475-subjects{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:21px}
+.v475-grade,.v475-subject{min-width:0;min-height:100px;border:2px solid #a5c7cb;border-radius:15px;background:white;color:#17465e;font:800 21px/1.4 system-ui,'Noto Sans JP',sans-serif;padding:13px 8px;cursor:pointer;touch-action:manipulation}
+.v475-grade-note{display:block;font-size:12px;font-weight:600;color:#476d70;margin-top:5px}
+.v475-count{font-weight:750;color:#426575;margin:12px 0}
+.v475-lessons{display:flex;flex-direction:column;gap:14px;margin-bottom:24px}
+.v475-lesson,.v475-review-card{padding:18px 16px;background:#fff;border:2px solid #c2d6db;border-radius:15px;display:flex;flex-direction:column;gap:8px}
+.v475-lesson-name,.v475-review-name{font-size:19px;line-height:1.5;color:#163e53}
+.v475-lesson-desc,.v475-review-meta{font-size:15px;line-height:1.65;color:#47636e;margin:0 0 8px}
+.v475-lesson-start,.v475-review-start,.v475-resume-action{width:100%;min-height:53px;background:#196487;color:white;border:2px solid #196487;border-radius:12px;font:750 17px/1.45 system-ui,'Noto Sans JP',sans-serif;padding:12px;cursor:pointer}
+.v475-review-link{width:100%;min-height:48px;background:#fff;color:#245f58;border:2px solid #78aaa1;border-radius:12px;font:700 15px/1.45 system-ui,'Noto Sans JP',sans-serif;padding:10px;cursor:pointer}
+.v475-button,.v475-back,.v475-secondary,.v475-reopen{display:block;width:100%;min-height:51px;margin:11px 0;border-radius:12px;border:2px solid #709da5;background:#fff;color:#20556a;font:750 16px/1.5 system-ui,'Noto Sans JP',sans-serif;padding:12px;cursor:pointer}
+.v475-back{background:#e8f4f0;color:#1a6659;border-color:#81b3a4}
+.v475-reopen{position:fixed;bottom:13px;right:13px;z-index:2147483199;max-width:242px;margin:0;background:#205e83;color:#fff;border:2px solid #fff;box-shadow:0 2px 14px #213b5550}
+.v475-resume{border-radius:15px;padding:16px;background:#eef7eb;border:2px solid #a4c5ac;margin-bottom:20px}
+.v475-resume strong{font-size:17px}.v475-resume p{font-size:15px;margin:7px 0 12px}
+.v475-caution{background:#f5f8fb;border-left:4px solid #83a4b4;padding:12px;font-size:15px;line-height:1.7}
+.v475-topic{font-weight:750;color:#366f69}
+.v475-grade-chip{display:inline-block;background:#e5f3ee;color:#1d6958;border-radius:8px;padding:3px 9px;font-size:13px;font-weight:800;align-self:flex-start}
+.v475-review-card{margin-bottom:12px}
+.v475-empty{background:#fff;border:2px solid #c8dbe0;padding:18px;border-radius:13px}
+.v475-hub button:focus-visible,.v475-reopen:focus-visible{outline:4px solid #f1b743;outline-offset:3px}
+@media(min-width:650px){.v475-grades,.v475-subjects{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:380px){.v475-inner{padding:19px 13px 38px}.v475-grade,.v475-subject{font-size:18px}}
