@@ -1,0 +1,55 @@
+/* Pono Learning Quest v456 | 端末内記録のバックアップ・復元 */
+(()=>{'use strict';
+if(window.ponoBackup456)return;
+const ROOT=document.getElementById('app');if(!ROOT)return;
+const FORMAT='PonoLearningQuest-localStorage', VERSION=1, MAX_BYTES=12*1024*1024, EXCLUDE=new Set(['pono454-active-device']);
+let fileData=null, filename='', confirmation=false,overwriteConfirmation=false,mode='missing',message='',lastAudit=null,view='home',busy=false;
+const el=(tag,cls='',txt)=>{const n=document.createElement(tag);if(cls)n.className='v456-'+cls.split(' ').join(' v456-');if(txt!==undefined)n.textContent=String(txt);return n};
+function btn(text,click,cls=''){const b=el('button','btn '+cls,text);b.type='button';b.addEventListener('click',click);return b}
+function p(text,cls='desc'){return el('p',cls,text)}
+function section(title){const s=el('section','card');s.append(el('h2','heading',title));return s}
+function today(){const d=new Date();return [d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('')}
+function timestamp(){const d=new Date();return today()+'_'+[d.getHours(),d.getMinutes()].map(x=>String(x).padStart(2,'0')).join('')}
+function exit(){try{if(typeof home==='function'){home();return}}catch(_){}window.location.reload()}
+function page(title){ROOT.replaceChildren();const m=el('main','page'),nav=el('div','nav');nav.append(btn('← トップへ',exit,'secondary'),el('h1','title',title));m.append(nav);ROOT.append(m);try{window.scrollTo(0,0)}catch(_){}return m}
+function printMsg(m){if(message)m.append(p(message,'message'))}
+function countBytes(s){return new TextEncoder().encode(s).length}
+function capture(){const entries=[];let skipped=0;for(let i=0;i<localStorage.length;i++){const key=localStorage.key(i);if(typeof key!=='string')continue;if(EXCLUDE.has(key)){skipped++;continue}const value=localStorage.getItem(key);if(value!==null)entries.push([key,value])}entries.sort((a,b)=>a[0].localeCompare(b[0]));return {entries,skipped}}
+function checksum(entries){const s=JSON.stringify(entries);let h=2166136261;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)}return ('00000000'+(h>>>0).toString(16)).slice(-8)}
+function makeBackup(){const {entries}=capture();return {format:FORMAT,schemaVersion:VERSION,createdAt:new Date().toISOString(),appVersion:456,scope:'localStorage-current-origin',keyCount:entries.length,checksum:checksum(entries),entries}}
+function validate(v){if(!v||typeof v!=='object'||Array.isArray(v))throw Error('バックアップ形式ではありません。');if(v.format!==FORMAT||v.schemaVersion!==VERSION||v.scope!=='localStorage-current-origin'||!Array.isArray(v.entries))throw Error('Pono v456 のバックアップ形式ではありません。');if(v.entries.length>30000)throw Error('記録数が上限を超えています。');if(v.keyCount!==v.entries.length)throw Error('記録数が一致しません。');const set=new Set();let total=0;for(const pair of v.entries){if(!Array.isArray(pair)||pair.length!==2||typeof pair[0]!=='string'||typeof pair[1]!=='string'||!pair[0]||pair[0].length>1000||EXCLUDE.has(pair[0]))throw Error('記録の形式に問題があります。');if(set.has(pair[0]))throw Error('同じ保存キーが重複しています。');set.add(pair[0]);total+=countBytes(pair[0])+countBytes(pair[1]);if(total>MAX_BYTES)throw Error('ファイルが大きすぎます（上限12MB）。')}if(v.checksum!==checksum(v.entries))throw Error('データの整合性が一致しません。');return {total,count:v.entries.length}}
+function downloadBlob(blob,name){const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),3000)}
+function exportBackup(){try{const data=makeBackup();validate(data);const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json;charset=utf-8'});downloadBlob(blob,'PonoLearningQuest_backup_'+timestamp()+'.json');message='バックアップのダウンロードを開始しました。端末のダウンロード一覧で保存を確認してください。';home456()}catch(e){message='バックアップを作成できませんでした。端末の保存設定を確認してください。 '+e.message;home456()}}
+function active(){try{const s=JSON.parse(localStorage.getItem('pono454-active-device')||'null');return !!(s&&typeof s==='object'&&s.studentId)}catch(_){return false}}
+function scan(){const {entries,skipped}=capture();let size=0;for(const [k,v]of entries)size+=countBytes(k)+countBytes(v);return {count:entries.length,skipped,size,hasActive:active()}}
+function humanBytes(n){return n<1024?n+' B':n<1024*1024?(n/1024).toFixed(1)+' KB':(n/1048576).toFixed(2)+' MB'}
+function home456(){view='home';const m=page('🗂️ 先生用｜記録のバックアップ v456');let info;try{info=scan()}catch(e){const s=section('保存領域を開けません');s.append(p('端末の設定などで記録を読めません。ブラウザーの保存許可をご確認ください。','warn'));m.append(s);return}
+const summary=section('この端末の保存状況');const tiles=el('div','stats');for(const [a,b]of [[info.count,'保存されている項目'],[humanBytes(info.size),'記録の大きさ']]){const x=el('div','metric');x.append(el('strong','number',a),p(b,'muted'));tiles.append(x)}summary.append(tiles,p('このアプリと同じ保存領域（localStorage）のデータをまとめます。学習者のIDや記録が含まれる場合があります。','desc'));
+if(info.hasActive)summary.append(p('⚠ 子ども用画面の利用中です。復元は学習を終了してから実施してください。','warn'));
+m.append(summary);
+const out=section('① 今ある記録を保存する');out.append(p('端末の故障や買い替えに備えて、記録をJSONファイルに保存します。端末外への自動送信はしません。'),btn('📥 記録をバックアップする',exportBackup,'primary'),p('ファイルを安全な場所に保管してください。個人情報が含まれる可能性があるため、公開リンクや他人との共有は避けてください。','note'));m.append(out);
+const inputS=section('② 保存した記録を読み込む');inputS.append(p('復元前にファイルの内容を点検し、既存の記録との重複数を表示します。ファイルを選んだだけでは書き込みません。'));
+const label=el('label','filelabel','バックアップのJSONファイルを選ぶ');const input=el('input','file');input.type='file';input.accept='.json,application/json';input.setAttribute('aria-label','バックアップJSONを選択');input.addEventListener('change',async()=>{const f=input.files&&input.files[0];if(!f)return;fileData=null;confirmation=false;overwriteConfirmation=false;mode='missing';try{if(f.size>MAX_BYTES+1000000)throw Error('ファイルが大きすぎます。');const body=await f.text();if(countBytes(body)>MAX_BYTES+1000000)throw Error('ファイルサイズの上限を超えています。');const v=JSON.parse(body);validate(v);fileData=v;filename=f.name;message='ファイルを検査しました。復元方法を確認してください。';preview456()}catch(e){message='読み込みに失敗しました：'+e.message;home456()}});label.append(input);inputS.append(label,p('安全のため、復元は自動では行いません。','muted'));m.append(inputS);
+const attention=section('注意事項');attention.append(p('バックアップの対象は、このアプリが開かれている保存領域の localStorage です。別の端末やブラウザーの記録は自動では集まりません。IndexedDB・別サイト・端末内の他のファイルは対象外です。'),p('復元後は、画面を再読み込みして記録を確認してください。元の記録は、バックアップを取るまでは削除しないでください。','note'));m.append(attention);printMsg(m);inject()}
+function preview456(){if(!fileData)return home456();view='preview';const m=page('📋 復元する記録を確認');let current;try{current=scan()}catch(e){m.append(p('保存領域を開けません。','warn'));return}
+const existing=fileData.entries.filter(([k])=>localStorage.getItem(k)!==null),missing=fileData.entries.length-existing.length;
+const c=section('ファイルの内容');c.append(p('選択したファイル：'+filename,'muted'));
+const stats=el('div','stats');for(const [n,l]of [[fileData.entries.length,'ファイル内の記録'],[missing,'この端末にない記録'],[existing.length,'すでにある記録']]){const x=el('div','metric');x.append(el('strong','number',n),p(l,'muted'));stats.append(x)}c.append(stats,p('作成日：'+(fileData.createdAt||'記録なし'),'muted'),p('保存データが含まれます。ファイルの出所が確かな場合だけ復元してください。','note'));m.append(c);
+if(current.hasActive){const w=section('⚠ 復元を停止しています');w.append(p('子ども用画面の途中利用を検出しました。先生の画面へ返却・終了してから復元してください。','warn'));m.append(w)}
+const x=section('復元方法');const radio1=selectMode('missing','この端末にない記録だけ追加（おすすめ）');const radio2=selectMode('replace','ファイルの内容で同じ項目を上書き');x.append(radio1,radio2);
+if(mode==='missing')x.append(p('すでにある'+existing.length+'項目は変更しません。','note'));else x.append(p('⚠ 現在ある記録が古い内容に置き換わる可能性があります。必ず先に、この端末のバックアップを保存してください。','warn'));
+x.append(check('読み込むファイルと対象の端末を確認しました。',confirmation,z=>{confirmation=z;preview456()}));if(mode==='replace')x.append(check('この端末の現在のバックアップを別に保存済みです。',overwriteConfirmation,z=>{overwriteConfirmation=z;preview456()}));
+const ready=confirmation&&(mode==='missing'||overwriteConfirmation)&&!current.hasActive&&!busy;const b=btn(mode==='missing'?`ない記録を${missing}件追加する`:`${fileData.entries.length}件の復元を実行する`,applyRestore,'primary');b.disabled=!ready;x.append(b);
+x.append(btn('← ファイルの選択へ戻る',()=>{fileData=null;mode='missing';message='';home456()},'secondary'));m.append(x);printMsg(m)}
+function selectMode(val,text){const label=el('label','option'),r=el('input');r.type='radio';r.name='v456-restore-mode';r.checked=mode===val;r.addEventListener('change',()=>{mode=val;confirmation=false;overwriteConfirmation=false;preview456()});label.append(r,el('span','',text));return label}
+function check(t,val,fn){const label=el('label','check'),i=el('input');i.type='checkbox';i.checked=!!val;i.addEventListener('change',()=>fn(i.checked));label.append(i,el('span','',t));return label}
+function applyRestore(){if(!fileData||busy||!confirmation||(mode==='replace'&&!overwriteConfirmation))return;try{validate(fileData);if(active())throw Error('子ども用画面の利用中です。学習終了後に復元してください。');busy=true;const changes=fileData.entries.filter(([k])=>mode==='replace'||localStorage.getItem(k)===null);
+// Roll back all modified values if storage is full or an error occurs.
+const original=changes.map(([k])=>[k,localStorage.getItem(k)]);let written=0;
+try{for(const [k,v]of changes){localStorage.setItem(k,v);written++}}catch(e){let undoFailed=false;for(let i=written-1;i>=0;i--){const [k,old]=original[i];try{if(old===null)localStorage.removeItem(k);else localStorage.setItem(k,old)}catch(_){undoFailed=true}}throw Error('復元中に保存できませんでした。'+(undoFailed?'一部の変更を元に戻せなかったため、現在の記録を確認してください。':'書き込んだ変更は元に戻しました。'))}
+lastAudit={date:new Date().toISOString(),added:original.filter(([,v])=>v===null).length,updated:original.filter(([,v])=>v!==null).length,skipped:fileData.entries.length-changes.length,mode};fileData=null;confirmation=false;overwriteConfirmation=false;mode='missing';message='復元処理が完了しました。画面を再読み込みして学習記録を確認してください。';report456()}catch(e){message='復元できませんでした：'+e.message;preview456()}finally{busy=false}}
+function report456(){const m=page('✅ 復元の確認');const c=section('書き込み結果');if(lastAudit){const a=lastAudit;c.append(p('新しく追加：'+a.added+'項目'),p('上書き：'+a.updated+'項目'),p('変更せず残した：'+a.skipped+'項目'),p('処理日時：'+a.date,'muted'))}c.append(p('記録を正しく読み込めたか、再読み込み後に先生用の学習一覧で確認してください。','note'));c.append(btn('🔄 アプリを再読み込みする',()=>window.location.reload(),'primary'),btn('バックアップ画面に戻る',home456,'secondary'));m.append(c);printMsg(m)}
+function inject(){if(ROOT.querySelector('.v456-entry,.v456-page'))return;const h=ROOT.querySelector('.top h1,h1');if(!h||!/^Pono Learning Quest|今日の学習/.test((h.textContent||'').trim()))return;const a=el('section','entry');a.append(el('strong','','🗂️ 学習記録のバックアップ v456'),p('先生用｜端末の記録を保存・復元し、故障や買い替えに備えます。','muted'),btn('バックアップ・復元を開く →',home456,'primary'));(h.closest('.top')||h).insertAdjacentElement('afterend',a)}
+let queued=false;new MutationObserver(()=>{if(queued)return;queued=true;requestAnimationFrame(()=>{queued=false;inject()})}).observe(ROOT,{subtree:true,childList:true});
+window.ponoBackup456=home456;window.ponoBackup456Data={capture,scan,makeBackup,validate,checksum,getLastAudit:()=>lastAudit,getMode:()=>mode,hasPreview:()=>!!fileData};inject();
+})();

@@ -1,0 +1,14 @@
+/* Pono Learning Quest v456 */
+.v456-entry,.v456-page{font-family:system-ui,-apple-system,"Noto Sans JP",sans-serif;color:#224138;box-sizing:border-box}
+.v456-entry *,.v456-page *{box-sizing:border-box}
+.v456-entry{padding:14px 17px;margin:12px;background:#f0f9f2;border:1px solid #bcdcc5;border-radius:17px;display:grid;gap:8px}
+.v456-page{padding:14px 12px 70px;max-width:780px;margin:auto;line-height:1.7;min-height:100vh;background:#f7fbf8}
+.v456-nav{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px}.v456-title{font-size:1.35rem;line-height:1.5;margin:0}
+.v456-card{padding:15px;border:1px solid #dde8df;background:white;border-radius:17px;margin:13px 0;box-shadow:0 2px 9px #21452d07}
+.v456-heading{font-size:1.12rem;margin:0 0 9px;line-height:1.5}.v456-desc{margin:7px 0;font-size:.98rem}.v456-muted{font-size:.85rem;color:#587267;margin:6px 0;overflow-wrap:anywhere}.v456-note{padding:9px 12px;border-radius:11px;background:#eef5ee;font-size:.88rem;color:#506557;margin:10px 0}
+.v456-warn{padding:10px 12px;border-radius:11px;background:#fff5e9;color:#674516;margin:12px 0;font-size:.95rem}.v456-message{padding:11px 12px;background:#e5f5ed;border-radius:12px;color:#15593c;margin:14px 0;overflow-wrap:anywhere}
+.v456-btn{display:inline-flex;align-items:center;justify-content:center;text-align:center;border:1px solid #b5d0bb;background:white;color:#22573b;font-weight:650;font-size:.95rem;border-radius:12px;padding:11px 15px;cursor:pointer;min-height:44px;margin:5px 5px 5px 0;max-width:100%;white-space:normal}
+.v456-btn.v456-primary{background:#21794e;color:white;border-color:#21794e}.v456-btn.v456-secondary{background:#f2f7f3}.v456-btn:disabled{opacity:.45;cursor:not-allowed}
+.v456-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(105px,1fr));gap:8px;margin:10px 0}.v456-metric{background:#f2f8f3;border-radius:12px;padding:11px;text-align:center}.v456-number{display:block;font-size:1.25rem;font-weight:800;color:#22573b;line-height:1.4}.v456-filelabel{display:block;padding:10px;border:1px dashed #7da992;border-radius:10px;font-weight:650}.v456-file{display:block;max-width:100%;width:100%;margin-top:8px;font-size:.91rem}
+.v456-check,.v456-option{display:flex;align-items:flex-start;gap:10px;margin:13px 0;line-height:1.6;padding:8px;border:1px solid #e7ede7;border-radius:9px;font-size:.95rem}.v456-check input,.v456-option input{margin-top:5px;min-width:19px;min-height:19px;accent-color:#21794e}
+@media(max-width:430px){.v456-page{padding:11px 10px 80px}.v456-card{padding:13px}.v456-title{font-size:1.13rem}.v456-btn{width:100%;margin:4px 0}.v456-nav{align-items:stretch}}
