@@ -1,0 +1,31 @@
+/* Pono Learning Quest v428 | accessible, mobile-first math supplement */
+.v428-page,.v428-entry{font-family:inherit;color:inherit;max-width:720px;margin:0 auto 14px;line-height:1.75}
+.v428-page{padding:6px 10px 40px}
+.v428-head{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:14px}
+.v428-heading{font-size:1.25rem;line-height:1.4;margin:0;flex:1;min-width:180px}
+.v428-card{padding:17px;margin:11px 0;background:var(--card-bg,#fff);color:var(--text,#202b34);border:1px solid #d4e0e9;border-radius:15px;box-shadow:0 1px 5px #06324d0e}
+.v428-card h2{font-size:1.1rem;margin:0 0 10px}.v428-card h3{font-size:1rem;margin:0 0 8px}
+.v428-card p{margin:9px 0}
+.v428-btn{font-family:inherit;font-size:1.02rem;font-weight:650;background:#eef5fa;border:1px solid #c7dae9;color:#123b55;display:block;width:100%;margin:9px 0;padding:13px 12px;border-radius:12px;cursor:pointer;line-height:1.5;text-align:left;white-space:normal}
+.v428-btn:focus-visible{outline:3px solid #227bb1;outline-offset:2px}
+.v428-btn.v428-primary{background:#145f86;color:#fff;border-color:#145f86;text-align:center}
+.v428-btn.v428-back{width:auto;margin:0;font-size:.93rem;padding:8px 11px}
+.v428-btn.v428-unit{border-left:5px solid #7ab7d4}
+.v428-btn.v428-choice{min-height:54px;background:#f7fafc}
+.v428-audio{display:flex;gap:8px;margin-top:8px}
+.v428-audio .v428-btn{font-size:.91rem;flex:1;min-width:0;text-align:center}
+.v428-question{white-space:pre-wrap;line-height:1.8;overflow-wrap:anywhere}
+.v428-tiny{font-size:.88rem;color:#54636e}
+.v428-example{padding:11px;border-radius:9px;background:#edf5fa;white-space:pre-wrap}
+.v428-score{font-size:2.25rem;color:#145f86}
+.v428-ok{font-weight:700;color:#1d7448}
+.v428-warn{font-weight:700;color:#a74c31}
+@media(max-width:430px){.v428-page{padding:5px 6px 28px}.v428-card{padding:13px}.v428-btn{padding:12px 10px}}
+
+/* 5th grade graphs; textual labels are always present as an alternative */
+.v428-visual{padding:11px 8px;border:1px solid #e0e6eb;border-radius:12px;margin-top:14px;background:#fbfcfe}
+.v428-bar{height:37px;display:flex;overflow:hidden;border-radius:7px;border:1px solid #d9e4eb}
+.v428-bar-piece{display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:.9rem;min-width:0}
+.v428-pie{height:146px;width:146px;border-radius:50%;margin:4px auto 12px;border:2px solid #f5f5f5}
+.v428-legend{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin-top:10px}
+.v428-legend-item{font-size:.94rem;padding:4px 8px;border-radius:4px;background:#f2f6fa;color:#172b3b}
