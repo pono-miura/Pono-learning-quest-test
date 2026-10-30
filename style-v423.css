@@ -1,0 +1,21 @@
+/* Pono Learning Quest v423: namespaced teacher audit & math practice */
+.v423-page,.v423-entry{font-family:inherit;color:inherit;max-width:720px;margin:0 auto 12px;line-height:1.65}
+.v423-page{padding:6px 11px 36px}
+.v423-head{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
+.v423-heading{font-size:1.25rem;line-height:1.4;margin:0;flex:1;min-width:220px}
+.v423-card{background:var(--card-bg,#fff);color:var(--text,#242d38);border:1px solid #d4dfe6;border-radius:16px;margin:12px 0;padding:16px;box-shadow:0 1px 4px #0b39520f}
+.v423-card h2{font-size:1.09rem;margin:0 0 8px}.v423-card h3{font-size:1rem;margin:0 0 7px}
+.v423-card p{margin:9px 0}
+.v423-btn{font-family:inherit;font-size:1rem;font-weight:650;background:#edf4fa;border:1px solid #c7d8e5;color:#173c53;display:block;line-height:1.45;width:100%;margin:9px 0;padding:13px 12px;border-radius:12px;cursor:pointer;white-space:normal;text-align:left}
+.v423-btn:focus-visible{outline:3px solid #297ab1;outline-offset:2px}.v423-btn:active{transform:translateY(1px)}
+.v423-btn.v423-primary{background:#11618a;border-color:#11618a;color:white;text-align:center}
+.v423-btn.v423-back{width:auto;display:inline-block;margin:0;font-size:.9rem;padding:9px 11px}
+.v423-btn.v423-choice{background:#f5f9fc;min-height:54px}.v423-btn.v423-chosen{background:#11618a;color:white}
+.v423-btn.v423-unit{border-left:5px solid #68a4c5}
+.v423-audio{display:flex;gap:8px;margin-top:8px}.v423-audio .v423-btn{flex:1;min-width:0;font-size:.88rem;text-align:center}
+.v423-tabs{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:5px}.v423-tabs .v423-btn{text-align:center;padding:10px 0;font-size:.89rem}
+.v423-audit-row{border-bottom:1px solid #e0e8ed;padding:12px 0;display:grid;grid-template-columns:76px 1fr;gap:2px 9px;align-items:start}
+.v423-audit-row:last-child{border-bottom:0}.v423-audit-row strong{font-size:.96rem}.v423-audit-row span{font-size:.93rem}.v423-audit-row small{grid-column:2;color:#55636e}
+.v423-audit-live{display:flex;justify-content:space-between;gap:8px;align-items:center;padding:8px 0;border-bottom:1px solid #edf1f5;font-size:.88rem}
+.v423-ok{color:#206b43;font-weight:700}.v423-warn{color:#af4333;font-weight:700}.v423-tiny{font-size:.84rem;color:#55636e}.v423-score{font-size:2.2rem;color:#0d5b83}.v423-example{background:#f5f9fc;border-radius:9px;padding:10px}
+@media(max-width:430px){.v423-page{padding:5px 6px 26px}.v423-tabs{grid-template-columns:repeat(3,minmax(0,1fr))}.v423-card{padding:13px}}
