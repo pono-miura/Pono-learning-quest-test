@@ -1,0 +1,48 @@
+/* Pono Learning Quest v429 | accessible, mobile-first math supplement */
+.v429-page,.v429-entry{font-family:inherit;color:inherit;max-width:720px;margin:0 auto 14px;line-height:1.75}
+.v429-page{padding:6px 10px 40px}
+.v429-head{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:14px}
+.v429-heading{font-size:1.25rem;line-height:1.4;margin:0;flex:1;min-width:180px}
+.v429-card{padding:17px;margin:11px 0;background:var(--card-bg,#fff);color:var(--text,#202b34);border:1px solid #d4e0e9;border-radius:15px;box-shadow:0 1px 5px #06324d0e}
+.v429-card h2{font-size:1.1rem;margin:0 0 10px}.v429-card h3{font-size:1rem;margin:0 0 8px}
+.v429-card p{margin:9px 0}
+.v429-btn{font-family:inherit;font-size:1.02rem;font-weight:650;background:#eef5fa;border:1px solid #c7dae9;color:#123b55;display:block;width:100%;margin:9px 0;padding:13px 12px;border-radius:12px;cursor:pointer;line-height:1.5;text-align:left;white-space:normal}
+.v429-btn:focus-visible{outline:3px solid #227bb1;outline-offset:2px}
+.v429-btn.v429-primary{background:#145f86;color:#fff;border-color:#145f86;text-align:center}
+.v429-btn.v429-back{width:auto;margin:0;font-size:.93rem;padding:8px 11px}
+.v429-btn.v429-unit{border-left:5px solid #7ab7d4}
+.v429-btn.v429-choice{min-height:54px;background:#f7fafc}
+.v429-audio{display:flex;gap:8px;margin-top:8px}
+.v429-audio .v429-btn{font-size:.91rem;flex:1;min-width:0;text-align:center}
+.v429-question{white-space:pre-wrap;line-height:1.8;overflow-wrap:anywhere}
+.v429-tiny{font-size:.88rem;color:#54636e}
+.v429-example{padding:11px;border-radius:9px;background:#edf5fa;white-space:pre-wrap}
+.v429-score{font-size:2.25rem;color:#145f86}
+.v429-ok{font-weight:700;color:#1d7448}
+.v429-warn{font-weight:700;color:#a74c31}
+@media(max-width:430px){.v429-page{padding:5px 6px 28px}.v429-card{padding:13px}.v429-btn{padding:12px 10px}}
+
+/* 5th grade graphs; textual labels are always present as an alternative */
+.v429-visual{padding:11px 8px;border:1px solid #e0e6eb;border-radius:12px;margin-top:14px;background:#fbfcfe}
+.v429-bar{height:37px;display:flex;overflow:hidden;border-radius:7px;border:1px solid #d9e4eb}
+.v429-bar-piece{display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:.9rem;min-width:0}
+.v429-pie{height:146px;width:146px;border-radius:50%;margin:4px auto 12px;border:2px solid #f5f5f5}
+.v429-legend{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin-top:10px}
+.v429-legend-item{font-size:.94rem;padding:4px 8px;border-radius:4px;background:#f2f6fa;color:#172b3b}
+
+.v429-btn{touch-action:manipulation}.v429-card .v429-question{font-size:1.1rem}.v429-card .v429-example{overflow-wrap:anywhere}
+
+/* Explanation diagrams with text alternatives for reading accommodations */
+.v429-visual-guide{margin-top:14px;padding:12px;background:#f8fbfd;border:1px solid #d3e3ee;border-radius:12px;max-width:100%;overflow:hidden}
+.v429-visual-guide svg{width:100%;max-width:350px;height:auto;display:block;margin:auto}
+.v429-path{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;border-radius:7px;overflow:hidden}
+.v429-path span{text-align:center;background:#d2e9f3;color:#124968;font-weight:700;padding:12px 3px;font-size:.95rem}
+.v429-path small{display:block;font-weight:400}
+.v429-diagram-note{font-size:.97rem!important;margin:8px 0 0!important;text-align:center}
+.v429-visual-table{border-collapse:collapse;width:100%;text-align:center;font-size:.98rem}
+.v429-visual-table caption{font-size:.87rem;text-align:left;margin-bottom:5px}
+.v429-visual-table th,.v429-visual-table td{border:1px solid #bdd4e3;padding:7px 4px}
+.v429-visual-table th{background:#e6f3fa}
+.v429-fraction-bar{display:flex;width:100%;height:75px;border:2px solid #7aabc2;border-radius:6px;overflow:hidden;gap:2px;background:white}
+.v429-fraction-bar span{flex:1;background:#f4f8fb}
+.v429-fraction-bar span.on{background:#77bad8}
