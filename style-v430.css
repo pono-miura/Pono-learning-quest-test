@@ -1,0 +1,13 @@
+/* v430 教材点検: 既存デザインを壊さないようクラスを限定 */
+.p430-entry{border:2px solid #466a80;background:#f4f9fc;color:#183148;padding:16px;border-radius:15px;margin:12px 0;line-height:1.5}
+.p430-entry h3{margin:0 0 5px;font-size:19px}.p430-entry p{margin:0 0 12px}
+.p430-page{font-family:-apple-system,BlinkMacSystemFont,"Noto Sans JP",sans-serif;color:#1c2933;background:#f8f9fb;min-height:100vh;padding:14px max(14px,calc((100vw - 860px)/2));box-sizing:border-box;line-height:1.65;font-size:16px}
+.p430-head{display:flex;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap}.p430-h1{font-size:24px;line-height:1.3;margin:0;color:#233b4d}
+.p430-h2{margin:0 0 10px;font-size:19px}.p430-card{background:#fff;border:1px solid #dce4e9;border-radius:14px;padding:15px;margin:11px 0;box-shadow:0 1px 3px #0000000c}
+.p430-button{background:#f4f7f8;border:1px solid #cdd9df;padding:11px 14px;border-radius:11px;color:#203343;font-size:15px;line-height:1.4;font-weight:600;cursor:pointer;margin:3px;min-height:43px}
+.p430-button.p430-active,.p430-button.p430-primary{background:#244c69;color:white;border-color:#244c69}.p430-button.p430-secondary{background:white}
+.p430-switch,.p430-grades{display:flex;flex-wrap:wrap;gap:3px;margin:8px 0}
+.p430-subject{padding:10px 0;border-bottom:1px solid #e2e8ec}.p430-subject:last-child{border-bottom:0}.p430-subject p{margin:4px 0}.p430-row,.p430-line{display:flex;gap:12px;justify-content:space-between;align-items:center;flex-wrap:wrap}
+.p430-done,.p430-todo{font-size:13px;font-weight:600;background:#e9f3ed;border-radius:40px;padding:2px 9px;color:#315e45}.p430-todo{color:#815323;background:#fff1da}
+.p430-source,.p430-minor{font-size:13px;color:#5f6e79}.p430-item{padding-left:8px;border-left:3px solid #c5d7e1;margin:11px 0}.p430-good{color:#17663a}.p430-warn{color:#9a622b}.p430-line{padding:9px 0;border-bottom:1px solid #e5eaed}.p430-line:last-child{border-bottom:0}
+@media (max-width:410px){.p430-h1{font-size:21px}.p430-page{font-size:15px}.p430-card{padding:13px}.p430-button{font-size:14px;padding:9px 11px}}
