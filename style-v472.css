@@ -1,0 +1,26 @@
+/* v472 文に集中：既存のボタンは保持し、任意に簡単な表示へ切替 */
+.v466-dialog .v472-switch{margin:7px 0 8px}
+.v466-dialog .v472-toggle{display:block;width:100%;min-height:48px;background:#fff;color:#1a5474;border:2px solid #6a95b0;border-radius:12px;font:bold 16px/1.45 system-ui,'Noto Sans JP',sans-serif;padding:9px 12px;cursor:pointer;touch-action:manipulation}
+.v466-dialog .v472-toggle[aria-pressed='true']{background:#eaf5ee;border-color:#477963;color:#244f3d}
+.v466-dialog .v472-status{display:none;font-size:13px;line-height:1.5;color:#385766;margin:6px 1px 0}
+.v466-dialog .v472-simple{display:none;box-sizing:border-box;border:1px solid #b7d1c2;border-radius:14px;background:#f7fbf9;padding:12px;margin:10px 0}
+.v466-dialog .v472-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.v466-dialog .v472-button{min-width:0;min-height:52px;padding:10px 5px;border:2px solid #4e8196;border-radius:12px;font:bold 15px/1.5 system-ui,'Noto Sans JP',sans-serif;background:#fff;color:#21516c;cursor:pointer;white-space:normal;overflow-wrap:anywhere;touch-action:manipulation}
+.v466-dialog .v472-listen{background:#245f80;border-color:#245f80;color:white}
+.v466-dialog .v472-stop{border-color:#9c776a;color:#71463a}
+.v466-dialog .v472-return{display:block;width:100%;margin-top:8px;background:#edf4f8}
+.v466-dialog .v472-button:disabled{opacity:.45;cursor:default}
+.v466-dialog .v472-audio-status{font-size:13px;margin:4px 0 0;color:#35546a;min-height:1em}
+.v466-dialog .v472-button:focus-visible,.v466-dialog .v472-toggle:focus-visible{outline:4px solid #e9b447;outline-offset:3px}
+.v466-dialog.v472-focus .v472-status{display:block}
+.v466-dialog.v472-focus .v472-simple{display:block}
+.v466-dialog.v472-focus :is(.v466-heading,.v466-help,.v466-eyebrow,.v471-toolbar,.v471-details){display:none!important}
+.v466-dialog.v472-focus .v466-reading{background:#fffdfa;border:3px solid #5e9a88;margin:9px 0 7px;line-height:2.1;padding:22px 17px;min-height:145px}
+.v466-dialog.v472-focus .v471-counter{font-size:17px;color:#2f6552;margin:8px 0}
+html.pono465-font-xl .v466-dialog .v472-button{font-size:19px}
+html.pono465-font-large .v466-dialog .v472-button{font-size:17px}
+html.pono465-buttons-large .v466-dialog .v472-button{min-height:68px}
+html.pono465-contrast-high .v466-dialog .v472-simple{background:#fff;border-color:#111}
+html.pono465-contrast-high .v466-dialog.v472-focus .v466-reading{background:#fff;border-color:#111;color:#111}
+html.pono465-contrast-high .v466-dialog .v472-toggle{background:#fff;border-color:#111;color:#111}
+@media(max-width:350px){.v466-dialog .v472-actions{gap:6px}.v466-dialog .v472-button{font-size:13px}}
