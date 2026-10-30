@@ -1,0 +1,24 @@
+/* v470：自己ペースで文に印をつける。採点／履歴は変更しない。 */
+.v470-panel{box-sizing:border-box;background:#faf8ef;color:#484024;border:2px solid #c8ba8d;border-radius:16px;padding:14px;margin:12px 0;font-family:system-ui,'Noto Sans JP',sans-serif}
+.v470-panel *{box-sizing:border-box}
+.v470-heading{font-size:18px;font-weight:800;line-height:1.5;margin:0 0 8px}
+.v470-help{font-size:15px;line-height:1.7;margin:0 0 10px}
+.v470-actions{display:flex;gap:10px;flex-wrap:wrap}
+.v470-toggle,.v470-clear{font:bold 16px/1.5 system-ui,'Noto Sans JP',sans-serif;min-height:54px;border-radius:12px;padding:11px 14px;cursor:pointer;touch-action:manipulation}
+.v470-toggle{flex:2 1 180px;background:#635425;border:2px solid #635425;color:#fff}
+.v470-toggle[aria-pressed="true"]{background:#fff;color:#50451f}
+.v470-clear{flex:1 1 140px;background:#fff;color:#61542f;border:2px solid #9d9069}
+.v470-clear:disabled{opacity:.45;cursor:default}
+.v470-status{font-size:16px;font-weight:800;line-height:1.7;margin:10px 0 2px}
+.v470-footnote{font-size:13px;line-height:1.6;margin:8px 0 0}
+.v469-number[data-v470-checked="true"]::after{content:' ✓';font-weight:900}
+.v470-panel button:focus-visible{outline:4px solid #e9b447;outline-offset:3px}
+html.pono465-font-large .v470-panel :is(.v470-heading,.v470-toggle,.v470-clear){font-size:20px}
+html.pono465-font-xl .v470-panel :is(.v470-heading,.v470-toggle,.v470-clear){font-size:22px}
+html.pono465-buttons-large .v470-panel button{min-height:70px;padding:14px}
+html.pono465-contrast-high .v470-panel{background:#fff;color:#111;border-color:#111}
+html.pono465-contrast-high .v470-panel :is(.v470-help,.v470-status,.v470-footnote){color:#111}
+html.pono465-contrast-high .v470-toggle{background:#111;color:#fff;border-color:#111}
+html.pono465-contrast-high .v470-toggle[aria-pressed="true"]{background:#fff;color:#111}
+html.pono465-contrast-high .v470-clear{background:#fff;color:#111;border-color:#111}
+@media(max-width:390px){.v470-toggle,.v470-clear{flex-basis:100%}}
