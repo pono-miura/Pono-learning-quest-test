@@ -1,0 +1,34 @@
+/* v454: teacher / child-screen handoff. No credential protection. */
+.v454-entry,.v454-page,.v454-overlay{font-family:system-ui,'Hiragino Kaku Gothic ProN',sans-serif;line-height:1.7;color:#294b3b;}
+.v454-entry,.v454-page *,.v454-overlay *{box-sizing:border-box}
+.v454-entry{background:#eff9f2;border:1px solid #a9ceba;border-left:5px solid #358460;border-radius:12px;margin:12px;padding:15px}
+.v454-page{max-width:830px;margin:0 auto;padding:13px 16px 60px;background:#fbfdf9;min-height:85vh;font-size:16px}
+.v454-nav{display:flex;gap:9px;align-items:center;flex-wrap:wrap;border-bottom:2px solid #d8e8dc;padding-bottom:12px}
+.v454-title{color:#28674e;font-size:1.23rem;margin:0;flex:1}
+.v454-btn{font:inherit;border-radius:12px;padding:10px 13px;min-height:48px;background:#fff;border:1px solid #a9cdb5;color:#285e46;cursor:pointer;margin:4px;line-height:1.45}
+.v454-btn:focus-visible,.v454-search:focus-visible{outline:3px solid #e0a74a;outline-offset:2px}
+.v454-primary{background:#287052;color:#fff;border-color:#287052;font-weight:700}.v454-on{background:#dff0e3;border-color:#388965;font-weight:700}
+.v454-muted-btn{background:#fff9f1;color:#855b39}.v454-positive{background:#eaf6ea;border-color:#65a57a}
+.v454-card{background:#fff;border-radius:17px;padding:16px;border:1px solid #dae9df;margin:16px 0;box-shadow:0 2px 8px #13382409}
+.v454-card-title{color:#28634c;margin:0 0 10px;font-size:1.15rem}.v454-card>.v454-btn{display:block;width:100%;margin:10px 0}
+.v454-text,.v454-note,.v454-warn,.v454-small,.v454-row-text{margin:7px 0;overflow-wrap:anywhere;white-space:pre-wrap}
+.v454-note,.v454-small{font-size:.86rem;color:#577567}.v454-warn{color:#a84525;font-weight:650}
+.v454-tabs,.v454-buttons{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0}.v454-tabs .v454-btn{flex:1;min-width:120px}
+.v454-row{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #e5eee7}
+.v454-glyph{font-size:1.65rem;min-width:36px;text-align:center;color:#2b694f}.v454-row-text{flex:1;font-size:.9rem}
+.v454-search{width:100%;border:1px solid #adccbb;border-radius:12px;padding:12px;min-height:48px;font:inherit}.v454-list{max-height:480px;overflow:auto}
+.v454-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.v454-metric{background:#edf7f1;border-radius:13px;padding:14px 8px;text-align:center}.v454-stat-number{display:block;color:#207552;font-size:1.8rem}
+.v454-record{padding:12px 0;border-bottom:1px solid #edf1eb}
+.v454-overlay{position:fixed;inset:0;z-index:2147483646;background:#fffdf7;overflow-y:auto;padding:14px;font-size:17px;overscroll-behavior:contain}
+.v454-overlay>.v454-card{max-width:740px;margin:16vh auto 0}.v454-overlay>.v454-card>.v454-btn{display:block;width:100%}
+.v454-child{max-width:790px;margin:0 auto}.v454-child-nav{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.v454-child-progress{font-weight:750;color:#246949;font-size:1.3rem}.v454-child .v454-btn{min-height:57px;font-size:1.04rem}
+.v454-child .v454-card{padding:19px;border:2px solid #dde8d7;box-shadow:none}.v454-child .v454-card-title{font-size:1.25rem}
+.v454-child .v454-question{text-align:center;background:#eff7ef;padding:16px;border-radius:15px}
+.v454-prompt{font-size:1.2rem;line-height:1.75}.v454-big-glyph{font-size:4.3rem;color:#1e674e;font-weight:800;padding:10px}
+.v454-tip,.v454-answer{background:#f4f9f5;border:1px solid #cde5d3;border-radius:14px;padding:14px;margin:12px 0}
+.v454-kanji{text-align:center;font-size:4.5rem;font-weight:800;color:#246b4d}.v454-word{font-weight:700;text-align:center;font-size:1.28rem}
+.v454-outcomes .v454-btn{display:block;width:100%;margin:9px 0}.v454-foot{font-size:.9rem;color:#5d8070;text-align:center}.v454-encourage{font-size:1.3rem;text-align:center;color:#257a50;font-weight:700}
+.v454-big .v454-btn{font-size:1.22rem;min-height:66px}.v454-big .v454-prompt{font-size:1.48rem}.v454-big .v454-big-glyph{font-size:5rem}
+@media(max-width:480px){.v454-page,.v454-overlay{padding:10px}.v454-card{padding:13px}.v454-child .v454-card{padding:13px}.v454-child .v454-btn{font-size:.97rem;padding:10px}.v454-row{gap:6px}}
+@media print{.v454-btn,.v454-entry,.v454-tabs,.v454-overlay{display:none!important}.v454-page{max-width:none;background:#fff}.v454-card{box-shadow:none;break-inside:avoid}}
