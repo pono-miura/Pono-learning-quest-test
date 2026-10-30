@@ -1,0 +1,36 @@
+/* v457 — Pono teacher overview; mobile-first */
+.v457-entry{margin:12px;padding:15px;border:1px solid #a5d0c0;border-left:5px solid #30866b;border-radius:14px;background:#f0f8f3;color:#204e40}
+.v457-entry strong{display:block;font-size:1.05rem}
+.v457-page{box-sizing:border-box;max-width:900px;min-height:80vh;margin:auto;padding:12px 14px 60px;background:#f6faf8;color:#203c34;font:16px/1.65 system-ui,'Hiragino Kaku Gothic ProN',sans-serif}
+.v457-page *,.v457-entry *{box-sizing:border-box}
+.v457-nav{display:flex;align-items:center;gap:12px;flex-wrap:wrap;border-bottom:2px solid #d5e8dc;padding-bottom:12px}
+.v457-title{flex:1;font-size:1.4rem;line-height:1.4;color:#225847;margin:0}
+.v457-btn{font:inherit;min-height:44px;padding:9px 13px;background:#fff;color:#255848;border:1px solid #9bc6ae;border-radius:10px;cursor:pointer;text-align:left}
+.v457-btn:focus-visible{outline:3px solid #f3b742;outline-offset:2px}
+.v457-btn:hover{background:#e8f4ed}
+.v457-primary{background:#287961;border-color:#287961;color:#fff;font-weight:700}.v457-primary:hover{background:#1f6550}
+.v457-on{background:#dcf0e5;border-color:#31856a;font-weight:700}
+.v457-card{background:#fff;border:1px solid #dae8dd;border-radius:15px;padding:16px;margin:14px 0;box-shadow:0 2px 8px #2744350a}
+.v457-card-title{font-size:1.12rem;color:#205743;margin:0 0 10px}
+.v457-card>.v457-btn{display:block;width:100%;margin:10px 0 0;text-align:center}
+.v457-text,.v457-small,.v457-foot,.v457-alert{margin:7px 0;overflow-wrap:anywhere}
+.v457-small{font-size:.86rem;color:#60786b}.v457-foot{font-size:.86rem;color:#66796e;margin:20px 0}
+.v457-alert{font-size:.91rem;color:#a0432d}.v457-notice{color:#286d51;font-weight:700}
+.v457-tabs{display:flex;gap:8px;margin:12px 0;flex-wrap:wrap}.v457-tabs .v457-btn{flex:1;min-width:80px;text-align:center;font-size:.92rem;padding:8px}
+.v457-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.v457-metric{padding:12px;border-radius:12px;background:#f0f7f1;border:1px solid #d7e9dd;min-width:0}
+.v457-metric-number{display:block;font-size:1.65rem;color:#225a45;font-variant-numeric:tabular-nums}
+.v457-metric-label{font-size:.85rem;color:#456457;margin:0}
+.v457-record{padding:8px 4px;border-bottom:1px solid #e9efe9;margin:0}
+.v457-subheading{font-size:1rem;color:#255c49;margin:13px 0 4px}
+.v457-bars{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px;align-items:end;height:180px;padding:10px 3px 2px}
+.v457-bar-col{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-end}
+.v457-bar-num{font-size:.78rem;color:#2d634f}.v457-bar-wrapper{height:120px;width:100%;max-width:44px;background:#edf3ed;border-radius:6px 6px 0 0;display:flex;align-items:flex-end;overflow:hidden}
+.v457-bar{width:100%;background:#519982;border-radius:5px 5px 0 0}
+.v457-bar-date{white-space:nowrap;font-size:.74rem;color:#5d7167;margin:4px 0 0}
+.v457-focus{display:flex;align-items:center;gap:14px;padding:9px 4px;border-bottom:1px solid #edf1ec}
+.v457-kanji{font-size:1.7rem;min-width:42px;color:#215640;text-align:center}
+.v457-focus-body{flex:1;font-size:.94rem}
+.v457-preview{white-space:pre-wrap;overflow-wrap:anywhere;font: .87rem/1.6 system-ui,sans-serif;background:#f2f7f3;padding:12px;border-radius:10px;color:#3e5547;max-height:320px;overflow:auto}
+@media(max-width:430px){.v457-page{padding:10px}.v457-card{padding:13px}.v457-metric-number{font-size:1.45rem}}
+@media print{.v457-page{background:#fff;max-width:none}.v457-entry,.v457-btn,.v457-tabs{display:none!important}.v457-card{box-shadow:none;break-inside:avoid}.v457-preview{max-height:none;overflow:visible}}
