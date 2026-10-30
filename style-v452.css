@@ -1,0 +1,28 @@
+/* Pono Learning Quest v452 — keyboard accessible, mobile-first, local-only */
+.v452-entry{margin:14px 12px;padding:15px 16px;background:#fff9ef;border:1px solid #d4bc91;border-left:5px solid #a66b36;border-radius:14px;color:#574226;font-family:system-ui,sans-serif;line-height:1.6}
+.v452-entry strong{font-size:1.04rem}.v452-entry .v452-small{margin:6px 0}
+.v452-page,.v452-entry{font-family:system-ui,'Hiragino Kaku Gothic ProN',sans-serif;font-size:16px;line-height:1.65}
+.v452-page{max-width:850px;min-height:85vh;margin:0 auto;padding:14px 16px 48px;background:#fafaf7;color:#303b36}
+.v452-page *,.v452-entry *{box-sizing:border-box}
+.v452-nav{display:flex;align-items:center;gap:10px;flex-wrap:wrap;border-bottom:2px solid #dce3db;padding-bottom:12px}
+.v452-title{font-size:1.3rem;color:#305b47;flex:1;line-height:1.4;margin:0}
+.v452-btn{font:inherit;min-height:44px;text-align:center;cursor:pointer;background:#fff;color:#315748;border:1px solid #9fb7aa;border-radius:10px;padding:9px 12px;margin:3px 2px}
+.v452-btn:hover{background:#edf3ee}.v452-btn:focus-visible,.v452-search:focus-visible,.v452-select:focus-visible{outline:3px solid #d9ab5f;outline-offset:2px}
+.v452-primary{background:#28765a;color:#fff;font-weight:700;border-color:#28765a}.v452-primary:hover{background:#205f48}
+.v452-on{background:#d8eee1;border-color:#478e6b;font-weight:700}.v452-quiet{background:#fff8f3;color:#92593e;border-color:#dfc5b7}.v452-add{white-space:nowrap}
+.v452-tabs,.v452-choices{display:flex;gap:7px;flex-wrap:wrap;margin:12px 0}.v452-tabs .v452-btn{flex:1;min-width:125px}
+.v452-week{display:flex;justify-content:space-between;align-items:center;gap:8px;background:#eef4ee;padding:7px;border-radius:12px;margin:10px 0;flex-wrap:wrap}.v452-week strong{font-size:.95rem;text-align:center;flex:1}
+.v452-card{background:#fff;border:1px solid #dce7df;border-radius:15px;box-shadow:0 1px 8px #2a3f3307;padding:15px;margin:14px 0;overflow-wrap:anywhere}
+.v452-card-title{font-size:1.08rem;color:#286047;margin:0 0 10px;line-height:1.45}
+.v452-card>.v452-btn{display:block;width:100%;margin:9px 0}
+.v452-text,.v452-small,.v452-muted,.v452-warn,.v452-record{margin:8px 0;white-space:pre-line;overflow-wrap:anywhere}
+.v452-small{font-size:.89rem;color:#516a5d}.v452-muted{font-size:.85rem;color:#5d7469}.v452-warn{font-weight:600;color:#a35434}
+.v452-hero{font-weight:750;text-align:center;font-size:2rem;color:#2a6c52}
+.v452-row,.v452-candidate{display:flex;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid #e7eee8}.v452-row-info{font-size:.9rem;white-space:pre-line;flex:1}
+.v452-kanji{font-size:1.6rem;color:#266c50;min-width:40px;text-align:center}.v452-kanji-list{max-height:490px;overflow-y:auto}
+.v452-targets{display:grid;gap:12px}.v452-target{border:1px solid #d9e6de;border-radius:13px;padding:12px;background:#fbfdfb}.v452-target-head{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap}.v452-word{font-size:1.5rem;color:#2d6c52}
+.v452-field{display:grid;gap:4px;margin:8px 0}.v452-label{font-weight:650;font-size:.87rem}.v452-select,.v452-search{font:inherit;width:100%;min-height:44px;border:1px solid #acbdb3;border-radius:9px;background:white;color:#303b36;padding:8px 10px}
+.v452-candidate .v452-small{flex:1;min-width:95px}.v452-record{font-size:.9rem;padding:8px 2px;border-bottom:1px solid #e8eee8}
+.v452-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}.v452-metric{text-align:center;background:#eff7f0;border-radius:11px;padding:12px 6px}.v452-number{color:#266749;font-size:1.4rem}.v452-preview{white-space:pre-wrap;overflow-wrap:anywhere;font-family:inherit;font-size:.86rem;line-height:1.65;background:#f7faf5;border:1px solid #e0e9df;border-radius:10px;padding:12px;max-height:350px;overflow-y:auto}
+@media(max-width:460px){.v452-page{padding:10px}.v452-card{padding:12px}.v452-week .v452-btn{font-size:.82rem;padding:7px 9px}.v452-metrics{gap:5px}.v452-number{font-size:1.2rem}}
+@media print{.v452-page{max-width:none;background:white}.v452-btn,.v452-entry,.v452-tabs,.v452-week{display:none!important}.v452-card{box-shadow:none;break-inside:avoid}.v452-preview{max-height:none;overflow:visible}}
