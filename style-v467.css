@@ -1,0 +1,18 @@
+/* v467：v466読みガイド内の音声補助。v465の個別表示設定を継承 */
+.v467-panel{border:2px solid #aac8dd;background:#f4f9fd;border-radius:16px;padding:12px 14px;margin:15px 0 16px;color:#183d58}
+.v467-title{font:bold 17px/1.5 system-ui,'Noto Sans JP',sans-serif;margin:0 0 10px}
+.v467-speeds,.v467-actions{display:flex;flex-wrap:wrap;gap:10px;margin:7px 0}
+.v467-speed,.v467-listen,.v467-stop{font:bold 17px/1.45 system-ui,'Noto Sans JP',sans-serif;min-height:54px;padding:12px 9px;flex:1 1 120px;border-radius:12px;cursor:pointer;touch-action:manipulation}
+.v467-speed{background:white;color:#184767;border:2px solid #6895b1}
+.v467-speed[aria-pressed="true"]{background:#194d70;color:#fff;border-color:#194d70;box-shadow:inset 0 0 0 2px #fff}
+.v467-listen{background:#216187;border:2px solid #216187;color:white}
+.v467-stop{background:white;border:2px solid #9a6d67;color:#773c33}
+.v467-status{font:15px/1.6 system-ui,'Noto Sans JP',sans-serif;color:#34576c;min-height:1.6em;margin:9px 0 2px}
+.v466-dialog .v466-speak[hidden],.v466-dialog .v466-actions[hidden]{display:none!important}
+.v467-panel :is(button):focus-visible{outline:4px solid #e8b34b;outline-offset:3px}
+html.pono465-font-large .v467-panel :is(.v467-title,.v467-speed,.v467-listen,.v467-stop){font-size:20px}
+html.pono465-font-xl .v467-panel :is(.v467-title,.v467-speed,.v467-listen,.v467-stop){font-size:22px}
+html.pono465-buttons-large .v467-panel button{min-height:70px;padding:14px}
+html.pono465-contrast-high .v467-panel{border-color:#111;color:#111;background:#fff}
+html.pono465-contrast-high .v467-status{color:#111}
+@media(max-width:380px){.v467-speed,.v467-listen,.v467-stop{flex-basis:100%}}
