@@ -1,0 +1,32 @@
+/* Pono v437: accessible, writing-optional spaced review */
+.v437-page{font-family:system-ui,-apple-system,'Noto Sans JP',sans-serif;max-width:740px;margin:0 auto;padding:18px 14px 48px;color:#263e36;line-height:1.65;box-sizing:border-box}
+.v437-page *, .v437-entry *{box-sizing:border-box}
+.v437-header{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:0 0 14px}
+.v437-heading{font-size:clamp(20px,4.6vw,27px);line-height:1.3;margin:0;font-weight:800;color:#234a3d}
+.v437-card,.v437-entry{border:1px solid #d9e6db;border-radius:16px;padding:16px;margin:14px 0;background:#fff;box-shadow:0 2px 8px #142d2310}
+.v437-entry{background:#f6faf5;color:#244f40;max-width:690px}
+.v437-entry-title{font-size:19px;display:block}
+.v437-card-title{font-size:20px;line-height:1.4;margin:0 0 10px}
+.v437-btn{display:inline-flex;justify-content:center;align-items:center;padding:12px 15px;margin:5px 6px 5px 0;min-height:47px;border-radius:11px;border:1px solid #bbcfc2;background:#f7faf8;color:#264b3d;font-size:16px;line-height:1.35;font-weight:650;cursor:pointer;text-align:center;white-space:pre-line}
+.v437-btn:focus-visible{outline:3px solid #3d8c72;outline-offset:2px}
+.v437-btn.v437-primary{background:#22745f;color:#fff;border-color:#22745f}
+.v437-btn.v437-active{background:#ddede3;color:#164e3c;border:2px solid #22745f}
+.v437-btn.v437-pick{min-width:79px;min-height:74px;font-size:18px}
+.v437-tabs{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.v437-counts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:16px 0}
+.v437-count{background:#f0f7f0;border-radius:11px;padding:12px 6px;text-align:center}
+.v437-count-number{display:block;font-size:26px;font-weight:800;color:#1b6651}
+.v437-count-label{display:block;font-size:12px;line-height:1.5}
+.v437-desc{font-size:16px;margin:10px 0;color:#364b42}
+.v437-prompt,.v437-question{font-size:19px;font-weight:750;margin:13px 0}
+.v437-word{font-size:21px;font-weight:700;margin:13px 0;color:#1c4e3d}
+.v437-hidden,.v437-kanji{width:125px;height:125px;background:#f2f6f2;border:2px dashed #c0d4c4;border-radius:18px;font-size:80px;display:flex;align-items:center;justify-content:center;margin:18px auto;color:#1c5a46}
+.v437-kanji{background:#fff9eb;border-style:solid;border-color:#ead7ad;font-weight:700}
+.v437-help-note{background:#fff6e6;padding:10px;border-radius:9px;font-size:15px}
+.v437-small{font-size:13px;color:#52665a}
+.v437-warning{font-size:15px;color:#923f18;font-weight:700}
+.v437-done{font-size:22px;font-weight:800;color:#165b48}
+.v437-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(95px,1fr));gap:6px;margin-top:12px}
+.v437-grid .v437-btn{margin:0;width:100%}
+@media(max-width:420px){.v437-counts{gap:5px}.v437-card{padding:13px}.v437-count-number{font-size:23px}.v437-count-label{font-size:11px}.v437-btn{font-size:15px}}
+@media(prefers-reduced-motion:reduce){.v437-page *{scroll-behavior:auto}}
