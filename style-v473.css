@@ -1,0 +1,36 @@
+/* v473: 読み上げは任意。今の1文だけ色を付け、通常の問題文は変えない。 */
+body.v473-available .v466-floating{display:none!important}
+.v473-launch{position:fixed;bottom:16px;left:12px;z-index:2147483646;max-width:220px;min-height:52px;padding:10px 14px;border:2px solid #fff;border-radius:14px;background:#205e83;color:#fff;font:700 16px/1.4 system-ui,'Noto Sans JP',sans-serif;box-shadow:0 3px 12px #24415b55;cursor:pointer;touch-action:manipulation}
+.v473-launch[hidden]{display:none!important}
+.v473-dialog{box-sizing:border-box;border:3px solid #316789;border-radius:18px;background:white;color:#18364b;padding:0;width:min(94vw,650px);max-height:88dvh;overflow:auto;overscroll-behavior:contain;font:16px/1.7 system-ui,'Noto Sans JP',sans-serif}
+.v473-dialog::backdrop{background:#0d294a99}
+.v473-dialog *{box-sizing:border-box}
+.v473-inside{padding:18px 18px 22px}
+.v473-title{font-size:22px;font-weight:800;line-height:1.5;margin:0 0 4px}
+.v473-help{font-size:15px;color:#476274;margin:0 0 13px}
+.v473-reading{font-size:clamp(20px,5vw,27px);font-weight:650;line-height:2.05;border:2px solid #c1d5e2;border-radius:15px;background:#fafcfe;padding:18px 15px;margin:0 0 15px;white-space:normal;overflow-wrap:anywhere;min-height:120px}
+.v473-sentence{border-radius:5px;padding:0 1px;box-decoration-break:clone;-webkit-box-decoration-break:clone;cursor:pointer}
+.v473-sentence[aria-current='true']{background:#ffe27c;color:#132c3e;box-shadow:0 0 0 2px #ffe27c}
+.v473-speeds{display:flex;flex-wrap:wrap;align-items:center;gap:7px;margin:8px 0 12px}
+.v473-speedlabel{font-size:15px;font-weight:700}
+.v473-speed{min-height:46px;border:2px solid #6793aa;border-radius:10px;padding:8px 12px;background:#fff;color:#285b76;font:bold 16px/1.4 system-ui,'Noto Sans JP',sans-serif;cursor:pointer}
+.v473-speed[aria-pressed='true']{background:#205e83;border-color:#205e83;color:#fff}
+.v473-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.v473-play,.v473-stop,.v473-close,.v473-old{font:bold 16px/1.4 system-ui,'Noto Sans JP',sans-serif;border-radius:11px;padding:11px 9px;min-height:54px;cursor:pointer;touch-action:manipulation}
+.v473-play{background:#205e83;color:white;border:2px solid #205e83}
+.v473-stop{background:white;color:#844c43;border:2px solid #a17b70}
+.v473-play:disabled{opacity:.55}
+.v473-message{font-size:14px;min-height:24px;margin:8px 0 12px;color:#3c5f73}
+.v473-close{display:block;width:100%;background:#ebf3f8;border:2px solid #7a9eb4;color:#22546c}
+.v473-more{margin-top:15px;border-top:1px solid #d8e3eb;padding-top:10px}
+.v473-more-title{font-size:14px;color:#3c5f73;cursor:pointer}
+.v473-more-note{font-size:14px;margin:6px 0}
+.v473-old{border:2px solid #7a9eb4;background:#fff;color:#22546c;width:100%}
+.v473-dialog :is(button,summary):focus-visible{outline:3px solid #e2a935;outline-offset:3px}
+html.pono465-font-large .v473-reading{font-size:27px}
+html.pono465-font-xl .v473-reading{font-size:33px}
+html.pono465-lines-wide .v473-reading{line-height:2.3}
+html.pono465-buttons-large .v473-dialog button{min-height:65px;font-size:19px}
+html.pono465-contrast-high .v473-reading{background:#fff;border-color:#111;color:#111}
+html.pono465-contrast-high .v473-sentence[aria-current='true']{background:#ffda4a;color:#111}
+@media(max-width:365px){.v473-actions{grid-template-columns:1fr}.v473-reading{padding:14px 12px}}
