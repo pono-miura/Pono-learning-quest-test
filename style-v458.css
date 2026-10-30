@@ -1,0 +1,51 @@
+/* Pono Learning Quest v458 — accessible mobile-first report creation */
+.v458-entry{margin:12px;padding:16px;border-left:5px solid #358571;border-radius:14px;background:#f0f8f3;color:#254c3b}
+.v458-entry strong{display:block;font-size:1.05rem}
+.v458-entry .v458-btn{margin-top:6px}
+.v458-page{font-family:system-ui,'Hiragino Kaku Gothic ProN',sans-serif;line-height:1.65;color:#27443a;background:#f7faf8;max-width:900px;min-height:80vh;margin:auto;padding:14px 16px 60px;box-sizing:border-box}
+.v458-page *,.v458-entry *{box-sizing:border-box}
+.v458-nav{display:flex;flex-wrap:wrap;gap:12px;align-items:center;border-bottom:2px solid #d9e9de;padding-bottom:12px}
+.v458-title{font-size:1.35rem;color:#245943;line-height:1.35;margin:0;flex:1}
+.v458-btn{min-height:44px;border:1px solid #8cb8a2;border-radius:10px;background:#fff;color:#255641;padding:9px 13px;cursor:pointer;font:inherit;line-height:1.4}
+.v458-btn:focus-visible,.v458-area:focus-visible{outline:3px solid #e9b85b;outline-offset:2px}
+.v458-btn:disabled{opacity:.35;cursor:not-allowed}
+.v458-primary{color:#fff;background:#27795e;border-color:#27795e;font-weight:700}
+.v458-selected{color:#164938;background:#ddf2e7;font-weight:700;border-color:#3b9475}
+.v458-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.v458-tabs .v458-btn{flex:1;min-width:78px;text-align:center}
+.v458-card{padding:18px;background:#fff;border:1px solid #d5e8dd;border-radius:14px;margin:15px 0;box-shadow:0 2px 8px #234c3008}
+.v458-heading{font-size:1.1rem;color:#245740;margin:0 0 10px}
+.v458-text,.v458-muted{margin:7px 0}
+.v458-text{margin:7px 0}
+.v458-muted{color:#60786b;font-size:.88rem;margin:7px 0}
+.v458-selection{font-size:1.02rem;font-weight:700;color:#28644d}
+.v458-metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.v458-metric{min-width:0;padding:12px;background:#f0f7f2;border:1px solid #dfece4;border-radius:10px}
+.v458-metric-num{font-size:1.55rem;color:#255941;display:block;font-variant-numeric:tabular-nums}
+.v458-metric-cap{color:#426251;margin:0;font-size:.88rem}
+.v458-focus{display:flex;align-items:center;gap:14px;padding:8px 3px;border-bottom:1px solid #e7eee9}
+.v458-glyph{font-size:1.9rem;min-width:38px;color:#265e46;text-align:center}
+.v458-field{margin:14px 0;border-top:1px solid #e6ede7;padding-top:12px}
+.v458-label{display:block;color:#254b3b;font-weight:700}
+.v458-area{display:block;width:100%;max-width:100%;margin-top:7px;padding:10px;font:inherit;font-weight:400;color:#233d31;background:#fff;border:1px solid #aabdaf;border-radius:9px;min-height:88px;resize:vertical}
+.v458-card>.v458-btn{display:block;width:100%;margin:9px 0 0;text-align:center}
+.v458-paper{background:#fcfdfa;border:1px solid #d7dfd8;border-radius:10px;padding:14px;margin:12px 0}
+.v458-pre{font: .9rem/1.8 system-ui,sans-serif;white-space:pre-wrap;word-break:break-word;color:#293f32;margin:0;overflow-wrap:anywhere}
+.v458-confirm{display:flex;align-items:flex-start;gap:8px;font-weight:700;line-height:1.6;margin:14px 0;cursor:pointer}
+.v458-confirm input{width:20px;height:20px;flex-shrink:0;margin-top:3px;accent-color:#27795e}
+.v458-share-actions{display:grid;gap:8px}
+.v458-notice{color:#23664d;font-weight:700;background:#ecf7ee;border-radius:8px;padding:10px}
+.v458-foot{color:#66776d;font-size:.85rem;margin:19px 0}
+@media(max-width:430px){.v458-page{padding:10px}.v458-card{padding:13px}.v458-metric-num{font-size:1.4rem}.v458-tabs .v458-btn{padding:7px 9px}}
+@media print{
+ @page{size:A4;margin:13mm 15mm}
+ body{background:#fff!important}
+ body>*:not(#app){display:none!important}
+ #app{margin:0!important;padding:0!important;background:#fff!important}
+ .v458-page{background:#fff!important;max-width:none;padding:0;min-height:0;color:#222;font-size:10.5pt}
+ .v458-nav,.v458-tabs,.v458-card:not(:has(.v458-paper)),.v458-confirm,.v458-share-actions,.v458-foot,.v458-notice{display:none!important}
+ .v458-card:has(.v458-paper){padding:0!important;border:0!important;box-shadow:none!important;margin:0}
+ .v458-card:has(.v458-paper)>.v458-heading,.v458-card:has(.v458-paper)>.v458-muted{display:none!important}
+ .v458-paper{padding:0;border:0!important;background:#fff!important;margin:0}
+ .v458-pre{font-size:10.5pt;line-height:1.65;white-space:pre-wrap;max-width:none;overflow:visible}
+}
