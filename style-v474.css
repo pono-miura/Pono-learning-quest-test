@@ -1,0 +1,29 @@
+/* v474 学年別入口。古い教材カードは削除せず、元のボタンを使って開く。 */
+html.v474-locked{overflow:hidden}
+.v474-hub{position:fixed;inset:0;z-index:2147483200;background:#f7fbfb;color:#193b50;overflow-y:auto;overscroll-behavior:contain;font:17px/1.55 system-ui,'Noto Sans JP',sans-serif;box-sizing:border-box}
+.v474-hub[hidden],.v474-reopen[hidden]{display:none!important}
+.v474-hub *{box-sizing:border-box}
+.v474-inner{max-width:760px;margin:auto;padding:clamp(18px,4vw,30px) 18px 44px}
+.v474-brand{font-weight:750;color:#1b6b68;font-size:15px;margin-bottom:20px}
+.v474-title{font-size:clamp(24px,6vw,32px);font-weight:800;line-height:1.35;margin:0 0 12px;letter-spacing:.01em}
+.v474-subtitle{color:#435b65;font-size:16px;margin:0 0 24px}
+.v474-grade-grid,.v474-subject-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.v474-grade,.v474-subject{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:120px;padding:12px 6px;border:2px solid #a6c7ce;border-radius:18px;background:white;color:#1c4a61;font:800 clamp(21px,5vw,27px)/1.4 system-ui,'Noto Sans JP',sans-serif;box-shadow:0 2px 7px #23516812;cursor:pointer;touch-action:manipulation;white-space:normal}
+.v474-subject{min-height:105px;font-size:23px}
+.v474-muted{font-size:12px;color:#67808d;margin-top:6px;font-weight:500}
+.v474-button,.v474-back,.v474-secondary,.v474-reopen{font:700 16px/1.5 system-ui,'Noto Sans JP',sans-serif;min-height:51px;padding:10px 14px;border:2px solid #6796a5;border-radius:13px;color:#23516b;background:white;cursor:pointer;touch-action:manipulation}
+.v474-back{background:#d9f0ed;border-color:#4e9790;color:#174e4b}
+.v474-footer{display:flex;flex-direction:column;gap:10px;margin-top:26px}
+.v474-subject-grid+.v474-back{margin-top:25px;width:100%}
+.v474-count{font-size:15px;font-weight:700;color:#456878;margin-bottom:15px}
+.v474-lesson-list{display:flex;flex-direction:column;gap:11px}
+.v474-lesson{display:flex;flex-direction:column;text-align:left;gap:5px;border-radius:14px;padding:17px 16px;background:white;border:2px solid #c3d8dd;color:#1a4154;cursor:pointer;min-height:79px;width:100%}
+.v474-lesson-title{font-size:18px;line-height:1.5}
+.v474-lesson-desc{font-size:15px;line-height:1.6;color:#385565}
+.v474-lesson-subtitle{font-size:14px;color:#416f7d;line-height:1.5}
+.v474-empty{border-radius:15px;background:white;border:2px solid #cbdde2;padding:20px;margin-top:20px}
+.v474-empty h2{font-size:19px;margin:0 0 12px}.v474-empty p{font-size:15px}
+.v474-reopen{position:fixed;bottom:16px;right:16px;z-index:2147483199;background:#155d75;color:#fff;border-color:#fff;box-shadow:0 4px 13px #1b344255;font-size:15px;max-width:220px}
+.v474-hub :is(button):focus-visible,.v474-reopen:focus-visible{outline:4px solid #f4bb4c;outline-offset:3px}
+@media(min-width:650px){.v474-grade-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.v474-subject-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.v474-footer{flex-direction:row;flex-wrap:wrap}.v474-footer>*{flex:1 1 180px}}
+@media(max-width:350px){.v474-grade,.v474-subject{min-height:100px;font-size:20px}.v474-inner{padding:16px 12px 36px}}
