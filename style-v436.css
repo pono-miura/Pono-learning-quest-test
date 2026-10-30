@@ -1,0 +1,37 @@
+
+/* Pono Learning Quest v436 — all selectors namespaced */
+.v436-shell{box-sizing:border-box;padding:14px 12px 48px;max-width:900px;margin:auto;color:#23333e;font-family:system-ui,-apple-system,'Noto Sans JP',sans-serif;line-height:1.65}
+.v436-shell *,.v436-entry *{box-sizing:border-box}
+.v436-nav{display:flex;align-items:center;gap:10px;margin:0 0 12px;flex-wrap:wrap}
+.v436-title{font-size:1.25rem;line-height:1.4;font-weight:800;margin:0;color:#243b53}
+.v436-tabs{display:flex;gap:8px;margin:14px 0;flex-wrap:wrap}
+.v436-card,.v436-mode-card,.v436-entry{background:#fff;border:2px solid #dbe6ef;border-radius:16px;padding:18px;margin:13px 0;box-shadow:0 3px 9px rgba(10,40,60,.04)}
+.v436-entry{background:#f6fbff;max-width:900px;margin:14px auto}
+.v436-entry-title{font-weight:800;font-size:1.05rem;display:block;margin-bottom:5px}
+.v436-section-title{font-size:1.11rem;line-height:1.5;margin:0 0 10px;font-weight:800;color:#24445b}
+.v436-desc{font-size:1rem;margin:8px 0 12px;line-height:1.75}
+.v436-count,.v436-step{font-weight:700;color:#344e65;margin:10px 0}
+.v436-modes{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:10px}
+.v436-mode-card{margin:0}
+.v436-button{appearance:none;display:inline-flex;justify-content:center;align-items:center;border-radius:12px;border:2px solid #c8d8e6;background:#f6f9fc;color:#21415c;cursor:pointer;min-height:48px;padding:10px 14px;margin:5px 5px 5px 0;font-size:1rem;line-height:1.4;font-weight:700;white-space:normal;text-align:center;max-width:100%;touch-action:manipulation}
+.v436-button:focus-visible{outline:3px solid #e7a129;outline-offset:2px}
+.v436-button.v436-primary{background:#236b8d;color:#fff;border-color:#236b8d}
+.v436-button.v436-active{background:#194e66;color:#fff;border-color:#194e66}
+.v436-button:disabled{opacity:.58;cursor:not-allowed}
+.v436-big-char,.v436-hidden-char{font-family:'Noto Sans CJK JP','Yu Gothic','Hiragino Kaku Gothic ProN',sans-serif;font-size:clamp(76px,22vw,140px);font-weight:700;text-align:center;margin:10px auto;line-height:1.3;min-height:125px}
+.v436-hidden-char{color:#8da5b8}
+.v436-word{text-align:center;font-size:clamp(1.2rem,4.2vw,1.7rem);font-weight:800;line-height:1.55;white-space:normal;margin:10px 0}
+.v436-choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px;margin:14px 0}
+.v436-choices .v436-button{margin:0;min-width:0;width:100%;min-height:67px;font-size:clamp(1.2rem,4vw,1.55rem);border-color:#aac5d6;color:#183c52;background:#f9fcfe}
+.v436-choices-kanji .v436-button{font-size:clamp(40px,11vw,68px);min-height:105px;line-height:1.25}
+.v436-assembly{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin:8px auto 16px}
+.v436-component{display:inline-flex;align-items:center;justify-content:center;width:95px;min-height:100px;border:2px solid #9fbdca;border-radius:14px;font-size:3.8rem;font-weight:700}
+.v436-unknown{color:#92a8b4;border-style:dashed}
+.v436-plus{font-size:2rem;font-weight:700}
+.v436-feedback{font-weight:700;background:#eff8ff;padding:10px 13px;border-radius:10px}
+.v436-hint{padding:10px 13px;background:#fff9e9;border-left:4px solid #c99424;margin:10px 0;color:#40351f}
+.v436-explain{padding:12px;background:#f5fbf7;border:2px solid #b0d7ba;border-radius:12px;margin-top:15px}
+.v436-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(125px,1fr));gap:7px}
+.v436-grid .v436-button{width:100%;min-height:60px;margin:0;font-size:1.3rem}
+.v436-big-count{text-align:center;font-size:2.1rem;font-weight:800}
+@media(max-width:420px){.v436-card,.v436-mode-card,.v436-entry{padding:14px}.v436-component{width:80px;min-height:88px;font-size:3.1rem}.v436-choices{gap:8px}}
