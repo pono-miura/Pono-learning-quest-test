@@ -1,0 +1,27 @@
+/* v471：読み上げガイドのスマホ向けコンパクトUI。元の機能は「くわしい設定」に維持。 */
+.v466-dialog .v471-counter{text-align:center;font:bold 15px/1.4 system-ui,'Noto Sans JP',sans-serif;color:#315a79;margin:6px 0}
+.v466-dialog .v471-toolbar{box-sizing:border-box;margin:10px 0 8px;border:1px solid #c8dce8;border-radius:14px;background:#f8fbfe;padding:12px}
+.v466-dialog .v471-toolbar-title{font:bold 15px/1.4 system-ui,'Noto Sans JP',sans-serif;margin:0 0 8px;color:#264d66}
+.v466-dialog .v471-controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.v466-dialog .v471-button{box-sizing:border-box;min-height:50px;min-width:0;border:2px solid #477d9e;border-radius:11px;padding:8px 5px;font:bold 15px/1.4 system-ui,'Noto Sans JP',sans-serif;white-space:normal;overflow-wrap:anywhere;cursor:pointer;touch-action:manipulation;background:#fff;color:#205675}
+.v466-dialog .v471-listen,.v466-dialog .v471-play{background:#205e83;border-color:#205e83;color:white}
+.v466-dialog .v471-mark[aria-pressed='true']{background:#f0e8c4;color:#3e3519;border-color:#8f7d45}
+.v466-dialog .v471-stop{color:#7a3c34;border-color:#aa8179}
+.v466-dialog .v471-button:disabled{opacity:.43;cursor:default}
+.v466-dialog .v471-return{display:block;width:100%;margin-top:8px;min-height:44px;background:#edf4fa}
+.v466-dialog .v471-details{box-sizing:border-box;margin:10px 0;border:1px solid #b6ccd9;border-radius:12px;padding:0 10px 8px;background:#fff}
+.v466-dialog .v471-summary{cursor:pointer;list-style:revert;padding:12px 6px;font:bold 15px/1.55 system-ui,'Noto Sans JP',sans-serif;color:#245372}
+.v466-dialog .v471-details-intro{font-size:14px;line-height:1.6;margin:5px 6px 12px}
+.v466-dialog .v471-details :is(.v467-panel,.v468-panel,.v469-panel,.v470-panel){margin:8px 0;padding:10px}
+.v466-dialog .v471-toolbar button:focus-visible,.v466-dialog .v471-details summary:focus-visible{outline:4px solid #edb249;outline-offset:3px}
+.v466-dialog .v466-reading{margin:8px 0 10px}
+.v466-dialog .v466-heading{margin-bottom:6px}
+.v466-dialog .v466-help{margin:4px 0 8px}
+.v466-dialog .v466-count{display:none}
+html.pono465-font-large .v466-dialog .v471-button{font-size:17px}
+html.pono465-font-xl .v466-dialog .v471-button{font-size:19px}
+html.pono465-buttons-large .v466-dialog .v471-button{min-height:60px}
+html.pono465-contrast-high .v466-dialog .v471-toolbar{background:#fff;color:#111;border-color:#111}
+html.pono465-contrast-high .v466-dialog .v471-button{border-color:#111}
+html.pono465-contrast-high .v466-dialog .v471-details{border-color:#111}
+@media (max-width:340px){.v466-dialog .v471-controls{gap:6px}.v466-dialog .v471-button{font-size:13px}}
