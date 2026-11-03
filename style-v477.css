@@ -1,0 +1,9 @@
+/* v477: clear access to original subjectGradeTerms curriculum alongside addon cards */
+.v477-legacy-card{padding:18px 16px;margin:12px 0 19px;border-radius:17px;background:#eaf5f0;border:2px solid #75a89d;color:#163d48}
+.v477-heading{font:bold 19px/1.5 system-ui,'Noto Sans JP',sans-serif;margin:0 0 6px}
+.v477-desc{font:15px/1.7 system-ui,'Noto Sans JP',sans-serif;margin:0 0 13px}
+.v477-primary{display:block;box-sizing:border-box;width:100%;min-height:54px;padding:12px;border:2px solid #206889;border-radius:12px;background:#206889;color:white;font:bold 17px/1.45 system-ui,'Noto Sans JP',sans-serif;cursor:pointer;touch-action:manipulation}
+.v477-primary:focus-visible{outline:3px solid #e8aa27;outline-offset:3px}
+.v477-warning{padding:12px;background:#fff3e9;color:#7b331f;border-radius:10px}
+.v477-back-course{padding:4px 8px 12px}
+.v477-back-course .v477-primary{background:#e7f2ee;color:#195c4e;border-color:#83ada2;font-size:15px}
