@@ -1,0 +1,27 @@
+/* v478: Keep v475 legacy overlay hidden when real-course navigation is active.
+   These are navigation styles only. Course pages, data and role screens unchanged. */
+html.v476-role-child .v475-hub,html.v476-role-child .v475-reopen{display:none!important}
+html.v478-visible{overflow:hidden!important}
+.v478-hub{position:fixed;inset:0;z-index:2147483250;overflow-y:auto;overscroll-behavior:contain;background:#f8fbf9;color:#1b4051;font:16px/1.6 system-ui,'Noto Sans JP',sans-serif;box-sizing:border-box}
+.v478-hub[hidden],.v478-return[hidden]{display:none!important}
+.v478-hub *{box-sizing:border-box}
+.v478-inner{max-width:750px;margin:auto;padding:23px 17px 90px}
+.v478-brand{font-size:15px;font-weight:800;color:#237065;margin:0 0 16px}
+.v478-title{font-size:clamp(24px,6vw,32px);line-height:1.35;margin:0 0 12px;font-weight:850}
+.v478-subtitle{font-size:16px;line-height:1.75;color:#4b6974;margin:0 0 22px}
+.v478-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:18px}
+.v478-grade,.v478-subject{border:2px solid #91bcb8;border-radius:16px;min-height:90px;padding:14px 9px;color:#174d61;background:#fff;font:800 20px/1.45 system-ui,'Noto Sans JP',sans-serif;cursor:pointer}
+.v478-list{display:flex;flex-direction:column;gap:12px;margin:14px 0 23px}
+.v478-unit{display:flex;flex-direction:column;gap:10px;padding:17px 14px;background:#fff;border:2px solid #c6d8da;border-radius:15px}
+.v478-unit-name{font-size:19px;line-height:1.5;color:#173f52}
+.v478-go,.v478-button,.v478-secondary,.v478-back{width:100%;min-height:52px;border:2px solid #6a9ea9;border-radius:11px;padding:10px 12px;background:#fff;color:#245b66;font:750 16px/1.4 system-ui,'Noto Sans JP',sans-serif;cursor:pointer;touch-action:manipulation}
+.v478-go{background:#21688b;color:#fff;border-color:#21688b}
+.v478-back{background:#e8f4ee;border-color:#9bbfad;color:#20634e;margin:11px 0}
+.v478-secondary{margin:9px 0}
+.v478-count{font-size:15px;color:#42616a;font-weight:700}
+.v478-foot{font-size:14px;color:#56717a;line-height:1.6;margin-top:18px}
+.v478-notice{padding:13px;border-radius:11px;background:#fff6df;color:#684c18;font-size:15px}
+.v478-return{position:fixed;bottom:13px;left:12px;z-index:2147483310;max-width:230px;border:2px solid white;border-radius:24px;background:#21688b;color:white;padding:10px 13px;min-height:44px;font:750 14px/1.3 system-ui,'Noto Sans JP',sans-serif;box-shadow:0 3px 12px #24475a5c;cursor:pointer}
+.v478-hub button:focus-visible,.v478-return:focus-visible{outline:3px solid #edaa26;outline-offset:2px}
+@media(min-width:700px){.v478-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.v478-inner{padding:36px 24px 90px}}
+@media(max-width:370px){.v478-inner{padding:18px 12px 90px}.v478-unit-name{font-size:17px}}
