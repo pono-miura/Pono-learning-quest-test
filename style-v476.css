@@ -1,0 +1,26 @@
+/* v476: trial-only role navigation; keeps old screens and data intact. */
+html.v476-role-choose,html.v476-role-family,html.v476-role-staff{overflow:auto!important}
+html.v476-role-choose .v475-hub,
+html.v476-role-family .v475-hub,
+html.v476-role-staff .v475-hub,
+html.v476-role-choose .v475-reopen,
+html.v476-role-family .v475-reopen,
+html.v476-role-staff .v475-reopen{display:none!important}
+.v476-portal{position:fixed;inset:0;z-index:2147483300;overflow:auto;overscroll-behavior:contain;background:#f6faf8;color:#183c4d;box-sizing:border-box;font:16px/1.55 system-ui,'Noto Sans JP',sans-serif}
+.v476-portal[hidden],.v476-switch[hidden],.v476-notice[hidden]{display:none!important}
+.v476-portal *{box-sizing:border-box}
+.v476-main{max-width:680px;margin:0 auto;padding:24px 16px 45px}
+.v476-header{padding:6px 3px 13px}
+.v476-brand{font-weight:750;font-size:15px;color:#216d69;margin:0 0 12px}
+.v476-title{font-size:clamp(24px,5vw,32px);line-height:1.35;margin:0;color:#173a4c}
+.v476-lead{margin:8px 3px 20px;font-size:16px;color:#46636c}
+.v476-card{background:#fff;border:2px solid #c2d7d8;border-radius:16px;margin:12px 0;padding:17px;box-shadow:0 4px 18px #152d3a0a}
+.v476-card-title{font-size:20px;line-height:1.45;margin:0 0 8px;color:#183c4d}
+.v476-card-desc{color:#4c6973;font-size:15px;line-height:1.7;margin:0 0 15px}
+.v476-card-action{display:block;width:100%;border:2px solid #196584;background:#196584;color:white;border-radius:12px;padding:13px 14px;min-height:54px;font:750 17px/1.4 system-ui,'Noto Sans JP',sans-serif;cursor:pointer;touch-action:manipulation}
+.v476-caution{color:#5d512d;background:#faf6e9;border:1px solid #d9cda9;border-radius:10px;padding:13px;font-size:14px;line-height:1.7;margin-top:17px}
+.v476-back{width:100%;border:2px solid #80aaa5;background:white;border-radius:11px;padding:13px;min-height:52px;font:750 16px/1.4 system-ui,'Noto Sans JP',sans-serif;color:#245d5e;cursor:pointer;margin-top:14px}
+.v476-notice{background:#fff2e9;color:#80391d;padding:10px;margin-top:12px;border-radius:10px}
+.v476-switch{position:fixed;z-index:2147483360;right:12px;bottom:16px;background:#fff;color:#135274;min-height:44px;max-width:158px;padding:8px 12px;border:2px solid #276a85;border-radius:25px;box-shadow:0 2px 12px #132c3760;font:750 14px/1.3 system-ui,'Noto Sans JP',sans-serif;cursor:pointer}
+.v476-portal button:focus-visible,.v476-switch:focus-visible{outline:4px solid #f4b947;outline-offset:3px}
+@media(min-width:850px){.v476-main{padding-top:46px}}
