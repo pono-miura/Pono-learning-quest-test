@@ -1,0 +1,24 @@
+/* v479：子ども用の入口をひとつに統合。旧ナビの多重表示を解消する。 */
+.v479-hub{position:fixed;inset:0;z-index:2147483250;overflow-y:auto;overscroll-behavior:contain;background:#f6faf8;color:#1a3e50;font:16px/1.55 system-ui,'Noto Sans JP',sans-serif}
+.v479-hub[hidden],.v479-return[hidden]{display:none!important}
+html.v479-active{overflow:hidden!important}
+.v479-hub *{box-sizing:border-box}
+.v479-inner{max-width:740px;margin:auto;padding:24px 16px 90px}
+.v479-brand{font-size:16px;font-weight:800;color:#256d66;margin:0 0 14px}
+.v479-title{font-size:clamp(25px,6vw,32px);line-height:1.4;margin:0 0 12px}
+.v479-intro{color:#4a6570;margin:0 0 22px;line-height:1.75}
+.v479-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:0 0 18px}
+.v479-grade{width:100%;min-height:84px;border:2px solid #92bcb6;background:#fff;color:#164d61;border-radius:14px;padding:10px;font:800 20px/1.4 system-ui,'Noto Sans JP',sans-serif;cursor:pointer}
+.v479-count{font-size:16px;font-weight:800;color:#216476;margin:0 0 14px}
+.v479-units{display:flex;flex-direction:column;gap:12px;margin-bottom:20px}
+.v479-unit{display:flex;flex-direction:column;gap:12px;background:#fff;border:2px solid #c9dcdb;border-radius:15px;padding:17px 15px}
+.v479-unit-name{font-size:19px;font-weight:750;line-height:1.5}
+.v479-launch,.v479-outline,.v479-button{border:2px solid #246b86;border-radius:11px;padding:12px 13px;min-height:54px;cursor:pointer;font:750 17px/1.45 system-ui,'Noto Sans JP',sans-serif;width:100%}
+.v479-launch{background:#206989;color:#fff}
+.v479-outline{background:#edf6f2;color:#19576b;margin:10px 0}
+.v479-return{position:fixed;bottom:15px;left:12px;z-index:2147483350;background:#21688b;border:2px solid #fff;color:#fff;padding:10px 14px;min-height:46px;border-radius:25px;font:750 15px/1.4 system-ui,'Noto Sans JP',sans-serif;box-shadow:0 2px 12px #19384e66;max-width:230px}
+.v479-footer{margin-top:23px;font-size:13px;color:#607882}
+.v479-note,.v479-warning{background:#fff6df;border-radius:11px;padding:14px;color:#624b16}
+.v479-hub button:focus-visible{outline:4px solid #e6ad39;outline-offset:3px}
+@media(min-width:700px){.v479-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.v479-inner{padding:34px 24px 90px}}
+@media(max-width:370px){.v479-grade{font-size:18px;min-height:76px}}
