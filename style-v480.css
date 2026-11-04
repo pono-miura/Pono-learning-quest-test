@@ -1,0 +1,40 @@
+/* Pono Learning Quest v480 — 子ども用メニューを一つに。固定ボタンの教材への重なりを防止 */
+.v480-hub{position:fixed;inset:0;z-index:2147483250;overflow:auto;background:#f7faf8;color:#193b50;box-sizing:border-box;font:16px/1.6 system-ui,'Noto Sans JP',sans-serif;overscroll-behavior:contain}
+.v480-hub[hidden]{display:none!important}
+.v480-hub *{box-sizing:border-box}
+.v480-inner{width:min(100%,830px);margin:auto;padding:24px 17px 72px}
+.v480-brand{font-size:15px;font-weight:800;color:#287264;margin:0 0 17px}
+.v480-title{font-size:clamp(25px,5vw,32px);line-height:1.35;margin:0 0 12px}
+.v480-desc{font-size:16px;color:#506a74;margin:0 0 22px;line-height:1.75}
+.v480-heading{font-size:21px;margin:20px 0 12px}
+.v480-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px;margin-bottom:20px}
+.v480-grade{min-height:85px;border:2px solid #9bbfbc;background:#fff;border-radius:16px;font:800 19px/1.5 system-ui,'Noto Sans JP',sans-serif;color:#204d5a;padding:12px 8px;cursor:pointer}
+.v480-modules{display:grid;grid-template-columns:1fr;gap:13px;margin-bottom:22px}
+.v480-card{background:#fff;border:1.5px solid #c6dbdb;border-radius:18px;padding:18px 16px}
+.v480-card-title{font-size:20px;margin:0 0 12px;color:#193c50}
+.v480-card-text{color:#56717c;line-height:1.65;margin:0 0 15px}
+.v480-primary,.v480-outline,.v480-back,.v480-exit,.v480-subunit{display:block;width:100%;min-height:53px;border:2px solid #84aaaa;border-radius:12px;background:white;color:#205c65;padding:12px;font:750 16px/1.5 system-ui,'Noto Sans JP',sans-serif;cursor:pointer;text-align:left}
+.v480-primary{background:#206789;color:white;border-color:#206789;text-align:center;margin-top:12px}
+.v480-outline,.v480-back{margin:10px 0;text-align:center}.v480-back{background:#e6f3ee}.v480-exit{margin-top:22px;text-align:center;border-style:dashed}
+.v480-group{margin:7px 0;border-bottom:1px solid #d8e5e3;padding-bottom:6px}
+.v480-group-name,.v480-legacy-title{padding:10px 4px;cursor:pointer;font-weight:750;font-size:17px;color:#1f5e5c}
+.v480-subunits,.v480-legacy-units{display:flex;flex-direction:column;gap:8px;margin:7px 0 12px}
+.v480-subunit{font-size:15px;min-height:46px;padding:10px 12px;background:#f9fbfd}
+.v480-legacy{border:2px solid #b2ccce;border-radius:14px;padding:13px 16px;background:#fff;margin:15px 0}
+.v480-footnote{font-size:14px;color:#56717b;line-height:1.75;margin:22px 0}
+.v480-warning{border-radius:12px;background:#fff2df;color:#6c4e1c;padding:13px}
+.v480-note{color:#5b6870}
+.v480-learning-guide{background:#f5faf9;border:2px solid #c0d7d7;border-radius:16px;padding:13px;margin:10px 12px 20px;font:14px/1.5 system-ui,'Noto Sans JP',sans-serif;max-width:830px}
+.v480-course{margin:0 0 7px;font-weight:800;color:#275c58}
+.v480-steps{display:flex;gap:5px;overflow-x:auto;padding:2px 0 6px}
+.v480-step{flex:1;min-width:92px;white-space:nowrap;text-align:center;color:#486875;background:#fff;border:1px solid #c7dadd;border-radius:7px;padding:5px 6px;font-size:12px}
+.v480-step.current{background:#e5f2e8;border-color:#549883;color:#155a45;font-weight:800}
+.v480-hint{margin:2px 0 8px;color:#546970;font-size:12px}
+.v480-guide-actions{display:grid;grid-template-columns:1fr auto;gap:7px}
+.v480-guide-back,.v480-guide-exit{border:1px solid #8cafb0;border-radius:9px;padding:9px 12px;background:#fff;color:#225d65;font-weight:700;font-size:13px;cursor:pointer}
+.v480-inline-tip{margin:8px 12px;padding:12px;background:#fff1dc;color:#684c1c;border-radius:8px}
+html.v480-active{overflow:hidden!important}
+.v476-role-child .v476-switch{display:none!important}
+.v480-hub button:focus-visible,.v480-learning-guide button:focus-visible{outline:3px solid #e5ad30;outline-offset:2px}
+@media(min-width:750px){.v480-inner{padding:38px 25px 90px}.v480-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.v480-modules{grid-template-columns:repeat(2,minmax(0,1fr))}.v480-learning-guide{margin:16px auto 22px}}
+@media(max-width:380px){.v480-inner{padding:18px 13px 70px}.v480-step{min-width:85px}.v480-card-title{font-size:18px}}
