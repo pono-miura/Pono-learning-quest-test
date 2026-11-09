@@ -1,0 +1,24 @@
+/* Pono Learning Quest v482 — scroll fix for v481 learning pages.
+   The v480 menu locks root scrolling with html.v480-active{overflow:hidden!important}.
+   v481's new lesson panel is outside the v480 fixed-scroll container.
+   Restore document scrolling only while the v481 lesson is open. */
+html.v480-active:has(body.pono481-open),
+html:has(body.pono481-open) {
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  height: auto !important;
+}
+body.pono481-open {
+  overflow-x: hidden !important;
+  overflow-y: visible !important;
+  height: auto !important;
+}
+body.pono481-open #pono481-panel {
+  position: relative;
+  height: auto;
+  min-height: 100dvh;
+  overflow: visible;
+  touch-action: pan-y;
+  overscroll-behavior-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
