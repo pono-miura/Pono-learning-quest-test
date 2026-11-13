@@ -1,0 +1,15 @@
+Pono Learning Quest v483  スクロール修正
+
+今回は小6の新しい学習画面だけの修正です。教材・採点・学習記録は変更しません。
+
+GitHub: pono-miura/Pono-learning-quest-test
+1. 既存の学習記録をバックアップ
+2. ZIPを展開
+3. index.html を GitHub の同名ファイルに上書き
+4. style-v483.css を GitHub のルートに追加
+5. 他のファイルを削除しない
+6. Pagesの公開が完了したら、 https://pono-miura.github.io/Pono-learning-quest-test/?v=483&check=1 から開く
+7. 子どもの学習 → 小学6年 → 英語 → この詳しい教材を開く → This is me! → 単語の下までスクロール
+
+原理：htmlのスクロールに依存せず、v481の学習画面自身を固定したスクロール領域にする。
+テスト：Chromiumの390×844モバイル相当画面で指スワイプ後、学習画面スクロール量が約711px変化。実機未検証。

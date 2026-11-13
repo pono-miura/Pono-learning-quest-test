@@ -1,0 +1,29 @@
+/* Pono Learning Quest v483 — self-scrolling sixth-grade learning panel.
+   The v480 grade menu deliberately locks document scrolling. The v481
+   lesson is therefore an independent viewport scroller, not a document
+   scroller. Keep this patch restricted to the v481 panel only. */
+body.pono481-open #pono481-panel {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 2147483500 !important;
+  display: block !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  max-width: none !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 16px max(16px, calc((100vw - 760px) / 2)) 72px !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  overscroll-behavior-y: contain !important;
+  touch-action: pan-y !important;
+  -webkit-overflow-scrolling: touch;
+  background: #faf9f5;
+}
+@media (max-width: 500px) {
+  body.pono481-open #pono481-panel {
+    padding: 14px 16px 72px !important;
+  }
+}
